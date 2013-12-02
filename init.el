@@ -138,6 +138,12 @@ installation."
 ;; ELHOME SETUP
 ;;
 
+;; FIXME - can be removed after a new elhome is released
+(unless (fboundp 'string-match-p)
+  (defun string-match-p (regexp string &optional start)
+    (save-match-data (string-match regexp string start))))
+
+;; FIXME - can be removed after a new elhome is released
 (defun elhome-initsplit-load (file)
   "Causes FILE to be loaded.  If FILE is an xxx-settings file in
 `elhome-settings-directory', first loads the `xxx' library if possible"
