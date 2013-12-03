@@ -109,6 +109,11 @@ installation."
   (interactive)
   (dwa/select-forward-word -1))
 
+(defun dwa/recompile ()
+  (interactive)
+  (switch-to-buffer "*compilation*")
+  (compile (car compile-history)))
+
 (bind-key* "<C-return>" 'other-window )
 (bind-key* "C-." 'forward-word)
 (bind-key* "C-," 'backward-word)
@@ -116,6 +121,7 @@ installation."
 (bind-key* "C-<" 'dwa/select-backward-word)
 (bind-key* "C-x C-k" 'dwa/unconditional-kill-buffer)
 (bind-key* "C-S-<f7>" 'compile)
+(bind-key* "<f7>" 'dwa/recompile)
 
 ;; Bindings for help extensions
 (bind-key* "C-h M" 'man)
