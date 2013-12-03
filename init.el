@@ -90,7 +90,7 @@ installation."
 (defun dwa/unconditional-kill-buffer ()
   (interactive)
   (let (kill-buffer-query-functions)
-    (kill-buffer)))
+    (kill-buffer (current-buffer))))
 
 (defun dwa/mark-active ()
   (if (fboundp 'region-active-p) (region-active-p) mark-active))
