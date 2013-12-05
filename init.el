@@ -13,7 +13,15 @@
 
 (if (string-match "^0.[0-8]$" package-el-version)
     (progn
+      (defconst elpa-package-archive-base package-archive-base)
       (defconst package-archive-base "http://melpa.milkbox.net/packages/")
+      (defadvice package--download-one-archive (around package--download-builtins-archive activate)
+	"Allow package-list-packages to work without exposing any of what's at ELPA"
+	(let ((package-archive-base 
+	       (if (equal (ad-get-arg 0) "builtin-packages")
+		   elpa-package-archive-base
+		 package-archive-base)))
+	  ad-do-it))
 
       ;; Newer package.el's create a directory called "archives" that
       ;; is not a package.  Define a version of this function that's
@@ -43,8 +51,7 @@ Return nil if the package could not be found."
 (let ((elpa-dir (concat user-emacs-directory "elpa")))
   (unless (file-directory-p elpa-dir)
     (make-directory elpa-dir)
-    (package--download-one-archive "archive-contents") 
-    (package-read-archive-contents)))
+    (package-refresh-contents)))
 
 ;; This adds packages to load-path and loads their -autoloads files,
 ;; but nothing more.  Still, it might be better to load these
