@@ -181,5 +181,28 @@ installation."
     (let ((features (remq 'mac features))) 
       (call-interactively 'report-emacs-mac-bug))))
 
+;; Set up default font on earlier emacsen
+;; FIXME - this should be moved into some elhome initialization file
+(when (string-match "^22\..*" emacs-version)
+  (add-to-list 'default-frame-alist  '(font . "-apple-monaco-medium-r-normal--14-0-72-72-m-0-iso10646-1")))
+
+;;
+;; Set up environment variables
+;; FIXME - this should be moved into some elhome initialization file
+(eval-when-compile
+  (require 'cl))
+
+;; Grab the user's environment settings
+(with-temp-buffer
+  ;; Find variable settings that are particular to a login shell
+  (shell-command "diff -U0 <(set) <(echo set|$(SHELL) -l)" (current-buffer))
+  ;; parse the output for settings that changed
+  (while (re-search-forward "^[+]\\([^=\n]+\\)=\\(.*\\)\n?" (not :bound) :noerror)
+    (setenv (match-string 1) (match-string 2))))
+
+;; Now update exec-path using the PATH environment variable
+(dolist (dir-path (reverse (split-string (getenv "PATH") ":")))
+  (add-to-list 'exec-path dir-path))
+
 ;;(load (car (reverse (file-expand-wildcards "~/.emacs.d/elpa/elhome-*/elhome.el")))) 
 ;;(elhome-init)
