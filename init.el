@@ -156,28 +156,6 @@ installation."
   (defun string-match-p (regexp string &optional start)
     (save-match-data (string-match regexp string start))))
 
-;; FIXME - can be removed after a new elhome is released
-(defun elhome-initsplit-load (file)
-  "Causes FILE to be loaded.  If FILE is an xxx-settings file in
-`elhome-settings-directory', first loads the `xxx' library if possible"
-  (unless
-      (and
-       ;; Is this file in the right directory?
-       (string= (file-name-directory file)
-                (expand-file-name
-                 (file-name-as-directory elhome-settings-directory)))
-       ;; Does it exist?
-       (ignore-errors (find-library-name file) t)
-
-       (let* ((f (file-name-nondirectory file))
-              (lib (when (string-match elhome-settings-file-regexp f)
-                     (match-string 1 f))))
-         ;; if it's an xxx-settings file, try to load xxx
-         (ignore-errors (load-library lib) t)))
-    ;; otherwise, fall back to the default initsplit behavior
-    (initsplit-load-if-exists file)))
-(setq initsplit-load-function 'elhome-initsplit-load)
-
 (elhome-init)
 
 ;; Disable me-minor-mode from showing up in the mode line; we're using
