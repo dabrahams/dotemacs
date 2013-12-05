@@ -195,7 +195,7 @@ installation."
 ;; Grab the user's environment settings
 (with-temp-buffer
   ;; Find variable settings that are particular to a login shell
-  (shell-command "diff -U0 <(set) <(echo set|$(SHELL) -l)" (current-buffer))
+  (shell-command "diff -U0 <(set) <(echo set|${SHELL} -l)" (current-buffer))
   ;; parse the output for settings that changed
   (while (re-search-forward "^[+]\\([^=\n]+\\)=\\(.*\\)\n?" (not :bound) :noerror)
     (setenv (match-string 1) (match-string 2))))
