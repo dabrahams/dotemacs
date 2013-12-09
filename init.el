@@ -116,6 +116,7 @@ installation."
   (interactive)
   (dwa/select-forward-word -1))
 
+;;; FIXME - replace with my-recompile
 (defun dwa/recompile ()
   (interactive)
   (switch-to-buffer "*compilation*")
@@ -127,8 +128,8 @@ installation."
 (bind-key* "C->" 'dwa/select-forward-word)
 (bind-key* "C-<" 'dwa/select-backward-word)
 (bind-key* "C-x C-k" 'dwa/unconditional-kill-buffer)
-(bind-key* "C-S-<f7>" 'compile)
-(bind-key* "<f7>" 'dwa/recompile)
+(bind-key* "C-S-<f7>" 'my-compile)
+(bind-key* "<f7>" 'my-recompile)
 
 ;; Bindings for help extensions
 (bind-key* "C-h M" 'man)
