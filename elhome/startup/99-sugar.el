@@ -64,7 +64,23 @@
 ;;;;;;;;;;
 
 ;; Automatically find files and URLs at point
-(ffap-bindings)
+(use-package ffap
+  :bind (("\C-x\C-f" . find-file-at-point)
+         ("\C-x\C-r" . ffap-read-only)
+         ("\C-x\C-v" . ffap-alternate-file)
+
+         ("\C-x4f"   . ffap-other-window)
+         ("\C-x5f"   . ffap-other-frame)
+         ("\C-x4r"   . ffap-read-only-other-window)
+         ("\C-x5r"   . ffap-read-only-other-frame)
+
+         ("\C-xd"    . dired-at-point)
+         ("\C-x4d"   . ffap-dired-other-window)
+         ("\C-x5d"   . ffap-dired-other-frame)
+         ("\C-x\C-d" . ffap-list-directory))
+  :init (progn (add-hook 'gnus-summary-mode-hook 'ffap-gnus-hook)
+               (add-hook 'gnus-article-mode-hook 'ffap-gnus-hook))
+    )
 
 ;; These hooks set up by ffap-bindings rebind `M-m', which I use for
 ;; org capture
