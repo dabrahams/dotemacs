@@ -7,10 +7,6 @@
              (concat "^\\s-" (substring pat 2))
              (cddr clause)))))
 
-(if (featurep 'compile-)
-    (require 'compile+)
-  (warn "compile- must be loaded before compile and compile+"))
-
 (add-hook 'compilation-mode-hook
           (lambda () (make-local-variable 'hl-line-sticky-flag)
             (setq hl-line-sticky-flag t)
