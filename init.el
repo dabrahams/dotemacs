@@ -83,7 +83,6 @@ installation."
 (dwa/ensure-package 'use-package)
 (dwa/ensure-package 'initsplit)
 (dwa/ensure-package 'elhome)
-(package-initialize)
 
 (use-package maxframe
   :init (add-hook 'window-setup-hook 'maximize-frame t))
@@ -157,6 +156,7 @@ installation."
   (defun string-match-p (regexp string &optional start)
     (save-match-data (string-match regexp string start))))
 
+(setq custom-theme-directory "~/.emacs.d/elhome/settings")
 (elhome-init)
 
 ;; Disable me-minor-mode from showing up in the mode line; we're using
