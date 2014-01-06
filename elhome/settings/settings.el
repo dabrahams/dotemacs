@@ -245,6 +245,7 @@ from macports.")
    (quote magit-ido-completing-read))
  '(magit-create-branch-behaviour
    (quote at-point))
+ '(magit-process-popup-time 5)
  '(magit-repo-dirs
    (quote
     ("/Users/dave/src")))
@@ -252,7 +253,7 @@ from macports.")
  '(mairix-file-path "~/Library/Data/Indexes")
  '(mf-display-padding-height 46 nil nil "The default value of 45 leaves the titlebar tucked up under the menu bar on OSX Lion
 See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=10449")
- '(mf-max-width 1920)
+ '(mf-max-width 2560)
  '(muse-project-alist
    (quote
     (("WikiPlanner"
