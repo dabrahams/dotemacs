@@ -348,7 +348,9 @@ file name matches PATTERN."
 ;; ---
 
 (use-package magit
-  :init (setq magit-mode-hook 'turn-on-magit-svn))
+  :init (add-hook 'magit-mode-hook
+                  (lambda()
+                    (when (require 'magit-svn nil t) (turn-on-magit-svn)))))
 
 ;; ---
 (defun ac-clang-cc-mode-setup ()
