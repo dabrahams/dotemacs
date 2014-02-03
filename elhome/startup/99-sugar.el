@@ -307,12 +307,13 @@ file name matches PATTERN."
     (bind-key "C-c t r" 'gtags-find-rtag)
     (bind-key "C-c t v" 'gtags-visit-rootdir)
 
-    (bind-key "<mouse-2>" 'gtags-find-tag-from-here gtags-mode-map)
+    (bind-key "<mouse-2>" 'gtags-find-tag-from-here gtags-mode-map)))
 
-    (use-package helm-gtags
-      :bind ("M-T" . helm-gtags-select)
-      :config
-      (bind-key "M-," 'helm-gtags-resume gtags-mode-map))))
+;; Crashes compilation unless helm is installed
+;(use-package helm-gtags
+;      :bind ("M-T" . helm-gtags-select)
+;      :config
+;      (bind-key "M-," 'helm-gtags-resume gtags-mode-map))
 
 
 (add-hook 'emacs-lisp-mode-hook 
@@ -368,3 +369,18 @@ file name matches PATTERN."
   (electric-layout-mode t)
   (electric-pair-mode t))
 
+(eval-when-compile (setq-default unicode-character-list-file
+                                 (ignore-errors (find-library-name "unichars"))))
+
+(use-package "xmlunicode.el"
+  :commands
+  (unicode-character-insert
+   unicode-smart-double-quote
+   unicode-smart-hyphen
+   unicode-smart-single-quote
+   unicode-smart-period
+   unicode-character-menu-insert
+   unicode-character-shortcut-insert)
+  :init (setq-default unicode-character-list-file
+                       (ignore-errors (find-library-name "unichars")))
+  )
