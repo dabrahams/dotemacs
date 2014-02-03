@@ -163,24 +163,19 @@ installation."
 ;; bind-key instead.
 (setq minor-mode-alist
       (assq-delete-all 'me-minor-mode minor-mode-alist))
-  
-(use-package magit
-  :bind ("C-x g" . magit-status))
 
 ;; Yamamoto Mitsuharu's emacs-mac-port
 ;; (https://github.com/railwaycat/emacs-mac-port) changes
 ;; report-emacs-bug so it sends reports to him instead of the upstream
 ;; maintainers.  But his code is so good that I almost invariably want
-;; the bug to be reported upstream.  So I define report-emacs-mac-bug
-;; in case I need to send a report to Mitsuharu, and set
-;; report-emacs-bug to its usual behavior.
-(when (featurep 'mac)
-  (fset 'report-emacs-mac-bug (symbol-function 'report-emacs-bug))
+;; the bug to be reported upstream.  I use this function to do that.
+(defun report-upstream-emacs-bug ()
+  (interactive)
+  (let ((features (remq 'mac features))) 
+    (call-interactively 'report-emacs-bug)))
 
-  (defun report-emacs-bug ()
-    (interactive)
-    (let ((features (remq 'mac features))) 
-      (call-interactively 'report-emacs-mac-bug))))
+(use-package magit
+  :bind ("C-x g" . magit-status))
 
 ;; Set up default font on earlier emacsen
 ;; FIXME - this should be moved into some elhome initialization file

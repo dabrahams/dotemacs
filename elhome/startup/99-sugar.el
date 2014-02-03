@@ -242,7 +242,7 @@ file name matches PATTERN."
       ':type 'alist
       )
 
-(defadvice find-file (after my-prepare-code-contents activate)
+(defadvice find-file (after my-prepare-code-contents disable)
   ;; if the file doesn't exist yet and is empty
   (if (and (equal (buffer-size) 0)
            (not (file-exists-p (buffer-file-name))))
@@ -332,11 +332,6 @@ file name matches PATTERN."
 
 (use-package findr
   :commands (findr-search findr-query-replace findr-find-files))
-
-(defun report-upstream-emacs-bug ()
-  (interactive)
-  (let ((features (remq 'mac features))) 
-    (call-interactively 'report-emacs-bug)))
 
 ;; ---
 
