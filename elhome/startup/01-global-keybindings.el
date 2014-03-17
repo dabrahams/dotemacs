@@ -218,6 +218,32 @@ so we can watch errors as they come up"
 (define-key lisp-find-map [?s] 'scratch)
 (define-key lisp-find-map [?v] 'find-variable)
 
+;===--- indentation folding support -----------------------------------------===;
+(defun increase-selective-display(&optional arg)
+  (interactive "p")
+  (interactive)
+  (set-selective-display
+   (+ (or selective-display 0) (or arg 1))))
+
+(defun decrease-selective-display(&optional arg)
+  (interactive "p")
+  (when (and (numberp selective-display) (> selective-display 0))
+    (set-selective-display
+     (max 0
+      (- selective-display (or arg 1))))))
+
+(bind-key "C-M-." 'increase-selective-display)
+(bind-key "C-M-," 'decrease-selective-display)
+
+;; Make sure the ellipsis indicating collapsed selective-display shows
+;; up in "highlight" face so we can see it
+(set-display-table-slot
+ standard-display-table 4
+ (let ((highlight-dot (make-glyph-code ?. 'highlight)))
+   (make-vector 3 highlight-dot))
+ )
+;===-------------------------------------------------------------------------===;
+
 ;(when (eq system-type 'windows-nt)
 ;  (add-to-list 'exec-path "C:/msysgit/bin")
 ;  (add-to-list 'exec-path "C:/msysgit/cmd")
