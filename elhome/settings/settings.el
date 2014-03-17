@@ -5,11 +5,8 @@
  ;; If there is more than one, they won't work right.
  '(Info-additional-directory-list
    (quote
-    ("~/Library/Info/python/" "~/Library/Info/c++11/")))
+    ("~/.emacs.d/info" "/Applications/Emacs.app/Contents/Resources/info/" "~/Library/Info/python/" "~/Library/Info/c++11/")))
  '(Info-breadcrumbs-in-header-flag t)
- '(Info-default-directory-list
-   (quote
-    ("/Users/xin/midway/emacs-mac-port/build/share/info/" "/Applications/Emacs.app/Contents/Resources/info" "/opt/local/share/info/" "/usr/share/info/")))
  '(Info-fit-frame-flag nil)
  '(Info-saved-nodes
    (quote
