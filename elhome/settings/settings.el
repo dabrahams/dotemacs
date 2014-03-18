@@ -5,8 +5,11 @@
  ;; If there is more than one, they won't work right.
  '(Info-additional-directory-list
    (quote
-    ("~/.emacs.d/info" "/Applications/Emacs.app/Contents/Resources/info/" "~/Library/Info/python/" "~/Library/Info/c++11/")))
+    ("~/Library/Info/python/" "~/Library/Info/c++11/")))
  '(Info-breadcrumbs-in-header-flag t)
+ '(Info-default-directory-list
+   (quote
+    ("/Users/xin/midway/emacs-mac-port/build/share/info/" "/Applications/Emacs.app/Contents/Resources/info" "/opt/local/share/info/" "/usr/share/info/")))
  '(Info-fit-frame-flag nil)
  '(Info-saved-nodes
    (quote
@@ -81,6 +84,25 @@ which I now deinstall with relish")
  '(display-time-mode t)
  '(doc-view-continuous t)
  '(doc-view-resolution 300)
+ '(ediff-custom-diff-options "-u" nil nil "
+Show me unified diffs by default")
+ '(ediff-diff-options "-d")
+ '(ediff-highlight-all-diffs nil nil nil "
+only highlight the selected diff (keeps down gray cruft onscreen)")
+ '(ediff-keep-variants nil nil nil "
+Any unchanged buffers in the ediff are removed when the session ends. 
+`C-u q' to override when quitting.")
+ '(ediff-merge-filename-prefix "")
+ '(ediff-skip-merge-regions-that-differ-from-default nil)
+ '(ediff-split-window-function
+   (quote split-window-horizontally)
+   nil nil "
+Show diffs side-by-side")
+ '(ediff-window-setup-function
+   (quote ediff-setup-windows-plain)
+   nil nil "
+Run Ediff all in one frame.  The default when there's a window manager is for
+emacs to pop up a separate frame for the `*Ediff Control Panel*' buffer")
  '(el-get-byte-compile nil)
  '(el-get-sources
    (quote

@@ -244,6 +244,7 @@ so we can watch errors as they come up"
  )
 ;===-------------------------------------------------------------------------===;
 
+(bind-key "C-x v e" 'ediff-revision)
 ;(when (eq system-type 'windows-nt)
 ;  (add-to-list 'exec-path "C:/msysgit/bin")
 ;  (add-to-list 'exec-path "C:/msysgit/cmd")
