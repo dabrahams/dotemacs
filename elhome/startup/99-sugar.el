@@ -365,9 +365,19 @@ file name matches PATTERN."
 ;; Note: these must be enabled in the right order to get the
 ;; appropriate effect!
 (when (fboundp 'electric-indent-mode)
+  ;; Enable
   (electric-indent-mode t)
   (electric-layout-mode t)
-  (electric-pair-mode t))
+  (electric-pair-mode t)
+  ;; Force disable
+  (setq electric-indent-mode nil
+        electric-layout-mode nil
+        electric-pair-mode nil)
+  ;; Allow individual buffers to override
+  (make-variable-buffer-local 'electric-indent-mode)
+  (make-variable-buffer-local 'electric-layout-mode)
+  (make-variable-buffer-local 'electric-pair-mode)
+  )
 
 (eval-when-compile (setq-default unicode-character-list-file
                                  (ignore-errors (find-library-name "unichars"))))
