@@ -6,6 +6,8 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp/non-GPL3") :append)
 
+(add-to-list 'Info-default-directory-list "/Applications/Emacs.app/Contents/Resources/info")
+
 ;;
 ;; MELPA Package Management Setup
 ;;

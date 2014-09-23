@@ -84,25 +84,6 @@ which I now deinstall with relish")
  '(display-time-mode t)
  '(doc-view-continuous t)
  '(doc-view-resolution 300)
- '(ediff-custom-diff-options "-u" nil nil "
-Show me unified diffs by default")
- '(ediff-diff-options "-d")
- '(ediff-highlight-all-diffs nil nil nil "
-only highlight the selected diff (keeps down gray cruft onscreen)")
- '(ediff-keep-variants nil nil nil "
-Any unchanged buffers in the ediff are removed when the session ends. 
-`C-u q' to override when quitting.")
- '(ediff-merge-filename-prefix "")
- '(ediff-skip-merge-regions-that-differ-from-default nil)
- '(ediff-split-window-function
-   (quote split-window-horizontally)
-   nil nil "
-Show diffs side-by-side")
- '(ediff-window-setup-function
-   (quote ediff-setup-windows-plain)
-   nil nil "
-Run Ediff all in one frame.  The default when there's a window manager is for
-emacs to pop up a separate frame for the `*Ediff Control Panel*' buffer")
  '(el-get-byte-compile nil)
  '(el-get-sources
    (quote
@@ -565,6 +546,14 @@ where I don't expect it to be keeping undo history anyway")
  '(dwa/glasses
    ((t
      (:underline "red" :weight bold))))
+ '(font-lock-radar-fg
+   ((t
+     (:foreground "slate gray")))
+   t)
+ '(font-lock-radar-white
+   ((t
+     (:foreground "dim gray")))
+   t)
  '(font-lock-string-face
    ((((class color)
       (min-colors 88)
@@ -573,19 +562,46 @@ where I don't expect it to be keeping undo history anyway")
  '(lazy-highlight
    ((t
      (:background "paleturquoise"))))
+ '(radar-default-light\ blue
+   ((t
+     (:foreground "medium blue" :box nil :weight bold)))
+   t)
+ '(radar-default-light\ sky\ blue
+   ((t
+     (:foreground "deep sky blue" :box nil :weight bold)))
+   t)
+ '(radar-grey18-default
+   ((t
+     (:background "gainsboro" :box nil :weight normal)))
+   t)
+ '(radar-grey18-light\ blue
+   ((t
+     (:background "gainsboro" :foreground "medium blue" :box nil :weight normal)))
+   t)
+ '(radar-grey22-default
+   ((t
+     (:background "white smoke" :box nil :weight normal)))
+   t)
+ '(radar-grey22-light\ blue
+   ((t
+     (:background "light gray" :foreground "medium blue" :box nil :weight normal)))
+   t)
  '(rst-adornment
    ((t
      (:inherit
-      (font-lock-keyword-face fixed-pitch)))))
+      (font-lock-keyword-face fixed-pitch))))
+   t)
  '(rst-directive
    ((t
      (:inherit
-      (font-lock-builtin-face fixed-pitch)))))
+      (font-lock-builtin-face fixed-pitch))))
+   t)
  '(rst-level-1
    ((((background light))
      (:inherit fixed-pitch :background "grey85"))
     (((background dark))
-     (:inherit fixed-pitch :background "grey15"))))
+     (:inherit fixed-pitch :background "grey15")))
+   t)
  '(rst-level-1-face
    ((t
      (:background "grey85" :foreground "black")))
@@ -594,7 +610,8 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:inherit rst-level-1 :background "grey78"))
     (((background dark))
-     (:inherit rst-level-1 :background "grey22"))))
+     (:inherit rst-level-1 :background "grey22")))
+   t)
  '(rst-level-2-face
    ((t
      (:inherit nil :background "grey78" :foreground "black")))
@@ -603,7 +620,8 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:inherit rst-level-2 :background "grey71"))
     (((background dark))
-     (:inherit rst-level-2 :background "grey29"))))
+     (:inherit rst-level-2 :background "grey29")))
+   t)
  '(rst-level-3-face
    ((t
      (:background "grey71" :foreground "black")))
@@ -612,7 +630,8 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:inherit rst-level-3 :background "grey64"))
     (((background dark))
-     (:inherit rst-level-3 :background "grey36"))))
+     (:inherit rst-level-3 :background "grey36")))
+   t)
  '(rst-level-4-face
    ((t
      (:background "grey64" :foreground "black")))
@@ -621,7 +640,8 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:inherit rst-level-4 :background "grey57"))
     (((background dark))
-     (:inherit rst-level-4 :background "grey43"))))
+     (:inherit rst-level-4 :background "grey43")))
+   t)
  '(rst-level-5-face
    ((t
      (:background "grey57" :foreground "black")))
@@ -630,7 +650,8 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:inherit rst-level-5 :background "grey50"))
     (((background dark))
-     (:inherit rst-level-5 :background "grey50"))))
+     (:inherit rst-level-5 :background "grey50")))
+   t)
  '(rst-level-6-face
    ((t
      (:background "grey50" :foreground "black")))
@@ -638,7 +659,8 @@ where I don't expect it to be keeping undo history anyway")
  '(rst-literal
    ((t
      (:inherit
-      (font-lock-string-face fixed-pitch)))))
+      (font-lock-string-face fixed-pitch))))
+   t)
  '(variable-pitch
    ((t
      (:family "Myriad Set"))))
