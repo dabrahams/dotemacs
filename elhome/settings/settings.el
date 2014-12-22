@@ -198,7 +198,6 @@ Requires wget, which isn't on the Mac by default.  Someday should
 figure out how to use curl instead, but for now I just installed wget
 from macports.")
  '(gravatar-size 48)
- '(gud-gdb-command-name "gdb --annotate=1")
  '(hl-line-sticky-flag nil)
  '(ido-enable-flex-matching t)
  '(ido-everywhere nil)
@@ -251,6 +250,10 @@ from macports.")
    (quote
     ("/Users/dave/src")))
  '(magit-repo-dirs-depth 3)
+ '(magit-repository-directories
+   (quote
+    ("/Users/dave/src")))
+ '(magit-repository-directories-depth 3)
  '(mairix-file-path "~/Library/Data/Indexes")
  '(mf-display-padding-height 46 nil nil "The default value of 45 leaves the titlebar tucked up under the menu bar on OSX Lion
 See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=10449")
@@ -503,6 +506,7 @@ Tool bars take up valuable screen real-estate for icons whose meaning I forget")
  '(truncate-partial-width-windows nil)
  '(user-mail-address "dave@boostpro.com")
  '(vc-diff-switches "-du")
+ '(vc-follow-symlinks nil)
  '(version-control t)
  '(warning-suppress-types
    (quote
@@ -747,4 +751,5 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:background "light goldenrod"))
     (((background dark))
-     (:background "dark goldenrod")))))
+     (:background "dark goldenrod")))
+   t))
