@@ -26,7 +26,8 @@
   :config
   (progn
     (add-to-list 'thing-at-point-uri-schemes "rdar://")
-    (add-rdar-to-uri-regexp thing-at-point-url-regexp)))
+    (if (boundp 'thing-at-point-url-regexp)
+        (add-rdar-to-uri-regexp thing-at-point-url-regexp))))
 
 (use-package ffap
   :config

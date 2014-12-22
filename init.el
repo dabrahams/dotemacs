@@ -1,5 +1,5 @@
 ;; Enable locally-installed site-lisp
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
+;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
 
 (unless (boundp 'user-emacs-directory)
   (defconst user-emacs-directory (expand-file-name "~/.emacs.d/")))
@@ -13,7 +13,7 @@
 ;;
 (require 'package nil :noerror)
 
-(if (string-match "^0.[0-8]$" package-el-version)
+(if (and (boundp 'package-el-version) (string-match "^0.[0-8]$" package-el-version))
     (progn
       (defconst elpa-package-archive-base package-archive-base)
       (defconst package-archive-base "http://melpa.milkbox.net/packages/")
@@ -75,7 +75,7 @@ installation."
     (package-install feature)
     (require feature)))
 
-(dwa/ensure-package 'melpa)     ;; contains at least one fix to the package manager.
+(require 'melpa nil :noerror)     ;; contains at least one fix to the package manager.
 
 ;; workaround for backward compatibility of use-package
 (unless (fboundp 'declare-function)
@@ -85,9 +85,6 @@ installation."
 (dwa/ensure-package 'use-package)
 (dwa/ensure-package 'initsplit)
 (dwa/ensure-package 'elhome)
-
-(use-package maxframe
-  :init (add-hook 'window-setup-hook 'maximize-frame t))
 
 
 ;;
@@ -158,7 +155,7 @@ installation."
   (defun string-match-p (regexp string &optional start)
     (save-match-data (string-match regexp string start))))
 
-(setq custom-theme-directory "~/.emacs.d/elhome/settings")
+(setq custom-theme-directory (expand-file-name "~/.emacs.d/elhome/settings"))
 (elhome-init)
 
 ;; Disable me-minor-mode from showing up in the mode line; we're using
