@@ -241,6 +241,7 @@ from macports.")
  '(large-file-warning-threshold nil)
  '(mac-option-modifier
    (quote alt))
+ '(magit-backup-mode nil)
  '(magit-completing-read-function
    (quote magit-ido-completing-read))
  '(magit-create-branch-behaviour

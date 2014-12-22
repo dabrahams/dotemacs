@@ -344,9 +344,24 @@ file name matches PATTERN."
 ;; ---
 
 (use-package magit
-  :init (add-hook 'magit-mode-hook
+  :load-path ,(expand-file-name (concat user-emacs-directory "site-lisp/magit"))
+
+  :init (progn
+          (add-hook 'magit-mode-hook
                   (lambda()
-                    (when (require 'magit-svn nil t) (turn-on-magit-svn)))))
+                    (when (require 'magit-svn nil t) (turn-on-magit-svn))))
+
+          ;; ability to cycle back to old commit messages
+          ;; (https://github.com/magit/magit/issues/1677)
+          (add-hook 'git-commit-setup-hook
+                    (lambda ()
+                      (add-hook 'with-editor-pre-finish-hook
+                                'git-commit-save-message nil t)))
+          )
+  )
+
+
+
 
 ;; ---
 (defun ac-clang-cc-mode-setup ()
