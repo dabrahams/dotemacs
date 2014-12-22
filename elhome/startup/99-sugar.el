@@ -336,13 +336,6 @@ file name matches PATTERN."
 
 ;; ---
 
-;; Maximize emacs on startup
-(ignore-errors
-  (require 'maxframe)
-  (add-hook 'window-setup-hook 'maximize-frame t))
-
-;; ---
-
 (use-package magit
   :load-path ,(expand-file-name (concat user-emacs-directory "site-lisp/magit"))
 

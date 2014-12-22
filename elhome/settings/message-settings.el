@@ -85,7 +85,8 @@ Automatically wrap text during email composition")
    (quote message-send-mail-with-sendmail))
  '(message-send-rename-function
    (quote dwa/message-send-rename))
- '(message-subject-re-regexp "^[ 	]*\\(\\([Rr][Ee]\\|[Aa][Ww]\\)\\(\\[[0-9]*\\]\\)*:[ 	]*\\)*[ 	]*" nil nil "
+ '(message-subject-re-regexp
+   "^[ 	]*\\(\\([Rr][Ee]\\|[Aa][Ww]\\)\\(\\[[0-9]*\\]\\)*:[ 	]*\\)*[ 	]*" nil nil "
 Handle Germans' Aw: version of Re:")
  '(message-subject-trailing-was-query t nil nil "
 always strip the trailing old subject in (was: ...) subjects")
