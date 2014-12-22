@@ -204,3 +204,4 @@ installation."
 
 ;;(load (car (reverse (file-expand-wildcards "~/.emacs.d/elpa/elhome-*/elhome.el")))) 
 ;;(elhome-init)
+(put 'erase-buffer 'disabled nil)
