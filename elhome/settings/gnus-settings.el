@@ -307,7 +307,6 @@ NOTICE: ")))
   :init (gnus-harvest-install 'message-x))
 
 (require 'starttls)
-(require 'pgg)
 
 (gnus-registry-initialize)
 
@@ -787,7 +786,7 @@ If all article have been seen, on the subject line of the last article."
 (require 'gnus)
 (require 'gnus-sum)
 (require 'mm-util)
-(require 'w3m-load)
+(require 'w3m-load nil :noerror)
 
 (defvar my-gnus-group-faces
   '(

@@ -6,18 +6,20 @@
 ;; text/plain entity does not exist
 (autoload 'mime-w3m-preview-text/html "mime-w3m")
 
-(ctree-set-calist-strictly
- 'mime-preview-condition
- '((type . text)
-   (subtype . html)
-   (body . visible)
-   (body-presentation-method . mime-w3m-preview-text/html)))
+(eval-after-load 'calist
+  '(progn
+     (ctree-set-calist-strictly
+      'mime-preview-condition
+      '((type . text)
+        (subtype . html)
+        (body . visible)
+        (body-presentation-method . mime-w3m-preview-text/html)))
 
-(set-alist 'mime-view-type-subtype-score-alist
-           '(text . html) 3)
+     (set-alist 'mime-view-type-subtype-score-alist
+                '(text . html) 3)
 
-(set-alist 'mime-view-type-subtype-score-alist
-           '(text . plain) 4)
+     (set-alist 'mime-view-type-subtype-score-alist
+                '(text . plain) 4)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -97,5 +99,6 @@
             situations (cdr situations)
             i (1+ i)))))
 
-(set-alist 'mime-view-type-subtype-score-alist
-           '(text . plain) 'mime-entity-text/plain-score)
+(eval-after-load 'calist
+  '(set-alist 'mime-view-type-subtype-score-alist
+            '(text . plain) 'mime-entity-text/plain-score))

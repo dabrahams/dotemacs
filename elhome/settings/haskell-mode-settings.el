@@ -12,4 +12,4 @@
  '(haskell-program-name "ghci")
  '(haskell-saved-check-command "~/.cabal/bin/hlint" t))
 
-(require 'haskell-config)
+(require 'haskell-config nil :noerror)

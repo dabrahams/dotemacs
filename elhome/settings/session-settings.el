@@ -6,7 +6,6 @@
  '(session-globals-exclude
    (quote
     ("\\`helm-c-source" "\\`helm-c-source" load-history register-alist vc-comment-ring flyspell-auto-correct-ring org-mark-ring planner-browser-file-display-rule-ring debug-on-error debug-on-quit)))
- '(session-use-package t nil
-                       (session)))
+ '(session-use-package t))
 
 (provide 'session-settings)

@@ -1,4 +1,5 @@
 ;; Support initial tabs in Python backtraces, as produced by Buildbot.
+(require 'compile)
 (let* ((clause (assoc 'caml compilation-error-regexp-alist-alist))
        (pat (cadr clause)))
   (when (and clause (string= (substring pat 0 2) "^ "))
