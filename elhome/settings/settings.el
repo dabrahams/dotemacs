@@ -160,6 +160,7 @@ which I now deinstall with relish")
  '(elscreen-tab-display-control nil)
  '(elscreen-tab-display-kill-screen nil)
  '(enable-local-eval t)
+ '(enable-recursive-minibuffers t)
  '(eudc-inline-expansion-format
    (quote
     ("%s <%s>" name email)))
@@ -279,8 +280,7 @@ command.")
     (("gnu" . "http://elpa.gnu.org/packages/")
      ("marmalade" . "http://marmalade-repo.org/packages/")
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
- '(pp^L-^L-string
-   "····································✄····································
+ '(pp^L-^L-string "····································✄····································
 ")
  '(proof-electric-terminator-enable t)
  '(proof-shell-fiddle-frames nil nil nil "John says, \"I was able to get the default \"three windows mode\"
@@ -506,6 +506,9 @@ Tool bars take up valuable screen real-estate for icons whose meaning I forget")
  '(user-mail-address "dave@boostpro.com")
  '(vc-diff-switches "-du")
  '(vc-follow-symlinks nil)
+ '(vc-git-diff-switches
+   (quote
+    ("--find-renames=80")))
  '(version-control t)
  '(warning-suppress-types
    (quote
