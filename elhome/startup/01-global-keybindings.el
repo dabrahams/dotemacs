@@ -112,9 +112,6 @@ so we can watch errors as they come up"
   ;; force scrolling despite save-excursion
   (my-end-of-current-compilation-buffer))
 
-(when (fboundp 'visual-line-mode)
-  (add-hook 'compilation-mode-hook (lambda () (visual-line-mode t))))
-
 (define-key me-minor-mode-map [f7] 'my-recompile)
 (define-key me-minor-mode-map [(control f7)] 'my-compile)
 (define-key me-minor-mode-map [f4] 'next-error)

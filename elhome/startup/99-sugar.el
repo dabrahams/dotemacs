@@ -337,8 +337,6 @@ file name matches PATTERN."
 ;; ---
 
 (use-package magit
-  :load-path ,(expand-file-name (concat user-emacs-directory "site-lisp/magit"))
-
   :init (progn
           (add-hook 'magit-mode-hook
                   (lambda()
@@ -352,9 +350,6 @@ file name matches PATTERN."
                                 'git-commit-save-message nil t)))
           )
   )
-
-
-
 
 ;; ---
 (defun ac-clang-cc-mode-setup ()

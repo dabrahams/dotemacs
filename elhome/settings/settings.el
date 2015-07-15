@@ -75,8 +75,7 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(diff-jump-to-old-file t)
  '(diff-switches "-du")
  '(dired-auto-revert-buffer t)
- '(dired-dwim-target t nil nil "This customization replaces John's entire desire for sunrise,
-which I now deinstall with relish")
+ '(dired-dwim-target nil)
  '(dired-listing-switches "-alh")
  '(display-time-mode t)
  '(doc-view-continuous t)
@@ -160,7 +159,6 @@ which I now deinstall with relish")
  '(elscreen-tab-display-control nil)
  '(elscreen-tab-display-kill-screen nil)
  '(enable-local-eval t)
- '(enable-recursive-minibuffers t)
  '(eudc-inline-expansion-format
    (quote
     ("%s <%s>" name email)))
@@ -423,7 +421,9 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
    nil nil "As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-planner.html.  Note: remember-append-to-file is checked in the default.")
  '(safe-local-variable-values
    (quote
-    ((tab-always-indent . t)
+    ((whitespace-line-column . 77)
+     (whitespace-style lines face)
+     (tab-always-indent . t)
      (tab-always-indent t)
      (tab-always-indent)
      (whitespace-style face lines indentation:space)
@@ -505,7 +505,7 @@ Tool bars take up valuable screen real-estate for icons whose meaning I forget")
  '(truncate-partial-width-windows nil)
  '(user-mail-address "dave@boostpro.com")
  '(vc-diff-switches "-du")
- '(vc-follow-symlinks nil)
+ '(vc-follow-symlinks t)
  '(vc-git-diff-switches
    (quote
     ("--find-renames=80")))
@@ -565,9 +565,15 @@ where I don't expect it to be keeping undo history anyway")
       (min-colors 88)
       (background light))
      (:background "Beige" :foreground "DarkGreen" :slant italic))))
+ '(git-commit-overlong-summary-face
+   ((t
+     (:inherit nil))))
  '(lazy-highlight
    ((t
      (:background "paleturquoise"))))
+ '(magit-whitespace-warning-face
+   ((t
+     (:inherit nil))))
  '(radar-default-light\ blue
    ((t
      (:foreground "medium blue" :box nil :weight bold)))
@@ -753,5 +759,4 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:background "light goldenrod"))
     (((background dark))
-     (:background "dark goldenrod")))
-   t))
+     (:background "dark goldenrod")))))

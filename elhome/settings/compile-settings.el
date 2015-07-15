@@ -14,6 +14,13 @@
             (hl-line-mode t)
             ))
 
+(add-hook 'compilation-mode-hook
+          (lambda ()
+            (make-local-variable
+             (quote hl-line-sticky-flag))
+            (setq hl-line-sticky-flag t)
+            (hl-line-mode t)))
+          
 (add-hook 'next-error-hook
           (lambda () 
             (with-current-buffer next-error-last-buffer
