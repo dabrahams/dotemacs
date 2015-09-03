@@ -43,6 +43,9 @@
 	  (wg-load "~/.emacs.d/workgroups")))))
 
 
+(use-package swift-mode
+  :init (add-to-list 'auto-mode-alist '("\\.swift\\.?" . swift-mode)))
+
 ;; Flymake
 
 ;; (defun dwa/flymake-setup ()
