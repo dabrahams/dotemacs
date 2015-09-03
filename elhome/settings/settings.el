@@ -409,6 +409,11 @@ for Proof General working reliably by customizing this\"")
       (line-height . 11.45)
       (space-width . 2.2)
       (avg-char-width . 4.10811)))))
+ '(ps-header-lines 1)
+ '(ps-left-header
+   (quote
+    (ps-get-buffer-name)))
+ '(ps-use-face-background t)
  '(python-python-command "env python")
  '(remember-annotation-functions
    (quote
@@ -759,4 +764,5 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:background "light goldenrod"))
     (((background dark))
-     (:background "dark goldenrod")))))
+     (:background "dark goldenrod")))
+   t))
