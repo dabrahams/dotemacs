@@ -988,12 +988,16 @@ end tell" (match-string 1))))
 (defun yas/org-very-safe-expand ()
   (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
 
-(add-hook 'org-mode-hook
-          (lambda ()
-            ;; yasnippet (using the new org-cycle hooks)
-            (set (make-local-variable 'yas/trigger-key) [tab])
-            (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
-            (define-key yas/keymap [tab] 'yas/next-field)))
+(require 'use-package)
+
+(use-package yasnippet
+  :init
+  (add-hook 'org-mode-hook
+            (lambda ()
+              ;; yasnippet (using the new org-cycle hooks)
+              (set (make-local-variable 'yas/trigger-key) [tab])
+              (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+              (define-key yas/keymap [tab] 'yas/next-field))))
 
 (remove-hook 'kill-emacs-hook 'org-babel-remove-temporary-directory)
 
