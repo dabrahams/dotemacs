@@ -176,8 +176,8 @@
   (around Man-narrow-please activate compile preactivate)
   (let ((Man-width (when (> (window-width) 90) 90)))
     ad-do-it))
-(setenv "MANWIDTH" "") ;; the `man' function respects these environment variables
-(setenv "COLUMNS" "")  ;; so let's dis' them.
+(setenv "MANWIDTH" nil) ;; the `man' function respects these environment variables
+(setenv "COLUMNS" nil)  ;; so let's dis' them.
 
 ;; The git pager sux except in a terminal
 (setenv "GIT_PAGER" "")
@@ -261,21 +261,6 @@ file name matches PATTERN."
             (progn (eval (list (cdr initializer)))
                    (set-buffer-modified-p nil)))
       )))
-  
-(defun my-code-mode-hook ()
-  (font-lock-mode t)
-  (show-paren-mode t)
-  (local-set-key [(return)] 'newline-and-indent)
-  (local-set-key [(shift return)] 'newline-and-indent)
-  (local-set-key [(control return)] 'newline)
-  (local-set-key [( control ?\( )] 'my-matching-paren)
-  
-  ;; Try to make completion case sensitive in code buffers.
-  (make-local-variable 'dabbrev-case-fold-search)
-  (setq dabbrev-case-fold-search nil)
-  )
-
-(add-hook 'prog-mode-hook 'my-code-mode-hook)
 
 ;; Makes `C-c RET C-a' send the current file as an attachment in dired
 ;; [[message://m2vcukdcsu.fsf@gmail.com]]

@@ -12,6 +12,8 @@
           (lambda () (make-local-variable 'hl-line-sticky-flag)
             (setq hl-line-sticky-flag t)
             (hl-line-mode t)
+            (make-local-variable 'auto-hscroll-mode)
+            (setq auto-hscroll-mode nil)
             ))
 
 (add-hook 'compilation-mode-hook
