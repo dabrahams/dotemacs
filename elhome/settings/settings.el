@@ -69,6 +69,7 @@ Blinking cursor just annoys me")
  '(delete-by-moving-to-trash t)
  '(delete-old-versions t)
  '(delete-selection-mode t)
+ '(describe-char-unidata-list t)
  '(diff-default-read-only t nil nil "
 If you don't do this, all the nice navigation stuff is disabled by default.  Who wants to edit diffs by hand, anyway?")
  '(diff-jump-to-old-file t)
@@ -184,8 +185,7 @@ Increased the number of stack frames displayed from 40")
  '(glasses-separate-parentheses-p nil)
  '(glasses-separator "")
  '(global-auto-complete-mode t)
- '(global-auto-revert-mode t nil nil "
-We want our file buffers to stay up-to-date with changes on disk")
+ '(global-auto-revert-mode t)
  '(gravatar-icon-size 50)
  '(gravatar-retrieval-program "wget -q -O '%s' '%s'" nil nil "
 Requires wget, which isn't on the Mac by default.  Someday should
@@ -276,7 +276,8 @@ command.")
     (("gnu" . "http://elpa.gnu.org/packages/")
      ("marmalade" . "http://marmalade-repo.org/packages/")
      ("melpa" . "http://melpa.milkbox.net/packages/"))))
- '(pp^L-^L-string "····································✄····································
+ '(pp^L-^L-string
+   "····································✄····································
 ")
  '(proof-electric-terminator-enable t)
  '(proof-shell-fiddle-frames nil nil nil "John says, \"I was able to get the default \"three windows mode\"
@@ -608,19 +609,16 @@ where I don't expect it to be keeping undo history anyway")
  '(rst-adornment
    ((t
      (:inherit
-      (font-lock-keyword-face fixed-pitch))))
-   t)
+      (font-lock-keyword-face fixed-pitch)))))
  '(rst-directive
    ((t
      (:inherit
-      (font-lock-builtin-face fixed-pitch))))
-   t)
+      (font-lock-builtin-face fixed-pitch)))))
  '(rst-level-1
    ((((background light))
      (:inherit fixed-pitch :background "grey85"))
     (((background dark))
-     (:inherit fixed-pitch :background "grey15")))
-   t)
+     (:inherit fixed-pitch :background "grey15"))))
  '(rst-level-1-face
    ((t
      (:background "grey85" :foreground "black")))
@@ -629,8 +627,7 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:inherit rst-level-1 :background "grey78"))
     (((background dark))
-     (:inherit rst-level-1 :background "grey22")))
-   t)
+     (:inherit rst-level-1 :background "grey22"))))
  '(rst-level-2-face
    ((t
      (:inherit nil :background "grey78" :foreground "black")))
@@ -639,8 +636,7 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:inherit rst-level-2 :background "grey71"))
     (((background dark))
-     (:inherit rst-level-2 :background "grey29")))
-   t)
+     (:inherit rst-level-2 :background "grey29"))))
  '(rst-level-3-face
    ((t
      (:background "grey71" :foreground "black")))
@@ -649,8 +645,7 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:inherit rst-level-3 :background "grey64"))
     (((background dark))
-     (:inherit rst-level-3 :background "grey36")))
-   t)
+     (:inherit rst-level-3 :background "grey36"))))
  '(rst-level-4-face
    ((t
      (:background "grey64" :foreground "black")))
@@ -659,8 +654,7 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:inherit rst-level-4 :background "grey57"))
     (((background dark))
-     (:inherit rst-level-4 :background "grey43")))
-   t)
+     (:inherit rst-level-4 :background "grey43"))))
  '(rst-level-5-face
    ((t
      (:background "grey57" :foreground "black")))
@@ -669,8 +663,7 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:inherit rst-level-5 :background "grey50"))
     (((background dark))
-     (:inherit rst-level-5 :background "grey50")))
-   t)
+     (:inherit rst-level-5 :background "grey50"))))
  '(rst-level-6-face
    ((t
      (:background "grey50" :foreground "black")))
@@ -678,8 +671,7 @@ where I don't expect it to be keeping undo history anyway")
  '(rst-literal
    ((t
      (:inherit
-      (font-lock-string-face fixed-pitch))))
-   t)
+      (font-lock-string-face fixed-pitch)))))
  '(variable-pitch
    ((t
      (:family "Myriad Set"))))

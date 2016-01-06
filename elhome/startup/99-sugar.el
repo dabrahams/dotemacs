@@ -345,11 +345,11 @@ file name matches PATTERN."
   (setq ac-sources '(ac-source-clang-async))
   (ac-clang-launch-completion-process))
 
-(use-package auto-complete-clang-async
-  :init (progn
-	  (add-hook 'c-mode-common-hook 'ac-clang-cc-mode-setup)
-	  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
-	  (global-auto-complete-mode t)))
+;; (use-package auto-complete-clang-async
+;;   :init (progn
+;; 	  (add-hook 'c-mode-common-hook 'ac-clang-cc-mode-setup)
+;; 	  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+;; 	  (global-auto-complete-mode t)))
 
 ;; automatic pairing and formatting
 
