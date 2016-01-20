@@ -19,7 +19,8 @@
  '(gnus-agent-go-online t)
  '(gnus-agent-mark-unread-after-downloaded nil)
  '(gnus-agent-synchronize-flags t)
- '(gnus-always-read-dribble-file t)
+ '(gnus-always-read-dribble-file t nil nil "
+Nobody can explain the circumstances under which you wouldn't want to recover from the dribble file.")
  '(gnus-article-address-banner-alist
    (quote
     (("@sig\\.com\\'" . signature)
@@ -32,10 +33,9 @@
  '(gnus-asynchronous t)
  '(gnus-auto-select-next nil nil nil "
 *** VERY IMPORTANT SETTING ***.  See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=9399")
- '(gnus-buttonized-mime-types
-   (quote
-    ("multipart/alternative")))
- '(gnus-check-new-newsgroups nil)
+ '(gnus-buttonized-mime-types nil)
+ '(gnus-check-new-newsgroups nil nil nil "
+We generally don't want to wait for NNTP servers to look for new groups except when going into the server buffer.")
  '(gnus-cited-closed-text-button-line-format "...<schnipp %n>...
 ")
  '(gnus-cited-lines-visible
@@ -47,6 +47,7 @@
  '(gnus-default-article-saver
    (quote gnus-summary-write-to-file))
  '(gnus-default-directory "~")
+ '(gnus-duplicate-file "~/Library/Data/Gnus/News/suppression")
  '(gnus-duplicate-list-length 100000)
  '(gnus-extra-headers
    (quote
@@ -61,7 +62,11 @@
    (quote
     (gnus-topic-mode gnus-agent-mode)))
  '(gnus-group-use-permanent-levels t)
- '(gnus-ignored-from-addresses "^david.abrahams@rcn.com\\|dave@boost\\(-consulting\\|pro\\).com$")
+ '(gnus-harvest-db-path "/Users/dave/Library/Data/Gnus/harvest-addrs")
+ '(gnus-harvest-ignore-email-regexp
+   "\\([+\"]\\|no-reply\\|noreply\\|@public.gmane.org\\|localhost\\)")
+ '(gnus-ignored-from-addresses
+   "^david.abrahams@rcn.com\\|dave@boost\\(-consulting\\|pro\\).com$")
  '(gnus-ignored-mime-types
    (quote
     ("application/x-pkcs7-signature" "application/ms-tnef" "text/x-vcard")))
@@ -76,14 +81,7 @@
  '(gnus-novice-user nil)
  '(gnus-parameters
    (quote
-    (("^INBOX"
-      (expiry-wait . immediate)
-      (expiry-target . delete)
-      (display .
-               [or
-                (not reply)
-                (not expire)]))
-     ("gmane\\.mail\\.imap\\.isync\\.devel"
+    (("gmane\\.mail\\.imap\\.isync\\.devel"
       (to-address . "isync-devel@lists.sourceforge.net"))
      ("gmane\\.comp\\.programming\\.tools\\.ryppl\\.devel "
       (to-address . "ryppl-dev@googlegroups.com"))
@@ -92,7 +90,14 @@
    nil nil "
 The GMane group for isync-devel doesn't seem to forward my messages, 
 so I always post directly to the mailing list.")
- '(gnus-read-active-file nil)
+ '(gnus-posting-styles
+   (quote
+    (((header "to" ".*[.@]apple\\.com\\(?:$\\|[,>]\\)")
+      (address "dabrahams@apple.com")
+      ("Bcc" "dabrahams@apple.com"))
+     ("\\`\\[?[Aa]pple]?/.*\\|.*\\.comp\\.lang\\.swift\\..*"
+      (address "dabrahams@apple.com")
+      ("Bcc" "dabrahams@apple.com")))))
  '(gnus-read-newsrc-file nil)
  '(gnus-refer-article-method
    (quote
@@ -103,10 +108,7 @@ so I always post directly to the mailing list.")
            (nntp-address "localhost")
            (nntp-port-number 9119))
      (nntp "Gmane"
-           (nntp-address "news.gmane.org"))
-     (nntp "GigaNews"
-           (nntp-address "text.giganews.com")
-           (nntp-authinfo-user "dabrahams")))))
+           (nntp-address "news.gmane.org")))))
  '(gnus-refer-thread-use-nnir t)
  '(gnus-safe-html-newsgroups ".")
  '(gnus-save-duplicate-list t)
@@ -133,7 +135,7 @@ so I always post directly to the mailing list.")
             (nnimap-user "dave")
             (nnimap-server-port 9143)
             (nnimap-stream shell)
-            (nnimap-shell-program "/opt/local/libexec/dovecot/imap"))))
+            (nnimap-shell-program "/Users/dave/brew/libexec/dovecot/imap"))))
  '(gnus-signature-separator
    (quote
     ("^-- $" "^-- *$" "^_____+$" "^-----+?
@@ -226,7 +228,9 @@ NOTICE: ")))
      ((< score default-low)
       . gnus-summary-low-read)
      (t . gnus-summary-normal-read))))
- '(gnus-summary-line-format "%O%U%R%z%~(form my-align-gnus-summary)@%B%&user-date;: %(%f%~(form my-align-gnus-subject)@%)		%s
+ '(gnus-summary-ignore-duplicates t)
+ '(gnus-summary-line-format
+   "%O%U%R%z%~(form my-align-gnus-summary)@%B%&user-date;: %(%~(form (dwa/gnus-summary-from-or-to-sans-via-swift-group))@%~(form my-align-gnus-subject)@%)		%s
 ")
  '(gnus-suppress-duplicates t)
  '(gnus-suspend-gnus-hook
@@ -267,11 +271,12 @@ NOTICE: ")))
  '(gnus-use-trees t)
  '(gnus-verbose 4)
  '(nnir-hyrex-remove-prefix "~/Library/Data/Gnus/Mail")
- '(nnir-ignored-newsgroups "^\"\\([^[]\\|\\[Gmail][/.][^A]\\)")
+ '(nnir-ignored-newsgroups "")
  '(nnir-namazu-index-directory "~/Library/Data/Gnus/Mail/namazu")
  '(nnir-namazu-remove-prefix "~/Library/Data/Gnus/Mail")
  '(nnir-notmuch-remove-prefix "~/Library/Data/Gnus/Mail")
- '(nnir-summary-line-format "%O%U%R%z%Z %g%~(form my-align-gnus-summary)@%B%&user-date;: %(%f%~(form my-align-gnus-subject)@%)		%s
+ '(nnir-summary-line-format
+   "%O%U%R%z%Z %g%~(form my-align-gnus-summary)@%B%&user-date;: %(%f%~(form my-align-gnus-subject)@%)		%s
 ")
  '(nnir-swish++-configuration-file "~/Library/Data/Gnus/Mail/swish++.conf")
  '(nnir-swish++-remove-prefix "~/Library/Data/Gnus/Mail/")
@@ -279,13 +284,19 @@ NOTICE: ")))
    (quote
     ("-c" "/Users/dave/Library/Data/Gnus/swish-e.conf")))
  '(nnir-swish-e-index-file "/Users/dave/Library/Data/Gnus/index.swish-e")
- '(nnir-swish-e-remove-prefix "/opt/local/var/spool/news/")
+ '(nnir-swish-e-remove-prefix "/Users/dave/brew/spool/news/")
  '(nnmail-crosspost nil)
  '(nnmail-expiry-wait 30)
  '(nnmail-extra-headers
    (quote
     (To Cc Content-Type)))
- '(nnmail-scan-directory-mail-source-once t))
+ '(nnmail-message-id-cache-file "~/Library/Data/Gnus/.nnmail-cache")
+ '(nnmail-scan-directory-mail-source-once t)
+ '(nnmail-split-methods
+   (quote
+    (("duplicates" "^Gnus-Warning:.*duplicate"))))
+ '(nnmail-treat-duplicates
+   (quote delete)))
 
 ;;;_ + faces
 
@@ -303,9 +314,24 @@ NOTICE: ")))
 (require 'gnus)
 (require 'use-package)
 
-(use-package gnus-harvest
-  :init (gnus-harvest-install 'message-x))
+(defun dwa/gnus-harvest-then-message-x-complete ()
+  "Try completing with gnus-harvest; if that doesn't work, fall
+back to message-x's own completion, which dispatches back to eudc
+eventually"
+  (condition-case nil
+      (gnus-harvest-find-address)
+    (error (message-x-complete-name))))
 
+(use-package gnus-harvest
+  :config 
+  (gnus-harvest-install)
+  (use-package message-x
+    :config 
+    (add-to-list 'message-x-completion-alist 
+                 '("\\([rR]esent-\\|[rR]eply-\\)?[tT]o:\\|[bB]?[cC][cC]:" . 
+                   dwa/gnus-harvest-then-message-x-complete))))
+
+(use-package message-x)
 (require 'starttls)
 
 (gnus-registry-initialize)
@@ -748,6 +774,12 @@ This moves them into the Spam folder."
 
 (defvar my-align-gnus-group (propertize " " 'display '(space :align-to 8)))
 
+(defun dwa/gnus-summary-from-or-to-sans-via-swift-group ()
+  "A replacement for %f that drops a \" via swift-*\" suffix"
+  (let ((f (gnus-summary-from-or-to-or-newsgroups gnus-tmp-header gnus-tmp-from)))
+    (save-match-data
+      (if (string-match "\\(.*\\) via swift-[^ ]*\\'" f)
+          (match-string 1 f) f))))
 
 ;; Display word docs inline with antiword installed.  See
 ;; http://www.emacswiki.org/emacs/MimeTypesWithGnus
@@ -859,7 +891,7 @@ If all article have been seen, on the subject line of the last article."
   (setq gnus-sum-thread-tree-single-indent   " -  ")              ;; " -  "
   (setq gnus-sum-thread-tree-vertical        " \u2502")              ;; " │"
   (setq gnus-sum-thread-tree-leaf-with-other " \u251c\u2500 ")  ;; " ├─ "
-  (setq gnus-sum-thread-tree-single-leaf     " \u2570\u2500 ")) ;; " ╰─ "
+  (setq gnus-sum-thread-tree-single-leaf     " \u2514\u2500 ")) ;; " └─ "
 
 
 ;; Make sure cited text has a light gray background, in case people
@@ -885,11 +917,11 @@ If all article have been seen, on the subject line of the last article."
             (setq current-group (match-string 2 current-group)))
           (setq common-prefix (substring current-group 0
                                          (mismatch previous-group current-group))
-                common-dot-count (count ?. common-prefix)
+                common-dot-count (+ (count ?. common-prefix) (count ?/ common-prefix))
                 prefix (mapconcat (lambda (x) x)
                                   (make-list common-dot-count "  .") "")
                 suffix (and (string-match
-                             (format "\\([^.]*[.]\\)\\{%d\\}\\(.+\\)" common-dot-count)
+                             (format "\\([^./]*[./]\\)\\{%d\\}\\(.+\\)" common-dot-count)
                              current-group)
                             (match-string 2 current-group))
                 previous-group current-group)
@@ -949,6 +981,23 @@ If all article have been seen, on the subject line of the last article."
 
 (add-hook 'org-store-link-functions 'dwa/gnus-store-link)
 
+;;; ========= Workaround for https://debbugs.gnu.org/cgi/bugreport.cgi?bug=22353 ==========
+(require 'nnir)
+(deffoo nnir-request-update-mark (group article mark)
+  (let ((artgroup (nnir-article-group article))
+	(artnumber (nnir-article-number article)))
+    (or (and artgroup
+	     artnumber
+	     (gnus-request-update-mark artgroup artnumber mark))
+	mark)))
+
 (provide 'dot-gnus-el)
+
+;;; ============
+(defun dwa/fetchnews ()
+  (save-window-excursion
+    (async-shell-command "/Users/dave/brew/sbin/fetchnews -vv" "*fetchnews*")))
+
+(add-hook 'gnus-get-top-new-news-hook 'dwa/fetchnews)
 
 ;;; .gnus.el ends here

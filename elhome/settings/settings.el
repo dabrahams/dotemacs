@@ -1,3 +1,9 @@
+(setq magit-last-seen-setup-instructions "1.4.0")
+
+;; Force load this because we don't seem to be able to make
+;; initsplit/elhome do the right thing.  Bankruptcy again!
+(load-library "mime-settings")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -9,17 +15,14 @@
  '(Info-breadcrumbs-in-header-flag t)
  '(Info-default-directory-list
    (quote
-    ("/Users/xin/midway/emacs-mac-port/build/share/info/" "/Applications/Emacs.app/Contents/Resources/info" "/opt/local/share/info/" "/usr/share/info/")))
+    ("/Users/xin/midway/emacs-mac-port/build/share/info/" "/Applications/Emacs.app/Contents/Resources/info" "/Users/dave/brew/share/info/" "/usr/share/info/")))
  '(Info-fit-frame-flag nil)
  '(Info-saved-nodes
    (quote
     ("(emacs)Top" "(elisp)Top" "(org)Top" "(gnus)Top" "(std)Top")))
  '(Man-header-file-path
    (quote
-    ("/usr/include" "/usr/local/include" "/opt/local/include")))
- '(ac-clang-flags
-   (quote
-    ("-I" "/Users/dave/src/boost-svn-git" "-I" "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/")))
+    ("/usr/include" "/usr/local/include" "/Users/dave/brew/include")))
  '(ac-dictionary-directories
    (quote
     ("~/.emacs.d/elhome/ac-dict/")))
@@ -46,9 +49,6 @@ Blinking cursor just annoys me")
      (awk-mode . "awk")
      (other . "dwa"))))
  '(canlock-password "963afd5a40a33c7f59217100af5a7c1648af74a1")
- '(clang-flags
-   (quote
-    ("-I" "/Users/dave/src/boost-svn-git" "-I" "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7/")))
  '(color-theme-history-max-length t)
  '(color-theme-is-cumulative nil)
  '(column-number-mode nil)
@@ -64,7 +64,7 @@ Blinking cursor just annoys me")
  '(custom-magic-show-button t)
  '(custom-safe-themes
    (quote
-    ("fcbdc19b1b8adf59c3fc41b5030ed5b6af8c40564be4fa90c56971e4cefb96c9" "3edd5529eae67629a60407f5f49141c28bdeef0a774cf429d486fddb3db67dcf" "484955d17f5ecf9960c88e2dc8fbff997121e2804bf6ce5cbc297314c28a050d" "b75cb5c678c1129f92140dba07155675bb26250f28df59f714707b3eb162f92b" "f10d561ff8739114cc013ad05167e56618c054fb618dc8e866675fd55955ad21" "d7e021fb20767633bbabc55caa0ba0ebf09e14d6f1e25e105b073a60922ccfb5" "4ce6246e997a7d5ccc3fe3c53d76c612513f988ef36c41dedb91f7c625d9300b" "6be0e2efb6bfcdf5df031cded2efcaeb245d4018c9798d7e9b5138e534f0736a" "ba0380b2213842f54345de57b1065deb610fcc2176ab65846c3d80ee7ca0a8f7" "b06f914a0125006cf3d4e413a42a95d77a21ef54a512b8ea683f2cc4bcd45772" "ec33995fd55b0d78405f207232c6fb86c9f101f8bac5f0f969a42bfe6bad3355" "bf330ec6af1dbb8aed2e19c07b8f5e61c63dd4fed041551717205b471c9f823a" "af2f95f810c2642aa039b5b11ddb309fbd42f5e5d6c032d68a49fad18dc0c968" "dea61a12a79fac7f0aa23784d2f11f10d351925904a27913af301fc769a436d7" "479b343f577693cb162aabfffb32c20dd78ad31eaee4e622764c55409ef38722" "a50de17cacd11e23e3f917fb47a634345937937255870e332beeddb73254e6f3" "5fa3b591d2fae9bd1a250a7ebe09c46ede99e131040754cf92a679208827d9d4" "329ee3023d4fe4408174ed5463b4f4903926d499356a5803d10bb8f47a387eb6" "26fb90f317d9788b546389ec5171f2ccd49e86735c1d1a8260100f61005104c3" "9604bae13a3a91860220c39403abb0ed2d793de836b469252c06ec8022820e92" "bb0041c0aa4680b708465c7150ff29fe1cc7a6d69b8b8fc2cd5f57a520d82f70" "2485eaead83db99165857aae3bf31dcaf184f0e286ed7d948383e4fdf8737f50" "4373a5e070ab804ffff5b2b53a12c945f9317c64a07840b8b5fb1be652604d1b" "d1e9809f97e33a8e461e5acefd4c6f54b6075bf0761e1a76c8c3fb9b0d47fe7b" "fb75d2d70e2696134e4bdad6ae10f10dd0c741bf8a2d375bbdcf864314de723e" "1b7caa779ad718320632954165993f48d9a0418efb59e131d53f3b952f83bde3" "0faff4eae0a8bc28f3f9b9f096b893db78ccc823f73cc34420a629b2cbc6da5d" "864cb146d904312336068803efd75fb965e8e62355e5c6f85dfe3474f51898c0" "b7419fc63a23f84014f0f29dd99a2bb883d7d58e" "a263088a00f531a10f43500d3a782ebbbe7b5092" "e7cc30a240db2b04f082c9a62db0a68d9f841a70" "0988a1666cfff8417b19384adc36d075b739b9a4" default)))
+    ("c1390663960169cd92f58aad44ba3253227d8f715c026438303c09b9fb66cdfb" "fcbdc19b1b8adf59c3fc41b5030ed5b6af8c40564be4fa90c56971e4cefb96c9" "3edd5529eae67629a60407f5f49141c28bdeef0a774cf429d486fddb3db67dcf" "484955d17f5ecf9960c88e2dc8fbff997121e2804bf6ce5cbc297314c28a050d" "b75cb5c678c1129f92140dba07155675bb26250f28df59f714707b3eb162f92b" "f10d561ff8739114cc013ad05167e56618c054fb618dc8e866675fd55955ad21" "d7e021fb20767633bbabc55caa0ba0ebf09e14d6f1e25e105b073a60922ccfb5" "4ce6246e997a7d5ccc3fe3c53d76c612513f988ef36c41dedb91f7c625d9300b" "6be0e2efb6bfcdf5df031cded2efcaeb245d4018c9798d7e9b5138e534f0736a" "ba0380b2213842f54345de57b1065deb610fcc2176ab65846c3d80ee7ca0a8f7" "b06f914a0125006cf3d4e413a42a95d77a21ef54a512b8ea683f2cc4bcd45772" "ec33995fd55b0d78405f207232c6fb86c9f101f8bac5f0f969a42bfe6bad3355" "bf330ec6af1dbb8aed2e19c07b8f5e61c63dd4fed041551717205b471c9f823a" "af2f95f810c2642aa039b5b11ddb309fbd42f5e5d6c032d68a49fad18dc0c968" "dea61a12a79fac7f0aa23784d2f11f10d351925904a27913af301fc769a436d7" "479b343f577693cb162aabfffb32c20dd78ad31eaee4e622764c55409ef38722" "a50de17cacd11e23e3f917fb47a634345937937255870e332beeddb73254e6f3" "5fa3b591d2fae9bd1a250a7ebe09c46ede99e131040754cf92a679208827d9d4" "329ee3023d4fe4408174ed5463b4f4903926d499356a5803d10bb8f47a387eb6" "26fb90f317d9788b546389ec5171f2ccd49e86735c1d1a8260100f61005104c3" "9604bae13a3a91860220c39403abb0ed2d793de836b469252c06ec8022820e92" "bb0041c0aa4680b708465c7150ff29fe1cc7a6d69b8b8fc2cd5f57a520d82f70" "2485eaead83db99165857aae3bf31dcaf184f0e286ed7d948383e4fdf8737f50" "4373a5e070ab804ffff5b2b53a12c945f9317c64a07840b8b5fb1be652604d1b" "d1e9809f97e33a8e461e5acefd4c6f54b6075bf0761e1a76c8c3fb9b0d47fe7b" "fb75d2d70e2696134e4bdad6ae10f10dd0c741bf8a2d375bbdcf864314de723e" "1b7caa779ad718320632954165993f48d9a0418efb59e131d53f3b952f83bde3" "0faff4eae0a8bc28f3f9b9f096b893db78ccc823f73cc34420a629b2cbc6da5d" "864cb146d904312336068803efd75fb965e8e62355e5c6f85dfe3474f51898c0" "b7419fc63a23f84014f0f29dd99a2bb883d7d58e" "a263088a00f531a10f43500d3a782ebbbe7b5092" "e7cc30a240db2b04f082c9a62db0a68d9f841a70" "0988a1666cfff8417b19384adc36d075b739b9a4" default)))
  '(custom-unlispify-tag-names nil)
  '(delete-by-moving-to-trash t)
  '(delete-old-versions t)
@@ -161,6 +161,9 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(eudc-inline-expansion-format
    (quote
     ("%s <%s>" name email)))
+ '(eudc-protocol
+   (quote ldap))
+ '(eudc-server "ldap.apple.com")
  '(explicit-bash-args
    (quote
     ("--noediting" "-i" "-l"))
@@ -208,7 +211,7 @@ from macports.")
  '(ido-use-virtual-buffers t)
  '(imap-shell-program
    (quote
-    ("/opt/local/sbin/dovecot --exec-mail imap" "ssh %s imapd" "rsh %s imapd" "ssh %g ssh %s imapd" "rsh %g rsh %s imapd")))
+    ("/Users/dave/brew/sbin/dovecot --exec-mail imap" "ssh %s imapd" "rsh %s imapd" "ssh %g ssh %s imapd" "rsh %g rsh %s imapd")))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initsplit-customizations-alist
@@ -216,7 +219,7 @@ from macports.")
     (("\\`\\(gnus\\(-home\\)?\\|message\\)-directory\\'" "preloaded-settings.el" nil t)
      ("\\`erc-nickserv-passwords\\'" "../startup/10-passwd.el" nil nil)
      ("\\`\\(dwa/\\)?\\(org\\|calendar\\|diary\\)-" "org-settings.el" nil nil)
-     ("\\`\\(dwa/\\)?\\(mime\\|mm\\)-" "mime-settings.el" nil nil)
+     ("\\`\\(dwa/\\)?\\(mime\\|mm\\)-.*" "mime-settings.el" nil t)
      ("\\`\\(dwa/\\)?\\(wl\\|apel\\|flim\\|semi\\|elmo\\)-" "wl-settings.el" nil nil)
      ("\\`\\(dwa/\\)?yas\\(nippet\\)?\\(-\\|/\\)" "yasnippet-settings.el" nil nil)
      ("\\`\\(dwa/\\)?\\(nn\\|gnus-\\)" "gnus-settings.el" nil nil)
@@ -225,14 +228,13 @@ from macports.")
  '(initsplit-pretty-print t)
  '(ipa-file-function
    (quote ipa-get-sidecar-file))
- '(irony-compiler-executable "/opt/local/bin/clang++-mp-3.1")
- '(irony-header-directories
-   (quote
-    ("/Users/dave/src/boost/boost-via-svn/trunk" "/opt/local/include" "/opt/local/Library/Frameworks/Python.framework/Headers")))
  '(irony-mode-line " Fe")
  '(ispell-program-name "aspell")
  '(kept-new-versions 6)
  '(large-file-warning-threshold nil)
+ '(ldap-host-parameters-alist
+   (quote
+    (("ldap.apple.com" base "ou=people,o=apple computer" auth simple))))
  '(mac-option-modifier
    (quote alt))
  '(magit-backup-mode nil)
@@ -275,7 +277,11 @@ command.")
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
      ("marmalade" . "http://marmalade-repo.org/packages/")
-     ("melpa" . "http://melpa.milkbox.net/packages/"))))
+     ("melpa" . "http://melpa.milkbox.net/packages/")
+     ("magit-v1" . "http://magit.vc/elpa/v1/packages/"))))
+ '(package-pinned-packages
+   (quote
+    ((magit . "magit-v1"))))
  '(pp^L-^L-string
    "····································✄····································
 ")
@@ -497,16 +503,18 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
  '(smtp-server "smtp.gmail.com")
  '(smtpmail-default-smtp-server "www.boostpro.com")
  '(smtpmail-local-domain "boostpro.com")
- '(smtpmail-smtp-service 587)
+ '(smtpmail-smtp-service 587 t)
  '(smtpmail-starttls-credentials
    (quote
     (("www.boostpro.com" 587 "" ""))))
  '(spam-report-gmane-use-article-number nil)
  '(split-height-threshold nil)
- '(svn-program "/opt/local/bin/svn")
  '(tab-stop-list
    (quote
     (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)))
+ '(text-mode-hook
+   (quote
+    (turn-on-auto-fill text-mode-hook-identify)))
  '(tool-bar-mode nil nil nil "
 Tool bars take up valuable screen real-estate for icons whose meaning I forget")
  '(truncate-partial-width-windows nil)
@@ -758,4 +766,9 @@ where I don't expect it to be keeping undo history anyway")
    ((((background light))
      (:background "light goldenrod"))
     (((background dark))
-     (:background "dark goldenrod")))))
+     (:background "dark goldenrod"))))
+ '(widget-button
+   ((((background dark))
+     (:inherit custom-button :background "gray15" :foreground "gray" :box nil :weight bold))
+    (((background light))
+     (:inherit custom-button :background "white smoke" :box nil :weight bold)))))

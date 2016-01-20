@@ -1,4 +1,3 @@
-(debug)
 ;;; org-smart-capture --- Capture Gnus messages as tasks, with context
 
 ;; Copyright (C) 2011 John Wiegley

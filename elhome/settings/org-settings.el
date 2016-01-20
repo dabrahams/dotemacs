@@ -991,7 +991,7 @@ end tell" (match-string 1))))
 (require 'use-package)
 
 (use-package yasnippet
-  :init
+  :config
   (add-hook 'org-mode-hook
             (lambda ()
               ;; yasnippet (using the new org-cycle hooks)

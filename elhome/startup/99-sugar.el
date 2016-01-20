@@ -34,9 +34,8 @@
 
 (use-package workgroups
   :diminish workgroups-mode
-  :init
-  (progn
-    (workgroups-mode 1)
+  :init 
+  (when (ignore-errors (progn (workgroups-mode 1) t))
     (if (bound-and-true-p wg-prefixed-map)
 	(define-key wg-prefixed-map [(control ?z)] 'wg-switch-to-previous-workgroup)
       (if (file-readable-p "~/.emacs.d/workgroups")

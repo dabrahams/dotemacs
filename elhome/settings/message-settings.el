@@ -1,3 +1,13 @@
+;; Workarounds for [[message://m2bn8icavz.fsf@boostpro.com][eudc-mab issue]]
+(setq eudc-contacts-file
+  "~/Library/Application Support/AddressBook/AddressBook-v22.abcddb-shm")
+(setq eudc-buffer-time 
+      (current-time))
+
+;;; Load eudc so we can get its completions
+(require 'eudc)
+;;;
+
 (defun message-insert-spam-resistant-citation-line ()
   "Insert a simple citation line that slightly obscures the email address of the sender."
 
@@ -67,20 +77,11 @@ used as the value of `message-send-rename-function'."
    (quote message-insert-spam-resistant-citation-line))
  '(message-cite-prefix-regexp "\\([ 	]*[_.[:word:]]+>+\\|[ 	]*[]>|]\\)+" nil nil "
 Removed \"}\" from the allowable characters because I often type that when writing replies.")
- '(message-default-headers "Bcc: dave@boostpro.com
-" nil nil "
-Always Bcc: myself")
  '(message-forward-ignored-headers
    (quote
     ("^Content-Transfer-Encoding:" "^X-Gnus" "^X-" "^Received:" "^User-Agent:" "^Face:" "^References:")))
  '(message-forward-show-mml t)
  '(message-log-max 1000)
- '(message-mode-hook
-   (quote
-    ((lambda nil
-       (auto-fill-mode t))))
-   nil nil "
-Automatically wrap text during email composition")
  '(message-send-mail-function
    (quote message-send-mail-with-sendmail))
  '(message-send-rename-function

@@ -83,8 +83,8 @@ installation."
 
 (dwa/ensure-package 'bind-key)
 (dwa/ensure-package 'use-package)
-(dwa/ensure-package 'initsplit)
 (dwa/ensure-package 'elhome)
+(dwa/ensure-package 'initsplit)
 
 
 ;;
