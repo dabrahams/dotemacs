@@ -455,15 +455,6 @@ This moves them into the Spam folder."
   (interactive)
   (gnus-summary-move-article nil "[Gmail]/Spam"))
 
-(eval-after-load "gnus-sum"
-  '(progn
-;     (define-key gnus-summary-mode-map [?$] 'gmail-report-spam)
-     (define-key gnus-summary-mode-map [(control backspace)] 'gnus-summary-mark-as-expirable)
-     (define-key gnus-summary-mode-map [(shift backspace)] 'gnus-summary-expire-thread)
-     (define-key gnus-summary-mode-map [?O ?O] 'gnus-open-article-in-apple-mail)
-     (define-key gnus-summary-mode-map [(control ?c) (control ?o)]
-       'gnus-article-browse-urls)))
-
 (defadvice message-goto-from (after insert-boostpro-address activate)
   (if (looking-back ": ")
       (insert "Dave Abrahams <dave@boostpro.com>"))
@@ -735,7 +726,20 @@ This moves them into the Spam folder."
 
 ;;;_* keybindings
 
-;;;_ + gnus-group-score
+(eval-after-load "gnus-sum"
+  '(progn
+;     (define-key gnus-summary-mode-map [?$] 'gmail-report-spam)
+     (define-key gnus-summary-mode-map [(control backspace)] 'gnus-summary-mark-as-expirable)
+     (define-key gnus-summary-mode-map [(shift backspace)] 'gnus-summary-expire-thread)
+     (define-key gnus-summary-mode-map [?O ?O] 'gnus-open-article-in-apple-mail)
+     (define-key gnus-summary-mode-map [(control ?c) (control ?o)]
+       'gnus-article-browse-urls)))
+
+(define-key gnus-summary-mode-map
+  [?$] 'gnus-summary-mark-as-spam)
+
+(define-key gnus-summary-mode-map
+  [?v ?o] 'start-offlineimap)
 
 (eval-after-load "gnus-group"
   '(progn
@@ -744,6 +748,11 @@ This moves them into the Spam folder."
 
 (eval-after-load "w3m"
   '(define-key w3m-minor-mode-map "\C-m" 'w3m-view-url-with-external-browser))
+
+(define-key gnus-summary-mode-map
+  [?i] 'dwa/gnus-summary-ignore-thread)
+
+;;;_ + gnus-group-score
 
 ;;;_ + dave's stuff
 
@@ -762,8 +771,6 @@ This moves them into the Spam folder."
        nil                                  ; not silent
        nil)))                               ; non-standard overview.
   (gnus-summary-kill-thread))
-(define-key gnus-summary-mode-map
-  [?i] 'dwa/gnus-summary-ignore-thread)
 
 ;;
 ;; Support proportional fonts in the summary and group buffers by inserting a forced alignment
@@ -809,12 +816,6 @@ If all article have been seen, on the subject line of the last article."
 (require 'gravatar nil 'noerror)
 (require 'gnus-gravatar nil 'noerror)
 (spam-initialize)
-(define-key gnus-summary-mode-map
-  [?$] 'gnus-summary-mark-as-spam)
-
-(define-key gnus-summary-mode-map
-  [?v ?o] 'start-offlineimap)
-
 (require 'gnus)
 (require 'gnus-sum)
 (require 'mm-util)
