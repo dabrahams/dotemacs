@@ -163,7 +163,10 @@
                  (signal (car err) (cdr err))))))
       (put 'debug-on-error 'customized-value doe)
       (put 'debug-on-quit 'customized-value doq))))
-(add-to-list 'kill-emacs-query-functions 'dwa/save-customizations-before-exit)
+
+;; Use cus-edit+ checking for unsaved customizations if available.
+(unless (and (require 'cl nil :noerror) (require 'cus-edit+ nil :noerror))
+  (add-to-list 'kill-emacs-query-functions 'dwa/save-customizations-before-exit))
 
 ;(request-feature 'elscreen-buffer-list)
 
