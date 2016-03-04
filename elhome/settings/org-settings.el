@@ -203,7 +203,24 @@
   :PROPERTIES:
   :MESSAGE:  %a
   :ID:       %(shell-command-to-string \"uuidgen\")  :CREATED:  %U
-  :END:" :prepend t))))
+  :END:" :prepend t)
+     ("M" "Review message" entry
+      (file+headline "~/src/s/cocoa-renaming-heuristics/docs/notes/Review.org" "Messages")
+      "* %:fromname %:date-timestamp-inactive  %?
+  :PROPERTIES:
+  :MESSAGE:  %a
+  :ID:       %(shell-command-to-string \"uuidgen\")
+  :END:
+** Content
+  %i
+")
+     ("r" "API Review Review")
+     ("r1" "First argument labels" item
+      (file+olp "~/src/s/cocoa-renaming-heuristics/docs/notes/Review.org" "First argument labels" "Messages")
+      "" :immediate-finish t :jump-to-captured t :empty-lines-after 1)
+     ("re" "Enum case capitalization" item
+      (file+olp "~/src/s/cocoa-renaming-heuristics/docs/notes/Review.org" "Enum case capitalization" "Messages")
+      "" :immediate-finish t :jump-to-captured t :empty-lines-after 1))))
  '(org-clock-idle-time 10)
  '(org-clock-in-resume t)
  '(org-clock-in-switch-to-state "STARTED")
