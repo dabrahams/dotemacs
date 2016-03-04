@@ -131,6 +131,14 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
                           (quote helm-gtags-resume)
                           gtags-mode-map)))
             :symbol gtags))))
+ '(electric-pair-pairs
+   (quote
+    ((34 . 34)
+     (96 . 96)
+     (40 . 41)
+     (91 . 93)
+     (123 . 125)
+     (8220 . 8221))))
  '(elscreen-buffer-list-enabled t)
  '(elscreen-buffer-to-nickname-alist
    (quote
