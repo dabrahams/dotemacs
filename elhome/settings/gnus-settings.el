@@ -29,6 +29,10 @@ Nobody can explain the circumstances under which you wouldn't want to recover fr
  '(gnus-article-sort-functions
    (quote
     ((not gnus-article-sort-by-number))))
+ '(gnus-article-truncate-lines t nil nil "
+This helps a bit when replies are given right below a citation.  When 
+the previous line wraps, it doesn't start with an initial \">\" so it 
+tends to get hidden.")
  '(gnus-article-update-date-headers nil)
  '(gnus-asynchronous t)
  '(gnus-auto-select-next nil nil nil "
@@ -64,7 +68,7 @@ We generally don't want to wait for NNTP servers to look for new groups except w
  '(gnus-group-use-permanent-levels t)
  '(gnus-harvest-db-path "/Users/dave/Library/Data/Gnus/harvest-addrs")
  '(gnus-harvest-ignore-email-regexp
-   "\\([+\"]\\|no-reply\\|noreply\\|@public.gmane.org\\|localhost\\)")
+   "[+\"]\\|no-reply\\|noreply\\|@public.gmane.org\\|localhost\\|notifications@github.com\\| via swift-\\([-a-z]*\\) <swift-\\1@swift.org>")
  '(gnus-ignored-from-addresses
    "^david.abrahams@rcn.com\\|dave@boost\\(-consulting\\|pro\\).com$")
  '(gnus-ignored-mime-types
@@ -104,6 +108,7 @@ so I always post directly to the mailing list.")
     (current
      (nnregistry)
      (nnir "nnimap:LocalIMAP")
+     (nnir "nntp:LocalNNTP")
      (nntp "LocalNNTP"
            (nntp-address "localhost")
            (nntp-port-number 9119))
@@ -123,8 +128,10 @@ so I always post directly to the mailing list.")
  '(gnus-secondary-select-methods
    (quote
     ((nntp "LocalNNTP"
-           (nntp-address "localhost")
-           (nntp-port-number 9119)))))
+           (nntp-address "127.0.0.1")
+           (nntp-port-number 9119)
+           (nnir-search-engine find-grep)
+           (nntp-directory "/Users/dave/brew/var/spool/news/leafnode")))))
  '(gnus-select-group-hook
    (quote
     (gnus-group-set-timestamp)))
@@ -276,7 +283,7 @@ NOTICE: ")))
  '(nnir-namazu-remove-prefix "~/Library/Data/Gnus/Mail")
  '(nnir-notmuch-remove-prefix "~/Library/Data/Gnus/Mail")
  '(nnir-summary-line-format
-   "%O%U%R%z%Z %g%~(form my-align-gnus-summary)@%B%&user-date;: %(%f%~(form my-align-gnus-subject)@%)		%s
+   "%O%U%R%z%Z %g%~(form my-align-gnus-summary)@%B%&user-date;: %(%~(form (dwa/gnus-summary-from-or-to-sans-via-swift-group))@%~(form my-align-gnus-subject)@%)		%s
 ")
  '(nnir-swish++-configuration-file "~/Library/Data/Gnus/Mail/swish++.conf")
  '(nnir-swish++-remove-prefix "~/Library/Data/Gnus/Mail/")
@@ -455,47 +462,29 @@ This moves them into the Spam folder."
   (interactive)
   (gnus-summary-move-article nil "[Gmail]/Spam"))
 
-(defadvice message-goto-from (after insert-boostpro-address activate)
-  (if (looking-back ": ")
-      (insert "Dave Abrahams <dave@boostpro.com>"))
-  (goto-char (line-end-position))
-  (re-search-backward ": ")
-  (goto-char (match-end 0)))
+(defun dwa/message-check-domain-mixing ()
+  "Warn before mixing Apple and non-Apple addresses in the same email."
+  (interactive)
+  (save-restriction
+    (message-narrow-to-headers)
+    (let (apple non-apple)
+      (progn
+        (dolist (hdr '("To" "Cc" "Bcc" "From"))
+          (dolist (addr (mapcar 'cadr 
+                                (mail-extract-address-components 
+                                 (or (message-fetch-field hdr) "") :all)))
+            (if (string-match ".*@\\(.*\\.\\)?apple\\.com" addr)
+                (setq apple (cons addr apple))
+              (setq non-apple (cons addr non-apple))))))
+      (when (and apple non-apple (not (y-or-n-p
+                                       (format 
+                                        "Mix Apple address(es) %s with non-Apple address(es) %s? "
+                                        (mapconcat 'identity apple ", ")
+                                        (mapconcat 'identity non-apple ", ")
+                                        ))))
+        (error "Send canceled so you can edit addresses")))))
 
-(setq my-smtpmailer-alist
-      '((".*"
-         ("dave@boostpro.com" . "smtp.gmail.com"))
-        ))
-
-(defun my-set-smtp-server ()
-  (when (message-field-value "to")
-    (let* ((to-field (cadr (mail-extract-address-components
-                            (message-field-value "to"))))
-           (from (let ((field (message-field-value "from")))
-                   (and field (cadr (mail-extract-address-components field)))))
-           (result
-            (car (assoc-default (or from to-field)
-                                my-smtpmailer-alist
-                                'string-match
-                                (cons user-mail-address
-                                      (if (boundp 'smtpmail-default-smtp-server)
-                                          smtpmail-default-smtp-server
-                                        ""))))))
-      (if from
-          (setq smtpmail-mail-address from
-                mail-envelope-from from
-                smtpmail-smtp-server (cdr result)
-                smtpmail-smtp-service 587)
-        ;; set mailer address and port
-        (setq smtpmail-mail-address (car result)
-              mail-envelope-from (car result)
-              smtpmail-smtp-server (cdr result)
-              smtpmail-smtp-service 587)
-        (message-remove-header "From")
-        (message-add-header
-         (format "From: %s <%s>" user-full-name (car result)))))))
-
-(add-hook 'message-send-hook 'my-set-smtp-server)
+(add-hook 'message-send-hook 'dwa/message-check-domain-mixing)
 
 ;;;_ + Determine layout of the summary windows
 
@@ -752,6 +741,12 @@ This moves them into the Spam folder."
 (define-key gnus-summary-mode-map
   [?i] 'dwa/gnus-summary-ignore-thread)
 
+(add-hook 'gnus-topic-mode-hook
+  (lambda ()
+    (bind-key "<tab>" 'gnus-topic-select-group gnus-topic-mode-map)
+    (bind-key "M-]" 'gnus-topic-indent  gnus-topic-mode-map)
+    (bind-key "M-[" 'gnus-topic-unindent gnus-topic-mode-map)))
+
 ;;;_ + gnus-group-score
 
 ;;;_ + dave's stuff
@@ -868,7 +863,7 @@ If all article have been seen, on the subject line of the last article."
     gnus-summary-expirable-face))
 
 ;(defvar my-gnus-group-face-attributes '(:family "DejaVu Sans" :weight normal :width condensed))
-(defvar my-gnus-summary-face-attributes '(:family "Avenir Next" :weight bold :width normal))
+(defvar my-gnus-summary-face-attributes '(:family "Sans Serif" :weight bold :width normal))
 
 ;(dolist (facename my-gnus-group-faces)
 ;  (apply 'set-face-attribute facename nil my-gnus-group-face-attributes))
@@ -980,7 +975,7 @@ If all article have been seen, on the subject line of the last article."
                          (list :description (org-email-link-description))))
           link))))
 
-(add-hook 'org-store-link-functions 'dwa/gnus-store-link)
+(require 'org-gnus nil :noerror)
 
 ;;; ========= Workaround for https://debbugs.gnu.org/cgi/bugreport.cgi?bug=22353 ==========
 (require 'nnir)
@@ -993,12 +988,5 @@ If all article have been seen, on the subject line of the last article."
 	mark)))
 
 (provide 'dot-gnus-el)
-
-;;; ============
-(defun dwa/fetchnews ()
-  (save-window-excursion
-    (async-shell-command "/Users/dave/brew/sbin/fetchnews -vv" "*fetchnews*")))
-
-(add-hook 'gnus-get-top-new-news-hook 'dwa/fetchnews)
 
 ;;; .gnus.el ends here
