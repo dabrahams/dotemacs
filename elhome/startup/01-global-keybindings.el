@@ -2,6 +2,12 @@
 (when window-system
   (global-unset-key [(control ?z)]))
 
+;; Normally set to toggle-input-method, which is for entering
+;; multilingual text.  Something I hardly do and I often hit this by
+;; mistake, which opens a minibuffer input session, leading to
+;; hilarity and frustration.
+(global-unset-key [(control ?\\)])
+
 ;; Mouse stuff
 (define-key me-minor-mode-map [mouse-9] 'mac-mouse-turn-on-fullscreen)
 (define-key me-minor-mode-map [drag-mouse-9] 'mac-mouse-turn-on-fullscreen)
