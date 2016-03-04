@@ -369,18 +369,13 @@ file name matches PATTERN."
   (make-variable-buffer-local 'electric-pair-mode)
   )
 
-(eval-when-compile (setq-default unicode-character-list-file
-                                 (ignore-errors (find-library-name "unichars"))))
-
 (use-package "xmlunicode.el"
   :commands
-  (unicode-character-insert
-   unicode-smart-double-quote
-   unicode-smart-hyphen
-   unicode-smart-single-quote
-   unicode-smart-period
-   unicode-character-menu-insert
-   unicode-character-shortcut-insert)
-  :init (setq-default unicode-character-list-file
-                       (ignore-errors (find-library-name "unichars")))
+  (xmlunicode-character-insert
+   xmlunicode-smart-double-quote
+   xmlunicode-smart-hyphen
+   xmlunicode-smart-single-quote
+   xmlunicode-smart-period
+   xmlunicode-character-menu-insert
+   xmlunicode-character-shortcut-insert)
   )

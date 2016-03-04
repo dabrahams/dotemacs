@@ -173,8 +173,8 @@ so we can watch errors as they come up"
 (define-key me-minor-mode-map [(meta ?})] 'elscreen-next)
 
 ;; Unicode
-(define-key me-minor-mode-map [(control ?U)] 'unicode-character-shortcut-insert)
-(define-key me-minor-mode-map [(control ?\")] 'unicode-smart-double-quote)
+(define-key me-minor-mode-map [(control ?U)] 'xmlunicode-character-shortcut-insert)
+(define-key me-minor-mode-map [(control ?\")] 'xmlunicode-smart-double-quote)
 
 (define-key me-minor-mode-map [(meta ?`)] 'other-frame)
 
