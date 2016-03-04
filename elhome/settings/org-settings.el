@@ -190,14 +190,14 @@
  '(org-capture-templates
    (quote
     (("t" "Task" entry
-      (file+headline "~/Documents/Tasks/todo.txt" "Inbox")
+      (file+headline "~/Documents/Tasks/todo.org" "Inbox")
       "* TODO %?
   SCHEDULED: %t
   :PROPERTIES:
   :ID:       %(shell-command-to-string \"uuidgen\")  :CREATED:  %U
   :END:" :prepend t)
      ("m" "Message" entry
-      (file+headline "~/Documents/Tasks/todo.txt" "Inbox")
+      (file+headline "~/Documents/Tasks/todo.org" "Inbox")
       "* TODO %?Message %:subject
   SCHEDULED: %t
   :PROPERTIES:
