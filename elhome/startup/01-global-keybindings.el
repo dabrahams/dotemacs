@@ -169,9 +169,6 @@ so we can watch errors as they come up"
 (define-key me-minor-mode-map [(control ?c) (meta ?w)] 'org-store-link)
 (define-key me-minor-mode-map [(control ?c) (shift ?w)] 'org-kill-entry)
 
-(define-key me-minor-mode-map [(meta ?{)] 'elscreen-previous)
-(define-key me-minor-mode-map [(meta ?})] 'elscreen-next)
-
 ;; Unicode
 (define-key me-minor-mode-map [(control ?U)] 'xmlunicode-character-shortcut-insert)
 (define-key me-minor-mode-map [(control ?\")] 'xmlunicode-smart-double-quote)
