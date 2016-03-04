@@ -31,6 +31,8 @@
    nil nil "The default, `warn', Makes a lot of noise for no apparent benefit")
  '(ansi-color-names-vector
    [zenburn-bg zenburn-red zenburn-green zenburn-yellow zenburn-blue zenburn-magenta zenburn-cyan zenburn-fg])
+ '(ansi-term-color-vector
+   [unspecified "#FFFFFF" "#d15120" "#5f9411" "#d2ad00" "#6b82a7" "#a66bab" "#6b82a7" "#505050"])
  '(auto-insert-mode t)
  '(backup-by-copying t)
  '(backup-directory-alist
@@ -169,6 +171,8 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
     ("--noediting" "-i" "-l"))
    nil nil "
 added -l so it would take things out of my .bash_profile, like (on boostpro.com) the prompt pattern.  Otherwise I get this abomination: ///bd5882fff11dd5c2900e1ce95b895e66")
+ '(fci-rule-character-color "#d9d9d9")
+ '(fci-rule-color "#d9d9d9")
  '(ffap-machine-p-known
    (quote accept))
  '(ffap-machine-p-local
