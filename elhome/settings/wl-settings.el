@@ -1,10 +1,9 @@
-(require 'filladapt)
-(require 'mime-conf)
-(require 'wl-summary)
-(require 'filladapt)
-(require 'wl-conversation)
-(ignore-errors
-  (require 'wl-gravatar))
+(require 'filladapt nil t)
+(require 'mime-conf nil t)
+(require 'wl-summary nil t)
+(require 'filladapt nil t)
+(require 'wl-conversation nil t)
+(require 'wl-gravatar nil t)
 
 (add-hook
  'mime-view-mode-hook

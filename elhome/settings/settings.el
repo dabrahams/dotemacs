@@ -55,8 +55,7 @@ Blinking cursor just annoys me")
  '(coq-unicode-tokens-enable t)
  '(create-lockfiles nil)
  '(cursor-type
-   (quote box)
-   t)
+   (quote box))
  '(custom-buffer-done-kill t)
  '(custom-face-default-form
    (quote all))
@@ -75,8 +74,7 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(diff-jump-to-old-file t)
  '(diff-switches "-du")
  '(dired-auto-revert-buffer t)
- '(dired-dwim-target t nil nil "This customization replaces John's entire desire for sunrise,
-which I now deinstall with relish")
+ '(dired-dwim-target nil)
  '(dired-listing-switches "-alh")
  '(display-time-mode t)
  '(doc-view-continuous t)
@@ -419,7 +417,9 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
    nil nil "As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-planner.html.  Note: remember-append-to-file is checked in the default.")
  '(safe-local-variable-values
    (quote
-    ((tab-always-indent . t)
+    ((whitespace-line-column . 77)
+     (whitespace-style lines face)
+     (tab-always-indent . t)
      (tab-always-indent t)
      (tab-always-indent)
      (whitespace-style face lines indentation:space)

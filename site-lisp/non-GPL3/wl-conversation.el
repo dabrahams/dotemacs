@@ -1,5 +1,5 @@
 ;; Much credit for this code goes to Eric G. Hetzner
-(require 'org-wl)
+(require 'org-wl nil t)
 
 (defun dwa:wl-all-folder () "%[Gmail].All Mail")
 
@@ -78,7 +78,7 @@ context of its thread"
   (let ((org-store-link-functions '(dwa:org-message-buffer-store-link-impl)))
     (call-interactively 'org-store-link)))
 
-(add-to-list 'wl-mail-send-pre-hook 'dwa:org-message-buffer-store-link)
+(add-hook 'wl-mail-send-pre-hook 'dwa:org-message-buffer-store-link)
 
 (defadvice org-wl-store-link-message (after dwa:org-wl-store-link activate protect)
   (if (string= (substring ad-return-value 0 3) "wl:")
@@ -96,8 +96,8 @@ context of its thread"
      ;; Set `scheme' here as the spam filter you will use.
      ;; *Note Spam Filter Processors::.
      (setq elmo-spam-scheme 'bogofilter)
-     (require 'wl-spam)
+     (require 'wl-spam nil t)
 
-(define-key wl-summary-mode-map "X" 'dwa:wl-summary-visit-conversation)
+; (define-key wl-summary-mode-map "X" 'dwa:wl-summary-visit-conversation)
 
 (provide 'wl-conversation)

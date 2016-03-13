@@ -61,7 +61,8 @@
    (quote
     (gnus-topic-mode gnus-agent-mode)))
  '(gnus-group-use-permanent-levels t)
- '(gnus-ignored-from-addresses "^david.abrahams@rcn.com\\|dave@boost\\(-consulting\\|pro\\).com$")
+ '(gnus-ignored-from-addresses
+   "^david.abrahams@rcn.com\\|dave@boost\\(-consulting\\|pro\\).com$")
  '(gnus-ignored-mime-types
    (quote
     ("application/x-pkcs7-signature" "application/ms-tnef" "text/x-vcard")))
@@ -226,7 +227,8 @@ NOTICE: ")))
      ((< score default-low)
       . gnus-summary-low-read)
      (t . gnus-summary-normal-read))))
- '(gnus-summary-line-format "%O%U%R%z%~(form my-align-gnus-summary)@%B%&user-date;: %(%f%~(form my-align-gnus-subject)@%)		%s
+ '(gnus-summary-line-format
+   "%O%U%R%z%~(form my-align-gnus-summary)@%B%&user-date;: %(%f%~(form my-align-gnus-subject)@%)		%s
 ")
  '(gnus-suppress-duplicates t)
  '(gnus-suspend-gnus-hook
@@ -271,7 +273,8 @@ NOTICE: ")))
  '(nnir-namazu-index-directory "~/Library/Data/Gnus/Mail/namazu")
  '(nnir-namazu-remove-prefix "~/Library/Data/Gnus/Mail")
  '(nnir-notmuch-remove-prefix "~/Library/Data/Gnus/Mail")
- '(nnir-summary-line-format "%O%U%R%z%Z %g%~(form my-align-gnus-summary)@%B%&user-date;: %(%f%~(form my-align-gnus-subject)@%)		%s
+ '(nnir-summary-line-format
+   "%O%U%R%z%Z %g%~(form my-align-gnus-summary)@%B%&user-date;: %(%f%~(form my-align-gnus-subject)@%)		%s
 ")
  '(nnir-swish++-configuration-file "~/Library/Data/Gnus/Mail/swish++.conf")
  '(nnir-swish++-remove-prefix "~/Library/Data/Gnus/Mail/")
@@ -307,7 +310,7 @@ NOTICE: ")))
   :init (gnus-harvest-install 'message-x))
 
 (require 'starttls)
-(require 'pgg)
+;(require 'pgg)
 
 (gnus-registry-initialize)
 
@@ -787,7 +790,7 @@ If all article have been seen, on the subject line of the last article."
 (require 'gnus)
 (require 'gnus-sum)
 (require 'mm-util)
-(require 'w3m-load)
+(require 'w3m-load nil :noerror)
 
 (defvar my-gnus-group-faces
   '(
