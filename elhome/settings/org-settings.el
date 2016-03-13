@@ -190,20 +190,37 @@
  '(org-capture-templates
    (quote
     (("t" "Task" entry
-      (file+headline "~/Documents/Tasks/todo.txt" "Inbox")
+      (file+headline "~/Documents/Tasks/todo.org" "Inbox")
       "* TODO %?
   SCHEDULED: %t
   :PROPERTIES:
   :ID:       %(shell-command-to-string \"uuidgen\")  :CREATED:  %U
   :END:" :prepend t)
      ("m" "Message" entry
-      (file+headline "~/Documents/Tasks/todo.txt" "Inbox")
+      (file+headline "~/Documents/Tasks/todo.org" "Inbox")
       "* TODO %?Message %:subject
   SCHEDULED: %t
   :PROPERTIES:
   :MESSAGE:  %a
   :ID:       %(shell-command-to-string \"uuidgen\")  :CREATED:  %U
-  :END:" :prepend t))))
+  :END:" :prepend t)
+     ("M" "Review message" entry
+      (file+headline "~/src/s/cocoa-renaming-heuristics/docs/notes/Review.org" "Messages")
+      "* %:fromname %:date-timestamp-inactive  %?
+  :PROPERTIES:
+  :MESSAGE:  %a
+  :ID:       %(shell-command-to-string \"uuidgen\")
+  :END:
+** Content
+  %i
+")
+     ("r" "API Review Review")
+     ("r1" "First argument labels" item
+      (file+olp "~/src/s/cocoa-renaming-heuristics/docs/notes/Review.org" "First argument labels" "Messages")
+      "" :immediate-finish t :jump-to-captured t :empty-lines-after 1)
+     ("re" "Enum case capitalization" item
+      (file+olp "~/src/s/cocoa-renaming-heuristics/docs/notes/Review.org" "Enum case capitalization" "Messages")
+      "" :immediate-finish t :jump-to-captured t :empty-lines-after 1))))
  '(org-clock-idle-time 10)
  '(org-clock-in-resume t)
  '(org-clock-in-switch-to-state "STARTED")
@@ -988,12 +1005,16 @@ end tell" (match-string 1))))
 (defun yas/org-very-safe-expand ()
   (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
 
-(add-hook 'org-mode-hook
-          (lambda ()
-            ;; yasnippet (using the new org-cycle hooks)
-            (set (make-local-variable 'yas/trigger-key) [tab])
-            (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
-            (define-key yas/keymap [tab] 'yas/next-field)))
+(require 'use-package)
+
+(use-package yasnippet
+  :config
+  (add-hook 'org-mode-hook
+            (lambda ()
+              ;; yasnippet (using the new org-cycle hooks)
+              (set (make-local-variable 'yas/trigger-key) [tab])
+              (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+              (define-key yas/keymap [tab] 'yas/next-field))))
 
 (remove-hook 'kill-emacs-hook 'org-babel-remove-temporary-directory)
 

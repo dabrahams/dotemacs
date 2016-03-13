@@ -75,7 +75,7 @@ installation."
     (package-install feature)
     (require feature)))
 
-(require 'melpa nil :noerror)     ;; contains at least one fix to the package manager.
+; (require 'melpa nil :noerror)     ;; contains at least one fix to the package manager.
 
 ;; workaround for backward compatibility of use-package
 (unless (fboundp 'declare-function)
@@ -83,8 +83,8 @@ installation."
 
 (dwa/ensure-package 'bind-key)
 (dwa/ensure-package 'use-package)
-(dwa/ensure-package 'initsplit)
 (dwa/ensure-package 'elhome)
+(dwa/ensure-package 'initsplit)
 
 
 ;;
@@ -201,3 +201,5 @@ installation."
 
 ;;(load (car (reverse (file-expand-wildcards "~/.emacs.d/elpa/elhome-*/elhome.el")))) 
 ;;(elhome-init)
+(put 'erase-buffer 'disabled nil)
+(put 'scroll-left 'disabled nil)

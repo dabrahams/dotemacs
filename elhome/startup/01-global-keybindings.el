@@ -2,6 +2,12 @@
 (when window-system
   (global-unset-key [(control ?z)]))
 
+;; Normally set to toggle-input-method, which is for entering
+;; multilingual text.  Something I hardly do and I often hit this by
+;; mistake, which opens a minibuffer input session, leading to
+;; hilarity and frustration.
+(global-unset-key [(control ?\\)])
+
 ;; Mouse stuff
 (define-key me-minor-mode-map [mouse-9] 'mac-mouse-turn-on-fullscreen)
 (define-key me-minor-mode-map [drag-mouse-9] 'mac-mouse-turn-on-fullscreen)
@@ -112,9 +118,6 @@ so we can watch errors as they come up"
   ;; force scrolling despite save-excursion
   (my-end-of-current-compilation-buffer))
 
-(when (fboundp 'visual-line-mode)
-  (add-hook 'compilation-mode-hook (lambda () (visual-line-mode t))))
-
 (define-key me-minor-mode-map [f7] 'my-recompile)
 (define-key me-minor-mode-map [(control f7)] 'my-compile)
 (define-key me-minor-mode-map [f4] 'next-error)
@@ -172,12 +175,9 @@ so we can watch errors as they come up"
 (define-key me-minor-mode-map [(control ?c) (meta ?w)] 'org-store-link)
 (define-key me-minor-mode-map [(control ?c) (shift ?w)] 'org-kill-entry)
 
-(define-key me-minor-mode-map [(meta ?{)] 'elscreen-previous)
-(define-key me-minor-mode-map [(meta ?})] 'elscreen-next)
-
 ;; Unicode
-(define-key me-minor-mode-map [(control ?U)] 'unicode-character-shortcut-insert)
-(define-key me-minor-mode-map [(control ?\")] 'unicode-smart-double-quote)
+(define-key me-minor-mode-map [(control ?U)] 'xmlunicode-character-shortcut-insert)
+(define-key me-minor-mode-map [(control ?\")] 'xmlunicode-smart-double-quote)
 
 (define-key me-minor-mode-map [(meta ?`)] 'other-frame)
 

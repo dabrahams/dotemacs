@@ -1,5 +1,5 @@
 ;; Much credit for this code goes to Eric G. Hetzner
-(require 'org-wl nil t)
+(require 'org-wl nil :noerror)
 
 (defun dwa:wl-all-folder () "%[Gmail].All Mail")
 
@@ -96,8 +96,9 @@ context of its thread"
      ;; Set `scheme' here as the spam filter you will use.
      ;; *Note Spam Filter Processors::.
      (setq elmo-spam-scheme 'bogofilter)
-     (require 'wl-spam nil t)
+     (require 'wl-spam nil :noerror)
 
-; (define-key wl-summary-mode-map "X" 'dwa:wl-summary-visit-conversation)
+(eval-after-load 'wl
+ '(define-key wl-summary-mode-map "X" 'dwa:wl-summary-visit-conversation))
 
 (provide 'wl-conversation)

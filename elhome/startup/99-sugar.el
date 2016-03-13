@@ -34,14 +34,16 @@
 
 (use-package workgroups
   :diminish workgroups-mode
-  :init
-  (progn
-    (workgroups-mode 1)
+  :init 
+  (when (ignore-errors (progn (workgroups-mode 1) t))
     (if (bound-and-true-p wg-prefixed-map)
 	(define-key wg-prefixed-map [(control ?z)] 'wg-switch-to-previous-workgroup)
       (if (file-readable-p "~/.emacs.d/workgroups")
 	  (wg-load "~/.emacs.d/workgroups")))))
 
+
+(use-package swift-mode
+  :init (add-to-list 'auto-mode-alist '("\\.swift\\.?" . swift-mode)))
 
 ;; Flymake
 
@@ -161,7 +163,10 @@
                  (signal (car err) (cdr err))))))
       (put 'debug-on-error 'customized-value doe)
       (put 'debug-on-quit 'customized-value doq))))
-(add-to-list 'kill-emacs-query-functions 'dwa/save-customizations-before-exit)
+
+;; Use cus-edit+ checking for unsaved customizations if available.
+(unless (and (require 'cl nil :noerror) (require 'cus-edit+ nil :noerror))
+  (add-to-list 'kill-emacs-query-functions 'dwa/save-customizations-before-exit))
 
 ;(request-feature 'elscreen-buffer-list)
 
@@ -173,8 +178,8 @@
   (around Man-narrow-please activate compile preactivate)
   (let ((Man-width (when (> (window-width) 90) 90)))
     ad-do-it))
-(setenv "MANWIDTH" "") ;; the `man' function respects these environment variables
-(setenv "COLUMNS" "")  ;; so let's dis' them.
+(setenv "MANWIDTH" nil) ;; the `man' function respects these environment variables
+(setenv "COLUMNS" nil)  ;; so let's dis' them.
 
 ;; The git pager sux except in a terminal
 (setenv "GIT_PAGER" "")
@@ -258,21 +263,6 @@ file name matches PATTERN."
             (progn (eval (list (cdr initializer)))
                    (set-buffer-modified-p nil)))
       )))
-  
-(defun my-code-mode-hook ()
-  (font-lock-mode t)
-  (show-paren-mode t)
-  (local-set-key [(return)] 'newline-and-indent)
-  (local-set-key [(shift return)] 'newline-and-indent)
-  (local-set-key [(control return)] 'newline)
-  (local-set-key [( control ?\( )] 'my-matching-paren)
-  
-  ;; Try to make completion case sensitive in code buffers.
-  (make-local-variable 'dabbrev-case-fold-search)
-  (setq dabbrev-case-fold-search nil)
-  )
-
-(add-hook 'prog-mode-hook 'my-code-mode-hook)
 
 ;; Makes `C-c RET C-a' send the current file as an attachment in dired
 ;; [[message://m2vcukdcsu.fsf@gmail.com]]
@@ -337,9 +327,19 @@ file name matches PATTERN."
 ;; ---
 
 (use-package magit
-  :init (add-hook 'magit-mode-hook
+  :init (progn
+          (add-hook 'magit-mode-hook
                   (lambda()
-                    (when (require 'magit-svn nil t) (turn-on-magit-svn)))))
+                    (when (require 'magit-svn nil t) (turn-on-magit-svn))))
+
+          ;; ability to cycle back to old commit messages
+          ;; (https://github.com/magit/magit/issues/1677)
+          (add-hook 'git-commit-setup-hook
+                    (lambda ()
+                      (add-hook 'with-editor-pre-finish-hook
+                                'git-commit-save-message nil t)))
+          )
+  )
 
 ;; ---
 (defun ac-clang-cc-mode-setup ()
@@ -347,11 +347,11 @@ file name matches PATTERN."
   (setq ac-sources '(ac-source-clang-async))
   (ac-clang-launch-completion-process))
 
-(use-package auto-complete-clang-async
-  :init (progn
-	  (add-hook 'c-mode-common-hook 'ac-clang-cc-mode-setup)
-	  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
-	  (global-auto-complete-mode t)))
+;; (use-package auto-complete-clang-async
+;;   :init (progn
+;; 	  (add-hook 'c-mode-common-hook 'ac-clang-cc-mode-setup)
+;; 	  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+;; 	  (global-auto-complete-mode t)))
 
 ;; automatic pairing and formatting
 
@@ -372,18 +372,13 @@ file name matches PATTERN."
   (make-variable-buffer-local 'electric-pair-mode)
   )
 
-(eval-when-compile (setq-default unicode-character-list-file
-                                 (ignore-errors (find-library-name "unichars"))))
-
 (use-package "xmlunicode.el"
   :commands
-  (unicode-character-insert
-   unicode-smart-double-quote
-   unicode-smart-hyphen
-   unicode-smart-single-quote
-   unicode-smart-period
-   unicode-character-menu-insert
-   unicode-character-shortcut-insert)
-  :init (setq-default unicode-character-list-file
-                       (ignore-errors (find-library-name "unichars")))
+  (xmlunicode-character-insert
+   xmlunicode-smart-double-quote
+   xmlunicode-smart-hyphen
+   xmlunicode-smart-single-quote
+   xmlunicode-smart-period
+   xmlunicode-character-menu-insert
+   xmlunicode-character-shortcut-insert)
   )

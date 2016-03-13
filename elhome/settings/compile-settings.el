@@ -1,4 +1,5 @@
 ;; Support initial tabs in Python backtraces, as produced by Buildbot.
+(require 'compile)
 (let* ((clause (assoc 'caml compilation-error-regexp-alist-alist))
        (pat (cadr clause)))
   (when (and clause (string= (substring pat 0 2) "^ "))
@@ -11,8 +12,17 @@
           (lambda () (make-local-variable 'hl-line-sticky-flag)
             (setq hl-line-sticky-flag t)
             (hl-line-mode t)
+            (make-local-variable 'auto-hscroll-mode)
+            (setq auto-hscroll-mode nil)
             ))
 
+(add-hook 'compilation-mode-hook
+          (lambda ()
+            (make-local-variable
+             (quote hl-line-sticky-flag))
+            (setq hl-line-sticky-flag t)
+            (hl-line-mode t)))
+          
 (add-hook 'next-error-hook
           (lambda () 
             (with-current-buffer next-error-last-buffer

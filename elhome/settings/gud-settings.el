@@ -51,6 +51,7 @@
   (gud-tbreak)
   (gud-cont))
 
+(require 'gud)
 (define-key gud-minor-mode-map [(f5)] 'gud-cont)
 (define-key gud-minor-mode-map [(f11)] 'gud-step)
 (define-key gud-minor-mode-map [(control f11)] 'gud-stepi)
@@ -64,4 +65,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(gud-gdb-command-name "gdb --annotate=1")
  '(gud-tooltip-mode t))

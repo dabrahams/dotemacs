@@ -1,13 +1,28 @@
+;; Workarounds for [[message://m2bn8icavz.fsf@boostpro.com][eudc-mab issue]]
+(setq eudc-contacts-file
+  "~/Library/Application Support/AddressBook/AddressBook-v22.abcddb-shm")
+(setq eudc-buffer-time 
+      (current-time))
+
+;;; Load eudc so we can get its completions
+(require 'eudc)
+;;;
+
 (defun message-insert-spam-resistant-citation-line ()
   "Insert a simple citation line that slightly obscures the email address of the sender."
 
   (when message-reply-headers
-    (insert "\non " 
-            (format-time-string 
-             "%a %b %d %Y" (date-to-time (mail-header-date message-reply-headers))) 
-            ", "
-            (replace-regexp-in-string "@" "-AT-" (mail-header-from message-reply-headers))
-            " wrote:\n\n")) )
+    (let ((from-header (mail-header-from message-reply-headers)))
+      (insert "\non " 
+              (format-time-string 
+               "%a %b %d %Y" (date-to-time (mail-header-date message-reply-headers))) 
+              ", "
+              (replace-regexp-in-string 
+               " via swift\\(-[-a-z]+\\)? <swift\\1" " <swift\\1"
+               (if (string-match "@public.gmane.org" from-header)
+                   from-header ;; already obfuscated
+                 (replace-regexp-in-string "@" "-AT-" from-header)))
+              " wrote:\n\n")) ))
 
 (defun org-message-store-link ()
   (when (eq major-mode 'message-mode)
@@ -67,20 +82,14 @@ used as the value of `message-send-rename-function'."
    (quote message-insert-spam-resistant-citation-line))
  '(message-cite-prefix-regexp "\\([ 	]*[_.[:word:]]+>+\\|[ 	]*[]>|]\\)+" nil nil "
 Removed \"}\" from the allowable characters because I often type that when writing replies.")
- '(message-default-headers "Bcc: dave@boostpro.com
-" nil nil "
-Always Bcc: myself")
+ '(message-dont-reply-to-names
+   (quote
+    ("\\`dave\\(\\+.*\\)?@\\(boostpro\\|boost-consulting\\).com\\'" "\\`dabrahams\\(\\+.*\\)?@apple.com\\'" "\\<no-?reply\\>" "\\`undisclosed-recipients:")))
  '(message-forward-ignored-headers
    (quote
     ("^Content-Transfer-Encoding:" "^X-Gnus" "^X-" "^Received:" "^User-Agent:" "^Face:" "^References:")))
  '(message-forward-show-mml t)
  '(message-log-max 1000)
- '(message-mode-hook
-   (quote
-    ((lambda nil
-       (auto-fill-mode t))))
-   nil nil "
-Automatically wrap text during email composition")
  '(message-send-mail-function
    (quote message-send-mail-with-sendmail))
  '(message-send-rename-function

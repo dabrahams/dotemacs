@@ -27,7 +27,6 @@
 ;; Activate semantic
 (semantic-mode 1)
 
-(setq semantic-clang-binary "/opt/local/bin/clang++")
 (require 'semantic/bovine/c)
 (require 'semantic/bovine/gcc)
 (require 'semantic/bovine/clang)

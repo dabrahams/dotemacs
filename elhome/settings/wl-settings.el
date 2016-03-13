@@ -1,9 +1,8 @@
-(require 'filladapt nil t)
-(require 'mime-conf nil t)
-(require 'wl-summary nil t)
-(require 'filladapt nil t)
-(require 'wl-conversation nil t)
-(require 'wl-gravatar nil t)
+(require 'mime-conf nil :noerror)
+(require 'wl-summary nil :noerror)
+(require 'filladapt nil :noerror)
+(require 'wl-conversation nil :noerror)
+(require 'wl-gravatar nil :noerror)
 
 (add-hook
  'mime-view-mode-hook
@@ -61,7 +60,8 @@ wl-summary-buffer-elmo-folder))
 (wl-summary-buffer-folder-name))
                 'update nil nil t)))
 
-(define-key wl-summary-mode-map "\C-co" 'wl-summary-filter-unread-important)
+(eval-after-load 'wl
+  '(define-key wl-summary-mode-map "\C-co" 'wl-summary-filter-unread-important))
 
 
 ;; ----------------------------------------------------------------------------
@@ -258,16 +258,19 @@ so that the appropriate emacs mode is selected according to the file extension."
 ;;
 ;; Summary Mode
 ;;
-(define-key wl-summary-mode-map [?D] 'wl-thread-delete)
-(define-key wl-summary-mode-map [?d] 'wl-summary-delete)
-(define-key wl-summary-mode-map [?b] 'wl-summary-resend-bounced-mail)
+(eval-after-load 'wl
+  '(progn
+     (define-key wl-summary-mode-map [?D] 'wl-thread-delete)
+     (define-key wl-summary-mode-map [?d] 'wl-summary-delete)
+     (define-key wl-summary-mode-map [?b] 'wl-summary-resend-bounced-mail)))
 
 (defun dwa/wl-summary-delete-and-move-prev ()
   (interactive)
   (let (wl-summary-move-direction-downward)
     (call-interactively 'wl-summary-delete)))
 
-(define-key wl-summary-mode-map [(control ?d)] 'dwa/wl-summary-delete-and-move-prev)
+(eval-after-load 'wl
+  '(define-key wl-summary-mode-map [(control ?d)] 'dwa/wl-summary-delete-and-move-prev))
 
 ;(add-hook 'wl-summary-mode-hook 'hl-line-mode)
 
@@ -291,13 +294,13 @@ so that the appropriate emacs mode is selected according to the file extension."
 ;;
 ;; Spam Processing
 ;;
-(require 'wl-spam)
+(require 'wl-spam nil :noerror)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Signatures
 ;;
-(require 'signature)
+(require 'signature nil :noerror)
 (setq signature-insert-at-eof t)
 (setq signature-delete-blank-lines-at-eof t)
 
@@ -359,11 +362,12 @@ when we need it."
 ;;
 (add-hook 'wl-message-buffer-created-hook 'visual-line-mode)
 
-(require 'wl-highlight)
-(require 'mail-settings)
+(require 'wl-highlight nil :noerror)
+(require 'mail-settings nil :noerror)
 
-(loop for x in wl-highlight-citation-face-list do 
-      (set-face-attribute x nil ':inherit 'dwa/mail-citation))
+(eval-after-load 'wl
+  '(loop for x in wl-highlight-citation-face-list do 
+        (set-face-attribute x nil ':inherit 'dwa/mail-citation)))
 
 (defadvice color-theme-zenburn (after wl-zenburn-setup activate)
   (loop for x in wl-highlight-citation-face-list do 
@@ -436,7 +440,8 @@ when we need it."
         (message "Message re-filled"))
     (message "No message to re-fill")))
 
-(define-key wl-summary-mode-map "\M-q" 'wl-summary-fill-message)
+(eval-after-load 'wl
+  '(define-key wl-summary-mode-map "\M-q" 'wl-summary-fill-message))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -467,7 +472,8 @@ The default limit is so low that it always asks about messages that would fetch 
  '(elmo-nntp-default-user nil)
  '(elmo-search-namazu-default-index-path "~/Maildir")
  '(elmo-spam-scheme
-   (quote bogofilter))
+   (quote bogofilter)
+   t)
  '(wl-ask-range nil nil nil "
 The range thing slows me down.  However, I'd still like to know how to force the question.")
  '(wl-auto-check-folder-list
@@ -510,84 +516,84 @@ This has to be on if I want the 'sendlog folder to contain anything
  '(wl-fldmgr-add-complete-with-current-folder-list t)
  '(wl-folder-desktop-name
    #("Messages" 0 8
-     (wl-folder-entity-id 0 wl-folder-is-group is-group)))
+     (wl-folder-is-group is-group wl-folder-entity-id 0)))
  '(wl-folder-notify-deleted t)
  '(wl-folder-petname-alist
    (quote
     (("%INBOX" . "Inbox")
      ("+drafts" . "Drafts")
      (#("%[Gmail]/Sent" 0 13
-        (wl-folder-is-group nil wl-folder-entity-id 3))
+        (wl-folder-entity-id 3 wl-folder-is-group nil))
       . "Sent")
      (#("%inbox:\"dave.abrahams@gmail.com\"/clear@imap.gmail.com:993!" 0 58
-        (wl-folder-is-group nil wl-folder-entity-id 72))
+        (wl-folder-entity-id 72 wl-folder-is-group nil))
       . "Inbox")
      (#("%[Gmail]/Trash:\"dave.abrahams@gmail.com\"/clear@imap.gmail.com:993!" 0 66
-        (wl-folder-is-group nil wl-folder-entity-id 74))
+        (wl-folder-entity-id 74 wl-folder-is-group nil))
       . "Trash")
      (#("%[Gmail]/Star:\"dave.abrahams@gmail.com\"/clear@imap.gmail.com:993!" 0 65
-        (wl-folder-is-group nil wl-folder-entity-id 75))
+        (wl-folder-entity-id 75 wl-folder-is-group nil))
       . "With a Star")
      (#("%[Gmail]/Sent:\"dave.abrahams@gmail.com\"/clear@imap.gmail.com:993!" 0 65
-        (wl-folder-is-group nil wl-folder-entity-id 76))
+        (wl-folder-entity-id 76 wl-folder-is-group nil))
       . "Sent")
      (#("%[Gmail]/Draft:\"dave.abrahams@gmail.com\"/clear@imap.gmail.com:993!" 0 66
-        (wl-folder-is-group nil wl-folder-entity-id 77))
+        (wl-folder-entity-id 77 wl-folder-is-group nil))
       . "Draft")
      (#("%[Gmail]/All E-Mails:\"dave.abrahams@gmail.com\"/clear@imap.gmail.com:993!" 0 72
-        (wl-folder-is-group nil wl-folder-entity-id 78))
+        (wl-folder-entity-id 78 wl-folder-is-group nil))
       . "All E-Mails")
      (#("%Org-Mode:\"dave.abrahams@gmail.com\"/clear@imap.gmail.com:993!" 0 61
-        (wl-folder-is-group nil wl-folder-entity-id 79))
+        (wl-folder-entity-id 79 wl-folder-is-group nil))
       . "Org-Mode")
      (#("%[Gmail]/Draft" 0 14
-        (wl-folder-is-group nil wl-folder-entity-id 4))
+        (wl-folder-entity-id 4 wl-folder-is-group nil))
       . "Drafts")
      (#("%[Gmail]/Star" 0 13
-        (wl-folder-is-group nil wl-folder-entity-id 2))
+        (wl-folder-entity-id 2 wl-folder-is-group nil))
       . "Flagged")
      ("%Trash" . "Trash")
      (#("%[Gmail]/Starred" 0 16
-        (wl-folder-is-group nil wl-folder-entity-id 2))
-      . "Important")
-     (#("%[Gmail]/Sent Mail" 0 18
-        (wl-folder-is-group nil wl-folder-entity-id 3))
-      . "Sent")
-     (#("%[Gmail]/Drafts" 0 15
-        (wl-folder-is-group nil wl-folder-entity-id 4))
-      . "Drafts")
-     (#("%[Gmail]/All Mail" 0 17
-        (wl-folder-is-group nil wl-folder-entity-id 6))
-      . "Archive")
-     (#("%[Gmail]/Trash" 0 14
-        (wl-folder-is-group nil wl-folder-entity-id 7))
-      . "Trash")
-     (#("%[Gmail]/Spam" 0 13
-        (wl-folder-is-group nil wl-folder-entity-id 9))
-      . "Spam")
-     (#("%INBOX" 0 6
-        (wl-folder-entity-id 1 wl-folder-is-group nil))
-      . "Inbox")
-     (#("%[Gmail].Starred" 0 16
         (wl-folder-entity-id 2 wl-folder-is-group nil))
       . "Important")
-     (#("%[Gmail].Sent Mail" 0 18
+     (#("%[Gmail]/Sent Mail" 0 18
         (wl-folder-entity-id 3 wl-folder-is-group nil))
       . "Sent")
-     (#("%[Gmail].Drafts" 0 15
+     (#("%[Gmail]/Drafts" 0 15
         (wl-folder-entity-id 4 wl-folder-is-group nil))
       . "Drafts")
-     (#("%[Gmail].All Mail" 0 17
+     (#("%[Gmail]/All Mail" 0 17
         (wl-folder-entity-id 6 wl-folder-is-group nil))
       . "Archive")
-     (#("%[Gmail].Trash" 0 14
+     (#("%[Gmail]/Trash" 0 14
         (wl-folder-entity-id 7 wl-folder-is-group nil))
       . "Trash")
-     (#("%[Gmail].Spam" 0 13
+     (#("%[Gmail]/Spam" 0 13
         (wl-folder-entity-id 9 wl-folder-is-group nil))
       . "Spam")
+     (#("%INBOX" 0 6
+        (wl-folder-is-group nil wl-folder-entity-id 1))
+      . "Inbox")
+     (#("%[Gmail].Starred" 0 16
+        (wl-folder-is-group nil wl-folder-entity-id 2))
+      . "Important")
+     (#("%[Gmail].Sent Mail" 0 18
+        (wl-folder-is-group nil wl-folder-entity-id 3))
+      . "Sent")
+     (#("%[Gmail].Drafts" 0 15
+        (wl-folder-is-group nil wl-folder-entity-id 4))
+      . "Drafts")
+     (#("%[Gmail].All Mail" 0 17
+        (wl-folder-is-group nil wl-folder-entity-id 6))
+      . "Archive")
+     (#("%[Gmail].Trash" 0 14
+        (wl-folder-is-group nil wl-folder-entity-id 7))
+      . "Trash")
+     (#("%[Gmail].Spam" 0 13
+        (wl-folder-is-group nil wl-folder-entity-id 9))
+      . "Spam")
      (#("+draft" 0 6
-        (wl-folder-entity-id 10 wl-folder-is-group nil))
+        (wl-folder-is-group nil wl-folder-entity-id 10))
       . "Drafts"))))
  '(wl-folder-process-duplicates-alist
    (quote
