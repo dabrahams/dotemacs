@@ -41,9 +41,31 @@
       (if (file-readable-p "~/.emacs.d/workgroups")
 	  (wg-load "~/.emacs.d/workgroups")))))
 
+(add-to-list 'load-path "~/src/s/swift/utils")
+
+(defun insert-pair(open close)
+  (let* ((sel (my-selection))
+         (selected (region-active-p)))
+    (goto-char (cdr sel))
+    (insert close)
+    (set-marker-insertion-type (cdr sel) t)
+    (goto-char (car sel))
+    (insert open)
+    (goto-char (cdr sel))
+    (when selected (forward-char))))
+
+(defun brace-pair()
+  (interactive "*")
+  (insert-pair "{ " " }"))
+
+(defun dollar-brace-pair()
+  (interactive "*")
+  (insert-pair "${" "}"))
 
 (use-package swift-mode
-  :init (add-to-list 'auto-mode-alist '("\\.swift\\.?" . swift-mode)))
+  :if (locate-library "swift-mode")
+  :init (add-to-list 'auto-mode-alist '("\\.swift\\.?" . swift-mode))
+  :bind (:map swift-mode-map ("C-{" . brace-pair) ("C-$" . dollar-brace-pair)))
 
 ;; Flymake
 
