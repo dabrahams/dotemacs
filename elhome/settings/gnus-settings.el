@@ -106,14 +106,12 @@ so I always post directly to the mailing list.")
  '(gnus-refer-article-method
    (quote
     (current
-     (nnregistry)
+     (nnregistry "")
      (nnir "nnimap:LocalIMAP")
      (nnir "nntp:LocalNNTP")
      (nntp "LocalNNTP"
            (nntp-address "localhost")
-           (nntp-port-number 9119))
-     (nntp "Gmane"
-           (nntp-address "news.gmane.org")))))
+           (nntp-port-number 9119)))))
  '(gnus-refer-thread-use-nnir t)
  '(gnus-safe-html-newsgroups ".")
  '(gnus-save-duplicate-list t)
@@ -243,7 +241,6 @@ NOTICE: ")))
  '(gnus-suspend-gnus-hook
    (quote
     (gnus-group-save-newsrc)))
- '(gnus-sync-backend "~/Dropbox/Secure/gnus-sync-backend.gpg")
  '(gnus-sync-global-vars
    (quote
     (gnus-newsrc-last-checked-date gnus-newsrc-alist gnus-server-alist gnus-topic-topology gnus-topic-alist)))
@@ -473,7 +470,7 @@ This moves them into the Spam folder."
           (dolist (addr (mapcar 'cadr 
                                 (mail-extract-address-components 
                                  (or (message-fetch-field hdr) "") :all)))
-            (if (string-match ".*@\\(.*\\.\\)?apple\\.com" addr)
+            (if (string-match ".*@\\(.*\\.\\)?\\(apple\\.com\\|swift\\.org\\)" addr)
                 (setq apple (cons addr apple))
               (setq non-apple (cons addr non-apple))))))
       (when (and apple non-apple (not (y-or-n-p
