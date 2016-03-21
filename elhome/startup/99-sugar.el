@@ -368,6 +368,10 @@ file name matches PATTERN."
                       (add-hook 'with-editor-pre-finish-hook
                                 'git-commit-save-message nil t)))
           )
+  
+  :config (dolist (mapName '(magit-mode-map magit-file-section-map magit-hunk-section-map))
+            (when (boundp mapName)
+              (unbind-key "<C-return>" (symbol-value mapName))))
   )
 
 ;; ---
