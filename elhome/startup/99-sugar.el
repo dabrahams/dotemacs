@@ -58,6 +58,13 @@
   (interactive "*")
   (insert-pair "{ " " }"))
 
+
+(defun smart-brace-pair()
+  (interactive "*")
+  (if (eq (char-before (car (my-selection))) ?$)
+      (insert-pair "{" "}")
+    (brace-pair)))
+
 (defun dollar-brace-pair()
   (interactive "*")
   (insert-pair "${" "}"))
@@ -65,7 +72,7 @@
 (use-package swift-mode
   :if (locate-library "swift-mode")
   :init (add-to-list 'auto-mode-alist '("\\.swift\\.?" . swift-mode))
-  :bind (:map swift-mode-map ("C-{" . brace-pair) ("C-$" . dollar-brace-pair)))
+  :bind (:map swift-mode-map ("C-{" . smart-brace-pair) ("C-$" . dollar-brace-pair)))
 
 ;; Flymake
 
