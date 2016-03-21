@@ -79,6 +79,8 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(dired-auto-revert-buffer t)
  '(dired-dwim-target nil)
  '(dired-listing-switches "-alh")
+ '(dired-recursive-deletes
+   (quote always))
  '(display-time-mode t)
  '(doc-view-continuous t)
  '(doc-view-resolution 300)
@@ -562,6 +564,7 @@ where I don't expect it to be keeping undo history anyway")
  '(weblogger-server-username "dave")
  '(wg-morph-on nil)
  '(which-function-mode t)
+ '(winner-mode t)
  '(workgroups-mode t)
  '(x-select-enable-clipboard t))
  
