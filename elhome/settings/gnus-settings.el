@@ -140,7 +140,7 @@ so I always post directly to the mailing list.")
             (nnimap-user "dave")
             (nnimap-server-port 9143)
             (nnimap-stream shell)
-            (nnimap-shell-program "/Users/dave/brew/libexec/dovecot/imap"))))
+            (nnimap-shell-program "/Users/dave/brew/opt/dovecot/libexec/dovecot/imap -c /Users/dave/src/onmsg/conf/doveconf-n.dump"))))
  '(gnus-signature-separator
    (quote
     ("^-- $" "^-- *$" "^_____+$" "^-----+?
