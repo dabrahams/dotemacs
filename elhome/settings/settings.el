@@ -77,6 +77,7 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(diff-jump-to-old-file t)
  '(diff-switches "-du")
  '(dired-auto-revert-buffer t)
+ '(dired-dwim-target nil)
  '(dired-listing-switches "-alh")
  '(display-time-mode t)
  '(doc-view-continuous t)
