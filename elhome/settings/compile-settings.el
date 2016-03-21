@@ -16,12 +16,13 @@
             (setq auto-hscroll-mode nil)
             ))
 
-(add-hook 'compilation-mode-hook
-          (lambda ()
-            (make-local-variable
-             (quote hl-line-sticky-flag))
-            (setq hl-line-sticky-flag t)
-            (hl-line-mode t)))
+; disable wrapping and hscrolling
+;(add-hook 'compilation-mode-hook
+;          (lambda ()
+;            (make-local-variable
+;             (quote hl-line-sticky-flag))
+;            (setq hl-line-sticky-flag t)
+;            (hl-line-mode t)))
           
 (add-hook 'next-error-hook
           (lambda () 
