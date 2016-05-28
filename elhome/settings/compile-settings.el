@@ -1,4 +1,5 @@
 ;; Support initial tabs in Python backtraces, as produced by Buildbot.
+(require 'cl-macs)
 (require 'compile)
 (let* ((clause (assoc 'caml compilation-error-regexp-alist-alist))
        (pat (cadr clause)))
@@ -94,4 +95,4 @@
 ;; Destructively update compilation-error-regexp-alist-alist to make
 ;; all "Included from" lines in GCC error messages be merely INFO
 ;; instead of WARNINGs so compilation-next-error doesn't stop there.
-(setcar (cddr (cdddr (assoc 'gcc-include compilation-error-regexp-alist-alist))) 0)
+(setcar (cddr (cl-cdddr (assoc 'gcc-include compilation-error-regexp-alist-alist))) 0)
