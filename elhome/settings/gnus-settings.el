@@ -55,7 +55,7 @@ We generally don't want to wait for NNTP servers to look for new groups except w
  '(gnus-duplicate-list-length 100000)
  '(gnus-extra-headers
    (quote
-    (To Cc Content-Type)))
+    (To Cc List-Id Content-Type)))
  '(gnus-gcc-mark-as-read t)
  '(gnus-generate-tree-function
    (quote gnus-generate-horizontal-tree))
