@@ -415,3 +415,6 @@ file name matches PATTERN."
    xmlunicode-character-menu-insert
    xmlunicode-character-shortcut-insert)
   )
+
+(use-package artist
+  :bind (:map artist-mode-map ([C-down-mouse-1] . artist-mouse-choose-operation)))
