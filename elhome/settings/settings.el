@@ -291,8 +291,7 @@ command.")
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
      ("marmalade" . "http://marmalade-repo.org/packages/")
-     ("melpa" . "http://melpa.milkbox.net/packages/")
-     ("magit-v1" . "http://magit.vc/elpa/v1/packages/"))))
+     ("melpa" . "http://melpa.milkbox.net/packages/"))))
  '(package-pinned-packages
    (quote
     ((magit . "magit-v1"))))
