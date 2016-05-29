@@ -250,8 +250,6 @@ from macports.")
  '(ldap-host-parameters-alist
    (quote
     (("ldap.apple.com" base "ou=people,o=apple computer" auth simple))))
- '(mac-option-modifier
-   (quote alt))
  '(magit-backup-mode nil)
  '(magit-completing-read-function
    (quote magit-ido-completing-read))
