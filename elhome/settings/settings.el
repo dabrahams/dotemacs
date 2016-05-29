@@ -506,6 +506,7 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
      (encoding . utf8)
      (folded-file . t))))
  '(scroll-bar-mode nil)
+ '(select-enable-clipboard t)
  '(send-mail-function
    (quote smtpmail-send-it))
  '(server-mode nil)
