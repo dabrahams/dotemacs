@@ -512,7 +512,7 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
  '(server-mode nil)
  '(set-mark-command-repeat-pop t)
  '(show-paren-mode t)
- '(shr-width nil)
+ '(shr-width 80)
  '(smime-certificate-directory "~/Library/Data/Gnus/Mail/certs/")
  '(smtp-server "smtp.gmail.com")
  '(smtpmail-default-smtp-server "www.boostpro.com")
