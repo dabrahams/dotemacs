@@ -130,8 +130,8 @@ so we can watch errors as they come up"
 ;; Org bindings
 (eval-when-compile '(require 'gnus-sum))
 
-(defun dwa/org-capture ()
-  (interactive)
+(defun dwa/org-capture (&optional goto keys)
+  (interactive "P")
 
   ;; Make sure the article buffer is available
   (when (eq major-mode 'gnus-summary-mode)
@@ -145,7 +145,7 @@ so we can watch errors as they come up"
               (subject (rfc2047-decode-string (message-fetch-field "subject")))
               (from (rfc2047-decode-string (message-fetch-field "from")))
               (date-sent (message-fetch-field "date")))
-          (org-capture nil "t")
+          (org-capture goto "t")
           (save-excursion
             (insert ?( (replace-regexp-in-string 
                         "\\([^<@]*[^<@ ]\\) *<.*@.*>"
@@ -164,7 +164,7 @@ so we can watch errors as they come up"
                                      ?\[ ?\{ (subst-char-in-string
                                               ?\] ?\} subject))))
           (org-set-property "Submitter" from)))
-    (org-capture nil "t")))
+    (org-capture goto "t")))
 
 (define-key me-minor-mode-map [(meta ?m)] 'dwa/org-capture)
 
