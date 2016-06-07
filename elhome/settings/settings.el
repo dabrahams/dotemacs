@@ -582,8 +582,7 @@ where I don't expect it to be keeping undo history anyway")
  '(wg-morph-on nil)
  '(which-function-mode t)
  '(winner-mode t)
- '(workgroups-mode t)
- '(x-select-enable-clipboard t))
+ '(workgroups-mode t))
  
 
 (custom-set-faces
