@@ -40,6 +40,9 @@ tends to get hidden.")
  '(gnus-buttonized-mime-types nil)
  '(gnus-check-new-newsgroups nil nil nil "
 We generally don't want to wait for NNTP servers to look for new groups except when going into the server buffer.")
+ '(gnus-cite-attribution-prefix
+   "In article\\|in <\\|On \\(Mon\\|Tue\\|Wed\\|Thu\\|Fri\\|Sat\\|Sun\\),\\|On \\(Jan\\|Feb\\|Mar\\|Apr\\|May\\|Jun\\|Jul\\|Aug\\|Sep\\|Oct\\|Nov\\|Dec\\)\\|----- ?Original Message ?-----")
+ '(gnus-cite-parse-max-size nil)
  '(gnus-cited-closed-text-button-line-format "...<schnipp %n>...
 ")
  '(gnus-cited-lines-visible
@@ -81,6 +84,7 @@ We generally don't want to wait for NNTP servers to look for new groups except w
  '(gnus-message-archive-group
    (quote
     ((format-time-string "sent.%Y-%m"))))
+ '(gnus-message-highlight-citation t)
  '(gnus-message-replyencrypt nil)
  '(gnus-novice-user nil)
  '(gnus-parameters
