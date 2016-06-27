@@ -790,6 +790,18 @@ This moves them into the Spam folder."
   (add-to-list 'mm-attachment-override-types "application/msword")
   (add-to-list 'mm-automatic-display "application/msword"))
 
+;; Set up mailcaps for viewing attachments
+(defun dwa/add-mac-mailcap-viewer (major minor viewer)
+  (mailcap-add-mailcap-entry major minor `((viewer . ,viewer) (type . ,(concat major "/" minor)) (test eq window-system 'mac))))
+
+(defun dwa/add-mac-mailcap-quicklook (major minor)
+  (dwa/add-mac-mailcap-viewer major minor "/usr/bin/qlmanage -p %s > /dev/null 2>&1"))
+
+(dolist (majorMinor '(("image" . "jpeg") ("image" . "png") ("image" . "tiff") ("image" . "gif")))
+  (dwa/add-mac-mailcap-quicklook (car majorMinor) (cdr majorMinor)))
+
+(dwa/add-mac-mailcap-viewer "application" "pdf" "open %s")
+
 (defun dwa/gnus-summary-first-unread-or-first-subject ()
   "Place the point on the subject line of the first unseen article.
 If all article have been seen, on the subject line of the last article."
