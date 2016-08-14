@@ -74,6 +74,11 @@
   :init (add-to-list 'auto-mode-alist '("\\.swift\\.?" . swift-mode))
   :bind (:map swift-mode-map ("C-{" . smart-brace-pair) ("C-$" . dollar-brace-pair)))
 
+(use-package rust-mode
+  :if (locate-library "rust-mode")
+  :init (add-to-list 'auto-mode-alist '("\\.rust" . rust-mode))
+  :bind (:map rust-mode-map ("C-{" . smart-brace-pair)))
+
 ;; Flymake
 
 ;; (defun dwa/flymake-setup ()
