@@ -423,3 +423,8 @@ file name matches PATTERN."
 
 (use-package artist
   :bind (:map artist-mode-map ([C-down-mouse-1] . artist-mouse-choose-operation)))
+
+(when (save-match-data (string-match "/Gnus" exec-directory))
+  (set-background-color "wheat")
+  (gnus)
+  (gnus-topic-read-group))
