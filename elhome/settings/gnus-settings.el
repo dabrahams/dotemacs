@@ -280,7 +280,7 @@ NOTICE: ")))
  '(gnus-verbose 4)
  '(nnir-hyrex-remove-prefix "~/Library/Data/Gnus/Mail")
  '(nnir-ignored-newsgroups
-   "nnimap+LocalIMAP:committee\\|nnimap+LocalIMAP:[Gmail]/Spam")
+   "nnimap\\+LocalIMAP:committee\\|nnimap\\+LocalIMAP:\\[Gmail\\]/Spam")
  '(nnir-namazu-index-directory "~/Library/Data/Gnus/Mail/namazu")
  '(nnir-namazu-remove-prefix "~/Library/Data/Gnus/Mail")
  '(nnir-notmuch-remove-prefix "~/Library/Data/Gnus/Mail")
