@@ -15,7 +15,7 @@
   (define-key ac-mode-map (kbd "C-c h") 'ac-last-quick-help)
   (define-key ac-mode-map (kbd "C-c H") 'ac-last-help))
 
-(ignore-errors (server-mode))
+(let ((warning-minimum-level :error)) (server-mode))
 
 (prefer-coding-system 'utf-8)
 
