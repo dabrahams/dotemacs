@@ -237,7 +237,18 @@
   (forward-sexp)
   (eval-last-sexp nil))
 
+;; Toggle window dedication
 
+(defun toggle-window-dedicated ()
+  "Toggle whether the current active window is dedicated or not"
+  (interactive)
+  (message 
+   (if (let (window (get-buffer-window (current-buffer)))
+         (set-window-dedicated-p window 
+                                 (not (window-dedicated-p window))))
+       "Window '%s' is dedicated"
+     "Window '%s' is not dedicated")
+   (current-buffer)))
 
 ;;
 ;; Avoid putting new stuff in tiny windows, per
