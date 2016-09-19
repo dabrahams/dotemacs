@@ -540,12 +540,12 @@ This moves them into the Spam folder."
 ;;;_ + Cleanup all Gnus buffers on exit
 
 (defun exit-gnus-on-exit ()
-  (if (and (fboundp 'gnus-group-exit)
-           (gnus-alive-p))
-      (with-current-buffer (get-buffer "*Group*")
+  (or (not (fboundp 'gnus-group-exit))
+      (not (gnus-alive-p))
+      (with-current-buffer (get-buffer gnus-group-buffer)
         (gnus-group-exit))))
 
-(add-hook 'kill-emacs-hook 'exit-gnus-on-exit)
+(add-hook 'kill-emacs-query-functions 'exit-gnus-on-exit)
 
 ;;;_ + Scoring
 
