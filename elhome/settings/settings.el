@@ -527,6 +527,7 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
     (("www.boostpro.com" 587 "" ""))))
  '(spam-report-gmane-use-article-number nil)
  '(split-height-threshold nil)
+ '(swift-basic-offset 2)
  '(tab-stop-list
    (quote
     (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)))
