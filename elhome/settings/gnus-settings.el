@@ -806,6 +806,7 @@ This moves them into the Spam folder."
   (dwa/add-mac-mailcap-quicklook (car majorMinor) (cdr majorMinor)))
 
 (dwa/add-mac-mailcap-viewer "application" "pdf" "open %s")
+(dwa/add-mac-mailcap-viewer "text" "calendar" "open %s")
 
 (defun dwa/gnus-summary-first-unread-or-first-subject ()
   "Place the point on the subject line of the first unseen article.
