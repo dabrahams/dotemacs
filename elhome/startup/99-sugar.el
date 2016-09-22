@@ -390,6 +390,9 @@ file name matches PATTERN."
               (unbind-key "<C-return>" (symbol-value mapName))))
   )
 
+(use-package find-file-in-git-repo
+  :bind ("\C-x f" . find-file-in-git-repo))
+
 ;; ---
 (defun ac-clang-cc-mode-setup ()
   ;; (setq ac-clang-complete-executable "~/.emacs.d/clang-complete")
