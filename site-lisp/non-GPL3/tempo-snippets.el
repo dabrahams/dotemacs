@@ -6,7 +6,7 @@
 ;; Version: 0.1.5
 ;; Keywords: abbrev convenience
 ;; URL: http://nschum.de/src/emacs/tempo-snippets/
-;; Compatibility: GNU Emacs 22.2
+;; Compatibility: GNU Emacs 22.2, Emacs 23.x
 ;;
 ;; This file is NOT part of GNU Emacs.
 ;;
@@ -36,11 +36,17 @@
 ;;
 ;;
 ;; Add the following to your .emacs file:
-;; (require 'tempo-snippets)
+;;
+;; (add-to-list 'load-path "/path/to/tempo-snippets/")
+;; (autoload 'tempo-define-snippet "tempo-snippets")
 ;;
 ;; Then use `tempo-define-snippet' instead of `tempo-define-template'.  The
 ;; arguments can remain the same.  Insertion works like for any tempo-template
 ;; with `tempo-template-your-template-name'.
+;;
+;; You can replace all templates by snippets with the following line.
+;; Use with care!
+;; (defalias 'tempo-define-template 'tempo-define-snippet)
 ;;
 ;; When adding lisp forms in your templates that use `tempo-lookup-named', make
 ;; sure they don't have side-effects, because they will be evaluated every time
@@ -104,9 +110,6 @@
 (require 'tempo)
 (eval-when-compile (require 'cl))
 
-(add-to-list 'debug-ignored-errors "^Beginning of buffer$")
-(add-to-list 'debug-ignored-errors "^End of buffer$")
-
 (defgroup tempo-snippets nil
   "Visual insertion of tempo templates."
   :group 'abbrev
@@ -150,6 +153,19 @@ tempo-interactive set to nil."
     keymap)
   "*Keymap used for tempo-nippets input fields.")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defvar tempo-snippets-instance-counter 0
+  "Provides unique identifier for each snippet.")
+
+(defvar tempo-snippets-sources nil
+  "The list of snippet input fields.")
+(make-variable-buffer-local 'tempo-snippets-sources)
+
+(defvar tempo-snippets-forms nil
+  "The list of automatically re-evaluating snippet forms.")
+(make-variable-buffer-local 'tempo-snippets-forms)
+
 ;;; tools ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun tempo-snippets-overlay-text (overlay)
@@ -171,7 +187,6 @@ tempo-interactive set to nil."
 
 ;;; clearing ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;###autoload
 (defun tempo-snippets-clear-all ()
   "Clear all tempo-snippet overlays."
   (interactive)
@@ -192,7 +207,6 @@ tempo-interactive set to nil."
       (delete-overlay f)
       (setq tempo-snippets-forms (delq f tempo-snippets-forms)))))
 
-;;;###autoload
 (defun tempo-snippets-clear-oldest ()
   "Clear the oldest tempo-snippet overlays."
   (interactive)
@@ -202,7 +216,6 @@ tempo-interactive set to nil."
                          (car (overlay-get s 'tempo-snippets-save-name)))))
     (tempo-snippets-clear minimum)))
 
-;;;###autoload
 (defun tempo-snippets-clear-latest ()
   "Clear the latest tempo-snippet overlays."
   (interactive)
@@ -213,10 +226,6 @@ tempo-interactive set to nil."
     (tempo-snippets-clear maximum)))
 
 ;;; sources ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defvar tempo-snippets-sources nil
-  "The list of snippet input fields.")
-(make-variable-buffer-local 'tempo-snippets-sources)
 
 (defun tempo-snippets-find-source (save-name &optional instance)
   "Find an input field by name."
@@ -255,10 +264,6 @@ tempo-interactive set to nil."
     (tempo-snippets-update-forms)))
 
 ;;; forms ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defvar tempo-snippets-forms nil
-  "The list of automatically re-evaluating snippet forms.")
-(make-variable-buffer-local 'tempo-snippets-forms)
 
 (defun tempo-snippets-update-forms ()
   "Re-evaluate all forms."
@@ -423,7 +428,6 @@ tempo-interactive set to nil."
     (when result
       (overlay-start result))))
 
-;;;###autoload
 (defun tempo-snippets-previous-field (&optional arg)
   "Jump to the previous editable tempo-snippet field.
 You can also use `tempo-forward-mark', which will include more points of
@@ -442,7 +446,6 @@ interest."
     (push-mark)
     (goto-char max-start)))
 
-;;;###autoload
 (defun tempo-snippets-next-field (&optional arg)
   "Jump to the next editable tempo-snippet field.
 You can also use `tempo-backward-mark', which will include more points of
@@ -479,9 +482,8 @@ interest."
   "`tempo-snippets' version of `tempo-define-template'.
 Use with the same arguments as `tempo-define-template'.  The resulting template
 will prompt for input right in the buffer instead of the minibuffer."
-  (let* ((template-name (intern (concat "tempo-template-"
-				       name)))
-	 (command-name template-name))
+  (let* ((template-name (intern (concat "tempo-template-" name)))
+         (command-name template-name))
     (set template-name elements)
     (fset command-name (list 'lambda (list '&optional 'arg)
 			     (or documentation
@@ -497,10 +499,6 @@ will prompt for input right in the buffer instead of the minibuffer."
     command-name))
 (put 'tempo-define-snippet 'lisp-indent-function 1)
 
-(defvar tempo-snippets-instance-counter 0
-  "Provides unique identifier for each snippet.")
-
-;;;###autoload
 (defun tempo-snippets-insert-template (template on-region)
   "`tempo-snippets' version of `tempo-insert-template.'"
   (incf tempo-snippets-instance-counter)
@@ -525,7 +523,6 @@ will prompt for input right in the buffer instead of the minibuffer."
           ;; return t so abbrevs don't insert space
           t)))))
 
-;;;###autoload
 (defun tempo-snippets-complete-tag (&optional silent)
   "`tempo-snippets' version of `tempo-complete-tag.'"
   ;; unfortunately this is a code clone of the original
