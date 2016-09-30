@@ -297,7 +297,7 @@ command.")
     ((magit . "magit-v1"))))
  '(package-selected-packages
    (quote
-    (find-file-in-git-repo zerodark-theme xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe magit ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
+    (alert find-file-in-git-repo zerodark-theme xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe magit ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
  '(pp^L-^L-string
    "····································✄····································
 ")

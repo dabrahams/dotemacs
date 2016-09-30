@@ -13,14 +13,19 @@
  ;; If there is more than one, they won't work right.
  '(tramp-backup-directory-alist
    (quote
-    (("." . "~/.emacs.d/backups"))))
- '(tramp-default-host "localhost")
+    (("." . "~/.emacs.d/backups")))
+   nil
+   (tramp))
+ '(tramp-default-host "localhost" nil
+                      (tramp))
  '(tramp-default-proxies-alist
    (quote
     (("\\`localhost\\'" nil nil)
      ("\\`206.217.198.21\\'" nil nil)
      ("\\`.+\\'" "\\`root\\'" "/ssh:%h:")))
-   nil nil "
+   nil
+   (tramp)
+   "
 Gets around the common setting that prohibits ssh login as root.
 
 Don't do any proxying for connections to localhost (depends
@@ -29,4 +34,6 @@ matching), and otherwise, if sudo'ing somewhere, ssh there first and
 then sudo on the remote host itself.")
  '(tramp-remote-path
    (quote
-    (tramp-own-remote-path tramp-default-remote-path "/usr/sbin" "/usr/local/sbin" "/usr/local/bin" "/sbin" "/local/bin" "/local/freeware/bin" "/local/gnu/bin" "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin"))))
+    (tramp-own-remote-path tramp-default-remote-path "/usr/sbin" "/usr/local/sbin" "/usr/local/bin" "/sbin" "/local/bin" "/local/freeware/bin" "/local/gnu/bin" "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin"))
+   nil
+   (tramp)))
