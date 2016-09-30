@@ -252,7 +252,7 @@ from macports.")
     (("ldap.apple.com" base "ou=people,o=apple computer" auth simple))))
  '(magit-backup-mode nil)
  '(magit-completing-read-function
-   (quote magit-ido-completing-read))
+   (quote magit-builtin-completing-read))
  '(magit-create-branch-behaviour
    (quote at-point))
  '(magit-process-popup-time 5)
