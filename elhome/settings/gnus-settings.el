@@ -45,6 +45,7 @@ We generally don't want to wait for NNTP servers to look for new groups except w
    (quote
     (5 . 10)))
  '(gnus-cited-opened-text-button-line-format "")
+ '(gnus-cloud-method "nnimap:imap.gmail.com")
  '(gnus-completing-read-function
    (quote gnus-ido-completing-read))
  '(gnus-default-article-saver
@@ -129,7 +130,10 @@ so I always post directly to the mailing list.")
            (nntp-address "127.0.0.1")
            (nntp-port-number 9119)
            (nnir-search-engine find-grep)
-           (nntp-directory "/Users/dave/brew/var/spool/news/leafnode")))))
+           (nntp-directory "/Users/dave/brew/var/spool/news/leafnode"))
+     (nnimap "imap.gmail.com"
+             (nnimap-server-port 993)
+             (nnimap-stream ssl)))))
  '(gnus-select-group-hook
    (quote
     (gnus-group-set-timestamp)))
