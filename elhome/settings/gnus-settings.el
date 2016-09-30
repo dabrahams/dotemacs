@@ -29,10 +29,6 @@ Nobody can explain the circumstances under which you wouldn't want to recover fr
  '(gnus-article-sort-functions
    (quote
     ((not gnus-article-sort-by-number))))
- '(gnus-article-truncate-lines t nil nil "
-This helps a bit when replies are given right below a citation.  When 
-the previous line wraps, it doesn't start with an initial \">\" so it 
-tends to get hidden.")
  '(gnus-article-update-date-headers nil)
  '(gnus-asynchronous t)
  '(gnus-auto-select-next nil nil nil "
@@ -1001,6 +997,23 @@ If all article have been seen, on the subject line of the last article."
 	     artnumber
 	     (gnus-request-update-mark artgroup artnumber mark))
 	mark)))
+
+
+;;; Clean up ugly articles so they stand a chance of being readable
+
+(defun dwa/gnus-article-prepare ()
+  (gnus-with-article-buffer
+    (gnus-article-hide-signature nil 1)
+    (gnus-article-fill-cited-article nil t)
+    (article-translate-strings
+     '(
+       ("Sent from my iPad" "")
+       ("Sent from my iPhone" "")
+       ))
+    (gnus-article-strip-multiple-blank-lines)))
+
+(add-hook 'gnus-article-prepare-hook 'dwa/gnus-article-prepare)
+
 
 (provide 'dot-gnus-el)
 
