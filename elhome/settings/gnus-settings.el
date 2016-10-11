@@ -74,8 +74,7 @@ We generally don't want to wait for NNTP servers to look for new groups except w
  '(gnus-ignored-mime-types
    (quote
     ("application/x-pkcs7-signature" "application/ms-tnef" "text/x-vcard")))
- '(gnus-interactive-exit
-   (quote quiet))
+ '(gnus-interactive-exit nil)
  '(gnus-large-newsgroup 1000)
  '(gnus-local-domain "boostpro.com")
  '(gnus-message-archive-group
