@@ -443,3 +443,21 @@ file name matches PATTERN."
   (set-background-color "wheat")
   (gnus)
   (gnus-topic-read-group))
+
+(defun interrupting-flymake-start-syntax-check (base-function)
+  (when (and (boundp 'flymake-syntax-check-process) (process-live-p flymake-syntax-check-process))
+    (setq flymake-check-was-interrupted t)
+    (flymake-kill-process flymake-syntax-check-process))
+  (funcall base-function)
+  (let ((proc (car flymake-processes)))
+    (set-process-query-on-exit-flag proc nil)
+    (set (make-local-variable 'flymake-syntax-check-process) proc)
+    (setq flymake-check-was-interrupted t)
+    (setq flymake-is-running nil)))
+
+
+(use-package flymake
+  :config 
+  (advice-add 'flymake-start-syntax-check :around #'interrupting-flymake-start-syntax-check)
+)
+;  (add-function :before flymake-kill-process interrupting-flymake-kill-process))
