@@ -71,7 +71,8 @@
 
 (use-package swift-mode
   :if (locate-library "swift-mode")
-  :init (add-to-list 'auto-mode-alist '("\\.swift\\.?" . swift-mode))
+  :mode ("\\.swift\\.?" . swift-mode)
+  :commands swift-mode
   :bind (:map swift-mode-map ("C-{" . smart-brace-pair) ("C-$" . dollar-brace-pair)))
 
 (use-package rust-mode
