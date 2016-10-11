@@ -588,6 +588,34 @@ where I don't expect it to be keeping undo history anyway")
  '(dwa/glasses
    ((t
      (:underline "red" :weight bold))))
+ '(font-lock-constant-face
+   ((((class grayscale)
+      (background light))
+     (:inherit fixed-pitch :foreground "LightGray" :underline t :weight bold))
+    (((class grayscale)
+      (background dark))
+     (:inherit fixed-pitch :foreground "Gray50" :underline t :weight bold))
+    (((class color)
+      (min-colors 88)
+      (background light))
+     (:inherit fixed-pitch :foreground "dark cyan"))
+    (((class color)
+      (min-colors 88)
+      (background dark))
+     (:inherit fixed-pitch :foreground "Aquamarine"))
+    (((class color)
+      (min-colors 16)
+      (background light))
+     (:foreground "CadetBlue"))
+    (((class color)
+      (min-colors 16)
+      (background dark))
+     (:inherit fixed-pitch :foreground "Aquamarine"))
+    (((class color)
+      (min-colors 8))
+     (:inherit fixed-pitch :foreground "magenta"))
+    (t
+     (:inherit fixed-pitch :underline t :weight bold))))
  '(font-lock-radar-fg
    ((t
      (:foreground "slate gray")))
@@ -702,7 +730,7 @@ where I don't expect it to be keeping undo history anyway")
       (font-lock-string-face fixed-pitch)))))
  '(variable-pitch
    ((t
-     (:family "Myriad Set"))))
+     (:family "Myriad Set Pro"))))
  '(wg-brace-face
    ((((class color)
       (background light))
