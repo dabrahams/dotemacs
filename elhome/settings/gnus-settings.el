@@ -1004,7 +1004,8 @@ If all article have been seen, on the subject line of the last article."
 (defun dwa/gnus-article-prepare ()
   (gnus-with-article-buffer
     (gnus-article-hide-signature nil 1)
-    (gnus-article-fill-cited-article nil t)
+    (let ((fill-column (min (window-width) 100)))
+      (gnus-article-fill-long-lines))
     (article-translate-strings
      '(
        ("Sent from my iPad" "")
