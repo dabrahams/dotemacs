@@ -45,7 +45,7 @@ We generally don't want to wait for NNTP servers to look for new groups except w
    (quote
     (5 . 10)))
  '(gnus-cited-opened-text-button-line-format "")
- '(gnus-cloud-method nil)
+ '(gnus-cloud-method nil t)
  '(gnus-completing-read-function
    (quote gnus-ido-completing-read))
  '(gnus-default-article-saver
@@ -74,7 +74,8 @@ We generally don't want to wait for NNTP servers to look for new groups except w
  '(gnus-ignored-mime-types
    (quote
     ("application/x-pkcs7-signature" "application/ms-tnef" "text/x-vcard")))
- '(gnus-interactive-exit nil)
+ '(gnus-interactive-exit
+   (quote quiet))
  '(gnus-large-newsgroup 1000)
  '(gnus-local-domain "boostpro.com")
  '(gnus-message-archive-group
