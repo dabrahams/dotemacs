@@ -728,9 +728,6 @@ where I don't expect it to be keeping undo history anyway")
    ((t
      (:inherit
       (font-lock-string-face fixed-pitch)))))
- '(variable-pitch
-   ((t
-     (:family "Myriad Set Pro"))))
  '(wg-brace-face
    ((((class color)
       (background light))
