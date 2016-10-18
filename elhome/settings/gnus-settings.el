@@ -38,7 +38,7 @@ Nobody can explain the circumstances under which you wouldn't want to recover fr
 We generally don't want to wait for NNTP servers to look for new groups except when going into the server buffer.")
  '(gnus-cite-attribution-prefix
    "In article\\|in <\\|On \\(Mon\\|Tue\\|Wed\\|Thu\\|Fri\\|Sat\\|Sun\\),\\|On \\(Jan\\|Feb\\|Mar\\|Apr\\|May\\|Jun\\|Jul\\|Aug\\|Sep\\|Oct\\|Nov\\|Dec\\)\\|----- ?Original Message ?-----")
- '(gnus-cite-parse-max-size nil)
+ '(gnus-cite-parse-max-size 65535)
  '(gnus-cited-closed-text-button-line-format "...<schnipp %n>...
 ")
  '(gnus-cited-lines-visible
