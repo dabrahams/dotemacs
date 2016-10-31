@@ -74,8 +74,7 @@ We generally don't want to wait for NNTP servers to look for new groups except w
  '(gnus-ignored-mime-types
    (quote
     ("application/x-pkcs7-signature" "application/ms-tnef" "text/x-vcard")))
- '(gnus-interactive-exit
-   (quote quiet))
+ '(gnus-interactive-exit nil)
  '(gnus-large-newsgroup 1000)
  '(gnus-local-domain "boostpro.com")
  '(gnus-message-archive-group
@@ -1016,6 +1015,12 @@ If all article have been seen, on the subject line of the last article."
 
 (add-hook 'gnus-article-prepare-hook 'dwa/gnus-article-prepare)
 
+(defun dwa/gnus-save-summaries-unconditionally (base-function)
+  (let ((gnus-interactive-exit 'quiet))
+    (funcall base-function))
+  t)
+
+(advice-add 'gnus-offer-save-summaries :around #'dwa/gnus-save-summaries-unconditionally)
 
 (provide 'dot-gnus-el)
 
