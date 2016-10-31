@@ -298,7 +298,7 @@ command.")
     ((magit . "magit-v1"))))
  '(package-selected-packages
    (quote
-    (alert find-file-in-git-repo zerodark-theme xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe magit ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
+    (fill-column-indicator flymake-cursor alert find-file-in-git-repo zerodark-theme xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe magit ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
  '(pp^L-^L-string
    "····································✄····································
 ")
@@ -448,7 +448,8 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
    nil nil "As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-planner.html.  Note: remember-append-to-file is checked in the default.")
  '(safe-local-variable-values
    (quote
-    ((swift-basic-offset . 2)
+    ((buffer-face-mode . 1)
+     (swift-basic-offset . 2)
      (whitespace-line-column . 77)
      (whitespace-style lines face)
      (whitespace-line-column . 2)
@@ -517,6 +518,10 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
  '(server-mode nil)
  '(set-mark-command-repeat-pop t)
  '(show-paren-mode t)
+ '(shr-bullet "• ")
+ '(shr-table-corner 43)
+ '(shr-table-horizontal-line 45)
+ '(shr-table-vertical-line 124)
  '(shr-width 80)
  '(smime-certificate-directory "~/Library/Data/Gnus/Mail/certs/")
  '(smtp-server "smtp.gmail.com")
