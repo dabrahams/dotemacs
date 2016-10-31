@@ -240,7 +240,8 @@ from macports.")
      ("\\`\\(dwa/\\)?yas\\(nippet\\)?\\(-\\|/\\)" "yasnippet-settings.el" nil nil)
      ("\\`\\(dwa/\\)?\\(nn\\|gnus-\\)" "gnus-settings.el" nil nil)
      ("\\`\\(dwa/\\)?bcc-" "byte-code-cache-settings.el" nil nil)
-     ("\\`\\(haskell\\|ghc\\)" "haskell-mode-settings.el" nil nil))))
+     ("\\`\\(haskell\\|ghc\\)" "haskell-mode-settings.el" nil nil)
+     ("\\`\\(markdown\\)" "markdown-settings.el" nil t))))
  '(initsplit-pretty-print t)
  '(ipa-file-function
    (quote ipa-get-sidecar-file))
@@ -298,7 +299,7 @@ command.")
     ((magit . "magit-v1"))))
  '(package-selected-packages
    (quote
-    (alert find-file-in-git-repo zerodark-theme xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe magit ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
+    (magithub alert find-file-in-git-repo zerodark-theme xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe magit ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
  '(pp^L-^L-string
    "····································✄····································
 ")
