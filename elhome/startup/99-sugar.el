@@ -391,6 +391,12 @@ file name matches PATTERN."
               (unbind-key "<C-return>" (symbol-value mapName))))
   )
 
+;(use-package magit-gh-pulls
+;  :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
+
+(use-package magithub
+  :after magit)
+
 (use-package find-file-in-git-repo
   :bind ("\C-x f" . find-file-in-git-repo))
 
