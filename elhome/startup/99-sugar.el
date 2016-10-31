@@ -465,5 +465,6 @@ file name matches PATTERN."
 (use-package flymake
   :config 
   (advice-add 'flymake-start-syntax-check :around #'interrupting-flymake-start-syntax-check)
-)
+  :bind ([M-f4] . flymake-goto-next-error)
+  ([M-S-f4] . flymake-goto-prev-error))
 ;  (add-function :before flymake-kill-process interrupting-flymake-kill-process))
