@@ -449,7 +449,9 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
    nil nil "As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-planner.html.  Note: remember-append-to-file is checked in the default.")
  '(safe-local-variable-values
    (quote
-    ((buffer-face-mode . 1)
+    ((swift-syntax-check-fn . swift-project-swift-syntax-check)
+     (swift-find-executable-fn . swift-project-executable-find)
+     (buffer-face-mode . 1)
      (swift-basic-offset . 2)
      (whitespace-line-column . 77)
      (whitespace-style lines face)
