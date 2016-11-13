@@ -173,7 +173,7 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(enable-local-eval t)
  '(eudc-inline-expansion-format
    (quote
-    ("%s <%s>" name email)))
+    ("%s %s <%s>" firstname name email)))
  '(eudc-protocol
    (quote ldap))
  '(eudc-server "ldap.apple.com")

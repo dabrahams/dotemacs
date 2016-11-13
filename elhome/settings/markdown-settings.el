@@ -12,4 +12,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(markdown-command "kramdown -i GFM --no-hard-wrap --line-width 120")
- '(markdown-header-scaling t))
+ '(markdown-header-scaling t)
+ '(markdown-open-command "~/bin/marked"))
