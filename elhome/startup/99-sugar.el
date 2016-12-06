@@ -20,8 +20,6 @@
 (prefer-coding-system 'utf-8)
 
 ;; auto modes
-(add-to-list 'auto-mode-alist
-             '("\\.\\(text\\|md\\|mkdn?\\|mmd\\|markdown\\)\\'" . markdown-mode))
 
 (add-to-list 'auto-mode-alist
              '("\\.mm\\'" . objc-mode))
@@ -468,3 +466,6 @@ file name matches PATTERN."
   :bind ([M-f4] . flymake-goto-next-error)
   ([M-S-f4] . flymake-goto-prev-error))
 ;  (add-function :before flymake-kill-process interrupting-flymake-kill-process))
+
+(use-package markdown-mode
+  :mode (("\\.\\(text\\|md\\|mkdn?\\|mmd\\|markdown\\)\\'" . markdown-mode)))
