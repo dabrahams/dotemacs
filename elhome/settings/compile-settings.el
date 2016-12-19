@@ -15,6 +15,7 @@
             (hl-line-mode t)
             (make-local-variable 'auto-hscroll-mode)
             (setq auto-hscroll-mode nil)
+            (toggle-truncate-lines -1)
             ))
 
 ; disable wrapping and hscrolling
