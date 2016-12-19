@@ -294,12 +294,9 @@ command.")
     (("gnu" . "http://elpa.gnu.org/packages/")
      ("marmalade" . "http://marmalade-repo.org/packages/")
      ("melpa" . "https://melpa.org/packages/"))))
- '(package-pinned-packages
-   (quote
-    ((magit . "magit-v1"))))
  '(package-selected-packages
    (quote
-    (fill-column-indicator flymake-cursor alert find-file-in-git-repo zerodark-theme xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe magit ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
+    (nzenburn-theme zenburn anti-zenburn-theme labburn-theme zenburn-theme magithub magit fill-column-indicator flymake-cursor alert find-file-in-git-repo zerodark-theme xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
  '(pp^L-^L-string
    "····································✄····································
 ")
