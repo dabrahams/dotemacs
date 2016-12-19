@@ -54,6 +54,7 @@ Blinking cursor just annoys me")
  '(color-theme-history-max-length t)
  '(color-theme-is-cumulative nil)
  '(column-number-mode nil)
+ '(compilation-auto-jump-to-first-error t)
  '(coq-unicode-tokens-enable t)
  '(create-lockfiles nil)
  '(cursor-type
