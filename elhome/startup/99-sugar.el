@@ -453,11 +453,12 @@ file name matches PATTERN."
     (setq flymake-check-was-interrupted t)
     (flymake-kill-process flymake-syntax-check-process))
   (funcall base-function)
-  (let ((proc (car flymake-processes)))
-    (set-process-query-on-exit-flag proc nil)
-    (set (make-local-variable 'flymake-syntax-check-process) proc)
-    (setq flymake-check-was-interrupted t)
-    (setq flymake-is-running nil)))
+  (when flymake-processes
+    (let ((proc (car flymake-processes)))
+      (set-process-query-on-exit-flag proc nil)
+      (set (make-local-variable 'flymake-syntax-check-process) proc)
+      (setq flymake-check-was-interrupted t)
+      (setq flymake-is-running nil))))
 
 
 (use-package flymake
