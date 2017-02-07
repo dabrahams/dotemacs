@@ -5,6 +5,9 @@
 
 (require 'use-package)
 
+;; Disable the narrow-to-region binding; it's too easy to do by mistake
+(bind-key* "C-x n n" nil)
+
 (when (require 'sticky-windows nil :noerror)
   (bind-key* "C-x 0" 'sticky-window-delete-window)
   (bind-key* "C-x 1" 'sticky-window-delete-other-windows)
