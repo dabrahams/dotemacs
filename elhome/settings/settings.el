@@ -55,6 +55,7 @@ Blinking cursor just annoys me")
  '(color-theme-is-cumulative nil)
  '(column-number-mode nil)
  '(compilation-auto-jump-to-first-error t)
+ '(compilation-skip-threshold 2)
  '(coq-unicode-tokens-enable t)
  '(create-lockfiles nil)
  '(cursor-type
@@ -172,6 +173,7 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(elscreen-tab-display-control nil)
  '(elscreen-tab-display-kill-screen nil)
  '(enable-local-eval t)
+ '(enable-remote-dir-locals t)
  '(eudc-inline-expansion-format
    (quote
     ("%s %s <%s>" firstname name email)))
