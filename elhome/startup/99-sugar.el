@@ -369,7 +369,8 @@ file name matches PATTERN."
       (indent-according-to-mode))))
 
 (use-package findr
-  :commands (findr-search findr-query-replace findr-find-files))
+  :commands (findr-search findr-query-replace findr-find-files)
+  :bind ("M-*" . tags-loop-continue))
 
 ;; ---
 
