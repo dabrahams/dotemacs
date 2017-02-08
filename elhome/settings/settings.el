@@ -176,7 +176,7 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(enable-remote-dir-locals t)
  '(eudc-inline-expansion-format
    (quote
-    ("%s %s <%s>" firstname name email)))
+    ("%s <%s>" name email)))
  '(eudc-protocol
    (quote ldap))
  '(eudc-server "ldap.apple.com")
