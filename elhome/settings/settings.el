@@ -250,6 +250,12 @@ from macports.")
    (quote ipa-get-sidecar-file))
  '(irony-mode-line " Fe")
  '(ispell-program-name "aspell")
+ '(jabber-account-list
+   (quote
+    (("dabrahams@im.apple.com"
+      (:connection-type . starttls)))))
+ '(jabber-mode-line-mode t)
+ '(jabber-muc-disable-disco-check t)
  '(kept-new-versions 6)
  '(large-file-warning-threshold nil)
  '(ldap-host-parameters-alist
