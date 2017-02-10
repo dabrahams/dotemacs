@@ -5,6 +5,9 @@
 
 (require 'use-package)
 
+;; Disable the narrow-to-region binding; it's too easy to do by mistake
+(bind-key* "C-x n n" nil)
+
 (when (require 'sticky-windows nil :noerror)
   (bind-key* "C-x 0" 'sticky-window-delete-window)
   (bind-key* "C-x 1" 'sticky-window-delete-other-windows)
@@ -366,7 +369,8 @@ file name matches PATTERN."
       (indent-according-to-mode))))
 
 (use-package findr
-  :commands (findr-search findr-query-replace findr-find-files))
+  :commands (findr-search findr-query-replace findr-find-files)
+  :bind ("M-*" . tags-loop-continue))
 
 ;; ---
 
@@ -444,7 +448,7 @@ file name matches PATTERN."
   :bind (:map artist-mode-map ([C-down-mouse-1] . artist-mouse-choose-operation)))
 
 (when (save-match-data (string-match "/Gnus" (concat exec-directory (or (car command-line-args) ""))))
-  (set-background-color "cornsilk")
+  (set-background-color "wheat")
   (gnus)
   (gnus-topic-read-group))
 
@@ -453,11 +457,12 @@ file name matches PATTERN."
     (setq flymake-check-was-interrupted t)
     (flymake-kill-process flymake-syntax-check-process))
   (funcall base-function)
-  (let ((proc (car flymake-processes)))
-    (set-process-query-on-exit-flag proc nil)
-    (set (make-local-variable 'flymake-syntax-check-process) proc)
-    (setq flymake-check-was-interrupted t)
-    (setq flymake-is-running nil)))
+  (when flymake-processes
+    (let ((proc (car flymake-processes)))
+      (set-process-query-on-exit-flag proc nil)
+      (set (make-local-variable 'flymake-syntax-check-process) proc)
+      (setq flymake-check-was-interrupted t)
+      (setq flymake-is-running nil))))
 
 
 (use-package flymake
