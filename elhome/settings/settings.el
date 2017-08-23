@@ -276,7 +276,7 @@ from macports.")
  '(magit-repository-directories
    (quote
     ("/Users/dave/src")))
- '(magit-repository-directories-depth 3)
+ '(magit-repository-directories-depth 3 t)
  '(mailcap-download-directory "~/Downloads")
  '(mairix-file-path "~/Library/Data/Indexes")
  '(mf-display-padding-height 46 nil nil "The default value of 45 leaves the titlebar tucked up under the menu bar on OSX Lion
@@ -457,7 +457,8 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
    nil nil "As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-planner.html.  Note: remember-append-to-file is checked in the default.")
  '(safe-local-variable-values
    (quote
-    ((auto-fill-inhibit-regexp . ".*|.*")
+    ((swift-syntax-check-fn quote swift-syntax-check-single-file)
+     (auto-fill-inhibit-regexp . ".*|.*")
      (swift-syntax-check-fn . swift-project-swift-syntax-check)
      (swift-find-executable-fn . swift-project-executable-find)
      (buffer-face-mode . 1)
