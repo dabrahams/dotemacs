@@ -396,8 +396,8 @@ file name matches PATTERN."
 ;(use-package magit-gh-pulls
 ;  :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
 
-(use-package magithub
-  :after magit)
+;(use-package magithub
+;  :after magit)
 
 (use-package find-file-in-git-repo
   :bind ("\C-x f" . find-file-in-git-repo))
@@ -465,12 +465,12 @@ file name matches PATTERN."
       (setq flymake-is-running nil))))
 
 
-(use-package flymake
-  :config 
-  (advice-add 'flymake-start-syntax-check :around #'interrupting-flymake-start-syntax-check)
-  :bind ([M-f4] . flymake-goto-next-error)
-  ([M-S-f4] . flymake-goto-prev-error))
-;  (add-function :before flymake-kill-process interrupting-flymake-kill-process))
+;; (use-package flymake
+;;   :config 
+;;   (advice-add 'flymake-start-syntax-check :around #'interrupting-flymake-start-syntax-check)
+;;   :bind ([M-f4] . flymake-goto-next-error)
+;;   ([M-S-f4] . flymake-goto-prev-error))
+;; ;  (add-function :before flymake-kill-process interrupting-flymake-kill-process))
 
 (use-package markdown-mode
   :mode (("\\.\\(text\\|md\\|mkdn?\\|mmd\\|markdown\\)\\'" . markdown-mode)))

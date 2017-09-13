@@ -121,6 +121,7 @@ so we can watch errors as they come up"
 (define-key me-minor-mode-map [f7] 'my-recompile)
 (define-key me-minor-mode-map [(control f7)] 'my-compile)
 (define-key me-minor-mode-map [f4] 'next-error)
+(define-key me-minor-mode-map [(control shift f4)] 'next-error)
 (define-key me-minor-mode-map [(shift f4)] 'previous-error)
 (define-key me-minor-mode-map [(control f4)] 'first-error)
 
