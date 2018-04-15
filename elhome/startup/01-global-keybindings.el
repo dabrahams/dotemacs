@@ -167,14 +167,14 @@ so we can watch errors as they come up"
           (org-set-property "Submitter" from)))
     (org-capture goto "t")))
 
-(define-key me-minor-mode-map [(meta ?m)] 'dwa/org-capture)
+;; (define-key me-minor-mode-map [(meta ?m)] 'dwa/org-capture)
 
-(define-key me-minor-mode-map [(meta ?C)] 'jump-to-org-agenda)
+;; (define-key me-minor-mode-map [(meta ?C)] 'jump-to-org-agenda)
 
-(define-key me-minor-mode-map [(control ?c) ?a] 'org-agenda)
+;; (define-key me-minor-mode-map [(control ?c) ?a] 'org-agenda)
 
-(define-key me-minor-mode-map [(control ?c) (meta ?w)] 'org-store-link)
-(define-key me-minor-mode-map [(control ?c) (shift ?w)] 'org-kill-entry)
+;; (define-key me-minor-mode-map [(control ?c) (meta ?w)] 'org-store-link)
+;; (define-key me-minor-mode-map [(control ?c) (shift ?w)] 'org-kill-entry)
 
 ;; Unicode
 (define-key me-minor-mode-map [(control ?U)] 'xmlunicode-character-shortcut-insert)
