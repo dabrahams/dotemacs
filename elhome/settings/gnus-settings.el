@@ -45,13 +45,12 @@ We generally don't want to wait for NNTP servers to look for new groups except w
    (quote
     (5 . 10)))
  '(gnus-cited-opened-text-button-line-format "")
- '(gnus-cloud-method nil)
+ '(gnus-cloud-method nil t)
  '(gnus-completing-read-function
    (quote gnus-ido-completing-read))
  '(gnus-default-article-saver
    (quote gnus-summary-write-to-file))
  '(gnus-default-directory "~")
- '(gnus-duplicate-file "~/Library/Data/Gnus/News/suppression")
  '(gnus-duplicate-list-length 100000)
  '(gnus-extra-headers
    (quote
@@ -123,24 +122,14 @@ so I always post directly to the mailing list.")
  '(gnus-score-find-score-files-function
    (quote
     (gnus-score-find-hierarchical)))
- '(gnus-secondary-select-methods
-   (quote
-    ((nntp "LocalNNTP"
-           (nntp-address "127.0.0.1")
-           (nntp-port-number 9119)
-           (nnir-search-engine find-grep)
-           (nntp-directory "/Users/dave/brew/var/spool/news/leafnode")))))
+ '(gnus-secondary-select-methods nil)
  '(gnus-select-group-hook
    (quote
     (gnus-group-set-timestamp)))
  '(gnus-select-method
    (quote
-    (nnimap "LocalIMAP"
-            (nnimap-address "localhost")
-            (nnimap-user "dave")
-            (nnimap-server-port 9143)
-            (nnimap-stream shell)
-            (nnimap-shell-program "/Users/dave/brew/opt/dovecot/libexec/dovecot/imap -c /Users/dave/src/onmsg/conf/doveconf-n.dump"))))
+    (nntp "news.gmane.org"
+          (nnir-search-engine gmane))))
  '(gnus-signature-separator
    (quote
     ("^-- $" "^-- *$" "^_____+$" "^-----+?
