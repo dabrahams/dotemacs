@@ -474,7 +474,26 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
     (".*")))
  '(safe-local-variable-values
    (quote
-    ((swift-syntax-check-fn quote swift-syntax-check-single-file)
+    ((swift-basic-offset . 4)
+     (swift-mode
+      (whitespace-style face lines indentation:space)
+      (swift-basic-offset . 4)
+      (tab-always-indent . t))
+     (prog-mode
+      (eval add-hook
+            (quote prog-mode-hook)
+            (lambda nil
+              (whitespace-mode 1))
+            (not :APPEND)
+            :BUFFER-LOCAL))
+     (objc-mode
+      (whitespace-style face lines indentation:space))
+     (c-mode
+      (whitespace-style face lines indentation:space))
+     (c++-mode
+      (whitespace-style face lines indentation:space))
+     (swift-syntax-check-fn . swift-syntax-check-single-file)
+     (swift-syntax-check-fn quote swift-syntax-check-single-file)
      (auto-fill-inhibit-regexp . ".*|.*")
      (swift-syntax-check-fn . swift-project-swift-syntax-check)
      (swift-find-executable-fn . swift-project-executable-find)
