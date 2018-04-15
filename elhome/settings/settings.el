@@ -201,6 +201,7 @@ added -l so it would take things out of my .bash_profile, like (on boostpro.com)
  '(ffap-machine-p-unknown
    (quote ping))
  '(ffap-require-prefix t)
+ '(fill-column 80)
  '(flymake-gui-warnings-enabled nil)
  '(font-lock-verbose nil)
  '(g-user-email "dave@boostpro.com")
