@@ -494,6 +494,7 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
       (whitespace-style face lines indentation:space))
      (swift-syntax-check-fn . swift-syntax-check-single-file)
      (swift-syntax-check-fn quote swift-syntax-check-single-file)
+     (flycheck-clang-language-standard . "c++14")
      (auto-fill-inhibit-regexp . ".*|.*")
      (swift-syntax-check-fn . swift-project-swift-syntax-check)
      (swift-find-executable-fn . swift-project-executable-find)
