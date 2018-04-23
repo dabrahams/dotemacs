@@ -232,6 +232,7 @@ from macports.")
    (quote buffer)
    nil
    (ido))
+ '(ido-use-faces nil)
  '(ido-use-filename-at-point
    (quote guess))
  '(ido-use-url-at-point t)
@@ -318,7 +319,7 @@ command.")
      ("melpa" . "https://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (nzenburn-theme zenburn anti-zenburn-theme labburn-theme zenburn-theme magithub magit fill-column-indicator flymake-cursor alert find-file-in-git-repo zerodark-theme xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
+    (flx-ido nzenburn-theme zenburn anti-zenburn-theme labburn-theme zenburn-theme magithub magit fill-column-indicator flymake-cursor alert find-file-in-git-repo zerodark-theme xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
  '(pdf-view-midnight-colors
    (quote
     ("#DCDCCC" . "#383838")))

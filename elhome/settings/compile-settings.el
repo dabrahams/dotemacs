@@ -104,4 +104,3 @@
 ;; all "Included from" lines in GCC error messages be merely INFO
 ;; instead of WARNINGs so compilation-next-error doesn't stop there.
 (setcar (cddr (cl-cdddr (assoc 'gcc-include compilation-error-regexp-alist-alist))) 0)
-

@@ -474,3 +474,8 @@ file name matches PATTERN."
 
 (use-package markdown-mode
   :mode (("\\.\\(text\\|md\\|mkdn?\\|mmd\\|markdown\\)\\'" . markdown-mode)))
+
+;;;
+
+(flx-ido-mode 1)
+
