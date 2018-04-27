@@ -34,6 +34,7 @@
 (use-package diminish)
 
 (use-package workgroups
+  :defer
   :diminish workgroups-mode
   :init 
   (when (ignore-errors (progn (workgroups-mode 1) t))
@@ -358,6 +359,7 @@ file name matches PATTERN."
 
 (use-package proof-site
   :load-path "el-get/dwamacs/site-lisp/ProofGeneral/generic/"
+  :defer
   :config
   (progn
     (eval-after-load "coq"
