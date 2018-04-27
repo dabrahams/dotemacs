@@ -457,7 +457,9 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
    nil nil "As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-planner.html.  Note: remember-append-to-file is checked in the default.")
  '(safe-local-variable-values
    (quote
-    ((swift-syntax-check-fn quote swift-syntax-check-single-file)
+    ((flycheck-clang-language-standard . "c++14")
+     (swift-basic-offset . 4)
+     (swift-syntax-check-fn quote swift-syntax-check-single-file)
      (auto-fill-inhibit-regexp . ".*|.*")
      (swift-syntax-check-fn . swift-project-swift-syntax-check)
      (swift-find-executable-fn . swift-project-executable-find)
