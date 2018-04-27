@@ -32,10 +32,7 @@
  '(ansi-color-names-vector
    [zenburn-bg zenburn-red zenburn-green zenburn-yellow zenburn-blue zenburn-magenta zenburn-cyan zenburn-fg])
  '(ansi-term-color-vector
-   [unspecified "#FFFFFF" "#d15120" "#5f9411" "#d2ad00" "#6b82a7" "#a66bab" "#6b82a7" "#505050"]
-   t)
- '(async-shell-command-buffer
-   (quote confirm-kill-process))
+   [unspecified "#FFFFFF" "#d15120" "#5f9411" "#d2ad00" "#6b82a7" "#a66bab" "#6b82a7" "#505050"])
  '(auto-insert-mode t)
  '(backup-by-copying t)
  '(backup-directory-alist
