@@ -37,7 +37,6 @@
  '(async-shell-command-buffer
    (quote confirm-kill-process))
  '(auto-insert-mode t)
- '(auto-revert-remote-files t)
  '(backup-by-copying t)
  '(backup-directory-alist
    (quote
