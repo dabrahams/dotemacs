@@ -282,6 +282,9 @@ from macports.")
    (quote
     ("/Users/dave/src")))
  '(magit-repository-directories-depth 3 t)
+ '(magit-status-sections-hook
+   (quote
+    (magit-insert-status-headers magit-insert-merge-log magit-insert-rebase-sequence magit-insert-am-sequence magit-insert-sequencer-sequence magit-insert-bisect-output magit-insert-bisect-rest magit-insert-bisect-log magit-insert-untracked-files magit-insert-unstaged-changes magit-insert-staged-changes magit-insert-stashes magit-insert-unpulled-from-upstream magit-insert-unpulled-from-pushremote magit-insert-unpushed-to-upstream magit-insert-recent-commits magit-insert-unpushed-to-pushremote)))
  '(mailcap-download-directory "~/Downloads")
  '(mairix-file-path "~/Library/Data/Indexes")
  '(mf-display-padding-height 46 nil nil "The default value of 45 leaves the titlebar tucked up under the menu bar on OSX Lion
