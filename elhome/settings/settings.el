@@ -86,7 +86,8 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(dired-listing-switches "-alh")
  '(dired-recursive-deletes
    (quote always))
- '(display-time-mode t)
+ '(display-battery-mode nil)
+ '(display-time-mode nil)
  '(doc-view-continuous t)
  '(doc-view-resolution 300)
  '(el-get-byte-compile nil)
