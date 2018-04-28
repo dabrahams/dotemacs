@@ -31,7 +31,7 @@
   (or (require feature nil 'noerror)
       (and (message "requested feature %s not available" feature) nil)))
 
-(use-package diminish)
+(use-package diminish :defer)
 
 (use-package workgroups
   :defer
