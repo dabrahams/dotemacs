@@ -569,6 +569,7 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
    (quote smtpmail-send-it))
  '(server-mode nil)
  '(set-mark-command-repeat-pop t)
+ '(shell-command-with-editor-mode t)
  '(show-paren-mode t)
  '(shr-bullet "• ")
  '(shr-table-corner 43)
