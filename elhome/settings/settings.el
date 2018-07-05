@@ -315,11 +315,10 @@ command.")
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
-     ("marmalade" . "http://marmalade-repo.org/packages/")
-     ("melpa" . "https://melpa.org/packages/"))))
+     ("melpa" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (flx-ido nzenburn-theme zenburn anti-zenburn-theme labburn-theme zenburn-theme magithub magit fill-column-indicator flymake-cursor alert find-file-in-git-repo zerodark-theme xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
+    (magit zerodark-theme marmalade-client flx-ido nzenburn-theme zenburn anti-zenburn-theme labburn-theme zenburn-theme magithub fill-column-indicator flymake-cursor alert find-file-in-git-repo xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote)))
  '(pdf-view-midnight-colors
    (quote
     ("#DCDCCC" . "#383838")))
@@ -476,7 +475,7 @@ As prescribed by http://www.newartisans.com/2007/08/using-org-mode-as-a-day-plan
  '(safe-local-variable-values
    (quote
     ((flycheck-clang-language-standard . "c++14")
-    (swift-basic-offset . 4)
+     (swift-basic-offset . 4)
      (swift-mode
       (whitespace-style face lines indentation:space)
       (swift-basic-offset . 4)
