@@ -219,6 +219,7 @@ Requires wget, which isn't on the Mac by default.  Someday should
 figure out how to use curl instead, but for now I just installed wget
 from macports.")
  '(gravatar-size 48)
+ '(grep-use-null-filename-separator nil)
  '(hl-line-sticky-flag nil)
  '(ido-enable-flex-matching t)
  '(ido-everywhere t)
