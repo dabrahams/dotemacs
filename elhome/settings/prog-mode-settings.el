@@ -5,7 +5,7 @@
     ;; variables have been set up.
     (run-with-idle-timer 
      0.1 (not :repeat) 
-     (lambda (b) (with-current-buffer b (flymake-mode 1)))
+     (lambda (b) (ignore-errors (with-current-buffer b (flymake-mode 1))))
      (current-buffer))
   ;; These are wrong as they are enabled globally.  Just put them in 99-sugar if you want that.
   ;; (electric-pair-mode t)
