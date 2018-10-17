@@ -46,6 +46,21 @@
       )
     ))
 
+
+;;
+;; Parse xcpretty output; from https://github.com/threeve/emacs.d
+;;
+(add-to-list 'compilation-error-regexp-alist 'xcpretty-error)
+(add-to-list 'compilation-error-regexp-alist 'xcpretty-warning)
+(add-to-list 'compilation-error-regexp-alist-alist
+             '(xcpretty-error
+               "^\\(?:\\(?:\u274c\\|\\[x\\]\\)\\)\\s-+\\([^:]+?\\):\\([0-9]+\\):\\([0-9]+\\): .*"
+               2 3 4 nil 2))
+(add-to-list 'compilation-error-regexp-alist-alist
+             '(xcpretty-warning
+               "^\\(?:\\(\u26a0\ufe0f\\|\\[!\\]\\)\\)\\s-+\\([^:]+?\\):\\([0-9]+\\):\\([0-9]+\\): .*"
+               2 3 4 1 2))
+
 (push 'cmake compilation-error-regexp-alist)
 (push '(cmake "^\\(?:CMake \\(?:Error\\|Warnin\\(g\\)\\) at \\|  \\)\\(.+?\\):\\([0-9]+\\) ([A-Za-z_][A-Za-z0-9_]*)"
               (cmake-project-filename) 3 nil (1))
