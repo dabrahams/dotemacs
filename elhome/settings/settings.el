@@ -672,6 +672,12 @@ where I don't expect it to be keeping undo history anyway")
  '(dwa/glasses
    ((t
      (:underline "red" :weight bold))))
+ '(dwa/org-habit
+   ((((background dark))
+     (:foreground "#3f3f3f" :family "DejaVu Sans Mono"))
+    (t
+     (:family "DejaVu Sans Mono")))
+   t)
  '(font-lock-constant-face
    ((((class grayscale)
       (background light))
