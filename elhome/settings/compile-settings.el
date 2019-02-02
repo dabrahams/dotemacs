@@ -46,6 +46,21 @@
       )
     ))
 
+
+;;
+;; Parse xcpretty output; from https://github.com/threeve/emacs.d
+;;
+(add-to-list 'compilation-error-regexp-alist 'xcpretty-error)
+(add-to-list 'compilation-error-regexp-alist 'xcpretty-warning)
+(add-to-list 'compilation-error-regexp-alist-alist
+             '(xcpretty-error
+               "^\\(?:\\(?:\u274c\\|\\[x\\]\\)\\)\\s-+\\([^:]+?\\):\\([0-9]+\\):\\([0-9]+\\): .*"
+               2 3 4 nil 2))
+(add-to-list 'compilation-error-regexp-alist-alist
+             '(xcpretty-warning
+               "^\\(?:\\(\u26a0\ufe0f\\|\\[!\\]\\)\\)\\s-+\\([^:]+?\\):\\([0-9]+\\):\\([0-9]+\\): .*"
+               2 3 4 1 2))
+
 (push 'cmake compilation-error-regexp-alist)
 (push '(cmake "^\\(?:CMake \\(?:Error\\|Warnin\\(g\\)\\) at \\|  \\)\\(.+?\\):\\([0-9]+\\) ([A-Za-z_][A-Za-z0-9_]*)"
               (cmake-project-filename) 3 nil (1))
@@ -104,3 +119,71 @@
 ;; all "Included from" lines in GCC error messages be merely INFO
 ;; instead of WARNINGs so compilation-next-error doesn't stop there.
 (setcar (cddr (cl-cdddr (assoc 'gcc-include compilation-error-regexp-alist-alist))) 0)
+
+
+;;
+;; Process ANSI escape sequences in compilation-mode, per
+;; https://emacs.stackexchange.com/a/38531/20572
+;;
+
+;; There are two parts to this. First, process ANSI colors:
+
+;; Stolen from (http://endlessparentheses.com/ansi-colors-in-the-compilation-buffer-output.html)
+(require 'ansi-color)
+(defun endless/colorize-compilation ()
+  "Colorize from `compilation-filter-start' to `point'."
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region
+     compilation-filter-start (point))))
+
+(add-hook 'compilation-filter-hook
+          #'endless/colorize-compilation)
+
+;; Next, filter out unwanted ANSI escape sequences, like the ones intended for
+;; ttys but Emacs doesn't know/care about:
+
+;; Stolen from (https://oleksandrmanzyuk.wordpress.com/2011/11/05/better-emacs-shell-part-i/)
+(defun regexp-alternatives (regexps)
+  "Return the alternation of a list of regexps."
+  (mapconcat (lambda (regexp)
+               (concat "\\(?:" regexp "\\)"))
+             regexps "\\|"))
+
+(defvar non-sgr-control-sequence-regexp nil
+  "Regexp that matches non-SGR control sequences.")
+
+(setq non-sgr-control-sequence-regexp
+      (regexp-alternatives
+       '(;; icon name escape sequences
+         "\033\\][0-2];.*?\007"
+         ;; non-SGR CSI escape sequences
+         "\033\\[\\??[0-9;]*[^0-9;m]"
+         ;; noop
+         "\012\033\\[2K\033\\[1F"
+         )))
+
+(defun filter-non-sgr-control-sequences-in-region (begin end)
+  (save-excursion
+    (goto-char begin)
+    (while (re-search-forward
+            non-sgr-control-sequence-regexp end t)
+      (replace-match ""))))
+
+(defun filter-non-sgr-control-sequences-in-output (ignored)
+  (let ((start-marker
+         (or comint-last-output-start
+             (point-min-marker)))
+        (end-marker
+         (process-mark
+          (get-buffer-process (current-buffer)))))
+    (filter-non-sgr-control-sequences-in-region
+     start-marker
+     end-marker)))
+
+(add-hook 'comint-output-filter-functions
+          'filter-non-sgr-control-sequences-in-output)
+
+;; Note that the second part is actually getting applied to all comint
+;; derivatives, not just compilation-mode (It also fixes issues in,
+;; e.g. shell). If this is not what you want, then add the hook to
+;; compilation-filter-hook instead.
