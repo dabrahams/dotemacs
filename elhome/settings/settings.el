@@ -50,6 +50,7 @@ Blinking cursor just annoys me")
      (java-mode . "java")
      (awk-mode . "awk")
      (other . "dwa"))))
+ '(calendar-mark-holidays-flag t)
  '(canlock-password "963afd5a40a33c7f59217100af5a7c1648af74a1")
  '(color-theme-history-max-length t)
  '(color-theme-is-cumulative nil)
@@ -177,6 +178,7 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(elscreen-tab-display-control nil)
  '(elscreen-tab-display-kill-screen nil)
  '(enable-local-eval t)
+ '(enable-recursive-minibuffers nil)
  '(enable-remote-dir-locals t)
  '(eudc-inline-expansion-format
    (quote
@@ -230,6 +232,7 @@ from macports.")
    (quote buffer)
    nil
    (ido))
+ '(ido-show-dot-for-dired t)
  '(ido-use-faces nil)
  '(ido-use-filename-at-point
    (quote guess))
@@ -292,6 +295,7 @@ from macports.")
  '(mf-display-padding-height 46 nil nil "The default value of 45 leaves the titlebar tucked up under the menu bar on OSX Lion
 See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=10449")
  '(mf-max-width 2560)
+ '(minibuffer-depth-indicate-mode t)
  '(muse-project-alist
    (quote
     (("WikiPlanner"
