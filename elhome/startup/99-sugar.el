@@ -43,7 +43,7 @@
       (if (file-readable-p "~/.emacs.d/workgroups")
 	  (wg-load "~/.emacs.d/workgroups")))))
 
-(add-to-list 'load-path "~/src/s/swift/utils")
+; (add-to-list 'load-path "~/src/s/swift/utils")
 
 (defun insert-pair(open close)
   (let* ((sel (my-selection))
@@ -73,7 +73,7 @@
 
 (use-package swift-mode
   :if (locate-library "swift-mode")
-  :mode ("\\.swift\\.?" . swift-mode)
+  :mode ("\\.swift\\.gyb" . swift-mode)
   :commands swift-mode
   :bind (:map swift-mode-map ("C-{" . smart-brace-pair) ("C-$" . dollar-brace-pair)))
 
