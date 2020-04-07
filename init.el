@@ -1,6 +1,9 @@
 ;; Enable locally-installed site-lisp
 ;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
 
+;; Workaround https://github.com/syl20bnr/spacemacs/issues/7790
+(defalias 'insert-string 'insert)
+
 (unless (boundp 'user-emacs-directory)
   (defconst user-emacs-directory (expand-file-name "~/.emacs.d/")))
 

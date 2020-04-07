@@ -975,7 +975,7 @@ If all article have been seen, on the subject line of the last article."
                          (list :description (org-email-link-description))))
           link))))
 
-(require 'org-gnus nil :noerror)
+;;(require 'org-gnus nil :noerror)
 
 ;;; ========= Workaround for https://debbugs.gnu.org/cgi/bugreport.cgi?bug=22353 ==========
 (require 'nnir)
