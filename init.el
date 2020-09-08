@@ -192,12 +192,15 @@ installation."
   (require 'cl))
 
 ;; Grab the user's environment settings
-(with-temp-buffer
-  ;; Find variable settings that are particular to a login shell
-  (shell-command "diff -U0 <(set) <(echo set|${SHELL} -l)" (current-buffer))
-  ;; parse the output for settings that changed
-  (while (re-search-forward "^[+]\\([^=\n]+\\)=\\(.*\\)\n?" (not :bound) :noerror)
-    (setenv (match-string 1) (match-string 2))))
+; This was a cute trick but apparently it prevented the `man' command from
+; working, which is exactly the sort of thing it was supposed to fix!
+
+;; (with-temp-buffer
+;;   ;; Find variable settings that are particular to a login shell
+;;   (shell-command "diff -U0 <(set) <(echo set|${SHELL} -l)" (current-buffer))
+;;   ;; parse the output for settings that changed
+;;   (while (re-search-forward "^[+]\\([^=\n]+\\)=\\(.*\\)\n?" (not :bound) :noerror)
+;;     (setenv (match-string 1) (match-string 2))))
 
 ;; Now update exec-path using the PATH environment variable
 (dolist (dir-path (reverse (split-string (getenv "PATH") ":")))
