@@ -8,6 +8,9 @@
 ;; hilarity and frustration.
 (global-unset-key [(control ?\\)])
 
+(global-unset-key [f11])
+(global-unset-key [f10])
+
 ;; Mouse stuff
 (define-key me-minor-mode-map [mouse-9] 'mac-mouse-turn-on-fullscreen)
 (define-key me-minor-mode-map [drag-mouse-9] 'mac-mouse-turn-on-fullscreen)
