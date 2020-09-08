@@ -11,3 +11,34 @@
   ;; (electric-pair-mode t)
   ;; (electric-layout-mode t)
   )
+
+(defconst swift-doc-comment-detail-re
+  (let* ((just-space "[ \t\n]*")
+        (not-just-space "[ \t]*[^ \t\n].*")
+        (eol "\\(?:$\\)")
+        (continue "\n\\1"))
+
+    (concat "^\\([ \t]*///\\)" not-just-space eol
+            "\\(?:" continue not-just-space eol "\\)*"
+            "\\(" continue just-space eol
+            "\\(?:" continue ".*" eol "\\)*"
+            "\\)"))
+  "regexp that finds the non-summary part of a swift doc comment as subexpression 2")
+
+(defun swift-hide-doc-comment-detail ()
+  "Hide everything but the summary part of doc comments.
+
+Use `M-x hs-show-all' to show them again."
+    (interactive)
+  (hs-minor-mode)
+  (save-excursion
+    (save-match-data
+      (goto-char (point-min))
+      (while (search-forward-regexp swift-doc-comment-detail-re (point-max) :noerror)
+        (hs-hide-comment-region (match-beginning 2) (match-end 2))
+        (goto-char (match-end 2))))))
+
+(defun swift-summaries-only ()
+  (interactive)
+  "Strip verbosity from Swift doc comments"
+  (replace-regexp "\\(\n *///\\)\\( [^ \n].*\\)\\(\\(\\1 [^ \n].*\\)*\\)\\(\\1.*\\)*" "\\1\\2\\3"))
