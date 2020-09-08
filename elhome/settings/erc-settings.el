@@ -160,7 +160,8 @@ If the buffer is currently not visible, makes it sticky."
  '(erc-default-sound "~/erc.wav")
  '(erc-generate-log-file-name-function
    (quote erc-generate-log-file-name-short))
- '(erc-growl-noise-regexp "\\(Logging in:\\|Signing off\\|You're now away\\|Welcome Back\\)")
+ '(erc-growl-noise-regexp
+   "\\(Logging in:\\|Signing off\\|You're now away\\|Welcome Back\\)")
  '(erc-header-line-format nil)
  '(erc-hide-list
    (quote

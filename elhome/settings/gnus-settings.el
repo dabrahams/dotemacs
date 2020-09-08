@@ -45,7 +45,7 @@ We generally don't want to wait for NNTP servers to look for new groups except w
    (quote
     (5 . 10)))
  '(gnus-cited-opened-text-button-line-format "")
- '(gnus-cloud-method nil t)
+ '(gnus-cloud-method nil)
  '(gnus-completing-read-function
    (quote gnus-ido-completing-read))
  '(gnus-default-article-saver
