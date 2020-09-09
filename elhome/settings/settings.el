@@ -51,9 +51,7 @@ Blinking cursor just annoys me")
  '(create-lockfiles nil)
  '(cursor-type 'box)
  '(custom-buffer-done-kill t)
- '(custom-enabled-themes
-   (quote
-    (wombat)))
+ '(custom-enabled-themes nil)
  '(custom-face-default-form 'all)
  '(custom-magic-show 'short)
  '(custom-magic-show-button t)
@@ -62,7 +60,6 @@ Blinking cursor just annoys me")
  '(custom-unlispify-tag-names nil)
  '(customize-unsaved-ignore
    '(compilation-auto-jump-to-first-error case-fold-search debug-on-error))
- '(dabbrev-case-fold-search nil)
  '(dabbrev-case-fold-search nil)
  '(delete-by-moving-to-trash t)
  '(delete-old-versions t)
