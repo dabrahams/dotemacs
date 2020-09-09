@@ -20,7 +20,7 @@
 (if (and (boundp 'package-el-version) (string-match "^0.[0-8]$" package-el-version))
     (progn
       (defconst elpa-package-archive-base package-archive-base)
-      (defconst package-archive-base "http://melpa.milkbox.net/packages/")
+      (defconst package-archive-base "https://melpa.org/packages/")
       (defadvice package--download-one-archive (around package--download-builtins-archive activate)
 	"Allow package-list-packages to work without exposing any of what's at ELPA"
 	(let ((package-archive-base 
@@ -50,7 +50,7 @@ Return nil if the package could not be found."
 
   (progn
     (add-to-list 'package-archives
-		 '("melpa" . "http://melpa.milkbox.net/packages/") t)
+		 '("melpa" . "https://melpa.org/packages/") t)
     (when (< emacs-major-version 24)
       (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") :append))))
 
