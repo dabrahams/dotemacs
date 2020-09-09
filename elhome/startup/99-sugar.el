@@ -480,5 +480,6 @@ file name matches PATTERN."
 
 ;;;
 
-(flx-ido-mode 1)
+(use-package flx-ido
+  :config (flx-ido-mode 1))
 
