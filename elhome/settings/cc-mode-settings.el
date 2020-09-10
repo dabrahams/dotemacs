@@ -53,7 +53,7 @@
 (defun my-empty-braces ()
   "insert {}"
   (interactive "*")
-  (insert-string "{}")
+  (insert "{}")
   (indent-according-to-mode)
   )
 
@@ -63,7 +63,7 @@
   (let ((bolp
          (save-excursion (skip-chars-backward " \t")
                          (equal (current-column) 0))))
-    (insert-string "{}")
+    (insert "{}")
     (if bolp
         (eval (list indent-line-function)))
     )
@@ -152,17 +152,17 @@
         (my-copyright copyright)
       (my-copyright))
       
-    (insert-string (concat "#ifndef " guard "\n"
+    (insert (concat "#ifndef " guard "\n"
                    "# define " guard "\n"))
 
     (let ((final nil) ;; final position
           (nsfini (if path-elts "\n" "")))
       
       ;; opening namespace stuff
-      (insert-string nsfini)
-      (mapc (lambda (n) (insert-string (concat "namespace " n " { ")))
+      (insert nsfini)
+      (mapc (lambda (n) (insert (concat "namespace " n " { ")))
             path-elts)
-      (insert-string nsfini)
+      (insert nsfini)
         
       (setq final (point))
       (newline)
@@ -173,14 +173,14 @@
           (newline))
       
       ;; closing namespace stuff
-      (mapc (lambda (n) (insert-string "}")) path-elts)
+      (mapc (lambda (n) (insert "}")) path-elts)
       (reduce (lambda (prefix n)
-                (insert-string (concat prefix n)) "::")
+                (insert (concat prefix n)) "::")
               path-elts
               :initial-value " // namespace ")
-      (insert-string nsfini)
-      (insert-string nsfini)
-      (insert-string (concat "#endif // " guard))
+      (insert nsfini)
+      (insert nsfini)
+      (insert (concat "#endif // " guard))
       (goto-char final))
     )
   )
@@ -206,18 +206,18 @@
           (nsfini (if path-elts "\n" "")))
       
       ;; opening namespace stuff
-      (insert-string nsfini)
+      (insert nsfini)
       (if path-elts
           (progn
-            (insert-string "#include \"")
-            (mapc (lambda (n) (insert-string n "/"))
+            (insert "#include \"")
+            (mapc (lambda (n) (insert n "/"))
                   path-elts)
-            (insert-string (concat (downcase basename) ".hpp\"\n\n"))))
+            (insert (concat (downcase basename) ".hpp\"\n\n"))))
       
-      (mapc (lambda (n) (insert-string (concat "namespace " n " { ")))
+      (mapc (lambda (n) (insert (concat "namespace " n " { ")))
             path-elts)
       
-      (insert-string nsfini)
+      (insert nsfini)
         
       (setq final (point))
       (newline)
@@ -228,12 +228,12 @@
           (newline))
       
       ;; closing namespace stuff
-      (mapc (lambda (n) (insert-string "}")) path-elts)
+      (mapc (lambda (n) (insert "}")) path-elts)
       (reduce (lambda (prefix n)
-                (insert-string (concat prefix n)) "::")
+                (insert (concat prefix n)) "::")
               path-elts
               :initial-value " // namespace ")
-      (insert-string nsfini)
+      (insert nsfini)
       (goto-char final)
       )
     )
@@ -274,14 +274,14 @@
   (if (my-at-preprocessor-directive-p)
       (progn
         (move-to-column (my-preprocessor-indentation) t)
-        (insert-string (concat "include " open))
+        (insert (concat "include " open))
         (save-excursion
-          (insert-string close)))
-    (insert-string open)))
+          (insert close)))
+    (insert open)))
 
 (defun my-electric-pound ()
   (interactive)
-  (insert-string "#")
+  (insert "#")
   (if (my-at-preprocessor-directive-p)
       (progn
         (delete-region (match-beginning 1) (match-end 1))
@@ -294,7 +294,7 @@
       (move-to-column 
        (max (- (match-beginning 2) (line-beginning-position)) 
             (- (my-preprocessor-indentation) 1))))
-  (insert-string "e"))
+  (insert "e"))
         
 (defun my-c-namespace-indent (langelem)
   "Used with c-set-offset, indents namespace scope elements 2 spaces
@@ -405,7 +405,7 @@ Works with: template-args-cont."
          (skip-syntax-backward " ")
          (bolp)
          )
-       (insert-string " "))
+       (insert " "))
   )
          
 (defun my-c-electric-gt (arg)

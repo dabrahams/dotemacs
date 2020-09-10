@@ -54,7 +54,7 @@ is not supplied, the boost copyright is used by default"
   (interactive)
   (let ((copy-start (point)))
       
-    (insert-string (concat (or copyright
+    (insert (concat (or copyright
                        (or (and (my-path-elts) (boost-copyright))
                            (eval (list my-default-copyright))))
                    "\n"))
@@ -123,17 +123,17 @@ is not supplied, the boost copyright is used by default"
         (my-copyright copyright)
       (my-copyright))
       
-    (insert-string (concat "#ifndef " guard "\n"
+    (insert (concat "#ifndef " guard "\n"
                    "# define " guard "\n"))
 
     (let ((final nil) ;; final position
           (nsfini (if path-elts "\n" "")))
       
       ;; opening namespace stuff
-      (insert-string nsfini)
-      (mapc (lambda (n) (insert-string (concat "namespace " n " { ")))
+      (insert nsfini)
+      (mapc (lambda (n) (insert (concat "namespace " n " { ")))
             path-elts)
-      (insert-string nsfini)
+      (insert nsfini)
         
       (setq final (point))
       (newline)
@@ -144,14 +144,14 @@ is not supplied, the boost copyright is used by default"
           (newline))
       
       ;; closing namespace stuff
-      (mapc (lambda (n) (insert-string "}")) path-elts)
+      (mapc (lambda (n) (insert "}")) path-elts)
       (reduce (lambda (prefix n)
-                (insert-string (concat prefix n)) "::")
+                (insert (concat prefix n)) "::")
               path-elts
               :initial-value " // namespace ")
-      (insert-string nsfini)
-      (insert-string nsfini)
-      (insert-string (concat "#endif // " guard))
+      (insert nsfini)
+      (insert nsfini)
+      (insert (concat "#endif // " guard))
       (goto-char final))
     )
   )
@@ -176,18 +176,18 @@ is not supplied, the boost copyright is used by default"
           (nsfini (if path-elts "\n" "")))
       
       ;; opening namespace stuff
-      (insert-string nsfini)
+      (insert nsfini)
       (if path-elts
           (progn
-            (insert-string "#include \"")
-            (mapc (lambda (n) (insert-string n "/"))
+            (insert "#include \"")
+            (mapc (lambda (n) (insert n "/"))
                   path-elts)
-            (insert-string (concat (downcase basename) ".hpp\"\n\n"))))
+            (insert (concat (downcase basename) ".hpp\"\n\n"))))
       
-      (mapc (lambda (n) (insert-string (concat "namespace " n " { ")))
+      (mapc (lambda (n) (insert (concat "namespace " n " { ")))
             path-elts)
       
-      (insert-string nsfini)
+      (insert nsfini)
         
       (setq final (point))
       (newline)
@@ -198,12 +198,12 @@ is not supplied, the boost copyright is used by default"
           (newline))
       
       ;; closing namespace stuff
-      (mapc (lambda (n) (insert-string "}")) path-elts)
+      (mapc (lambda (n) (insert "}")) path-elts)
       (reduce (lambda (prefix n)
-                (insert-string (concat prefix n)) "::")
+                (insert (concat prefix n)) "::")
               path-elts
               :initial-value " // namespace ")
-      (insert-string nsfini)
+      (insert nsfini)
       (goto-char final)
       )
     )

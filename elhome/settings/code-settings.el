@@ -63,7 +63,7 @@ is not supplied, the boost copyright is used by default"
   (interactive)
   (let ((copy-start (point)))
       
-    (insert-string (concat (or copyright
+    (insert (concat (or copyright
                        (or (and (my-path-elts) (boost-copyright))
                            (eval (list my-default-copyright))))
                    "\n"))
