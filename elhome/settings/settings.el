@@ -305,7 +305,7 @@ command.")
  '(ns-right-command-modifier 'super)
  '(package-archives
    '(("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa" . "http://stable.melpa.org/packages/")))
+     ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
    '(bug-hunter whitespace-cleanup-mode bazel-mode realgud-lldb easy-jekyll magit-imerge swift-mode magit-imerge swift-mode magit zerodark-theme marmalade-client flx-ido nzenburn-theme zenburn anti-zenburn-theme labburn-theme zenburn-theme magithub fill-column-indicator flymake-cursor alert find-file-in-git-repo xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote))
  '(pdf-view-midnight-colors
