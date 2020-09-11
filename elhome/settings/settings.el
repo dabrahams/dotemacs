@@ -211,6 +211,9 @@ from macports.")
    '("/Users/dave/brew/sbin/dovecot --exec-mail imap" "ssh %s imapd" "rsh %s imapd" "ssh %g ssh %s imapd" "rsh %g rsh %s imapd"))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(initial-frame-alist
+   '((fullscreen . maximized)
+     (vertical-scroll-bars)))
  '(initsplit-customizations-alist
    '(("\\`\\(gnus\\(-home\\)?\\|message\\)-directory\\'" "preloaded-settings.el" nil t)
      ("\\`erc-nickserv-passwords\\'" "../startup/10-passwd.el" nil nil)
