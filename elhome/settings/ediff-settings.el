@@ -80,12 +80,8 @@ Any unchanged buffers in the ediff are removed when the session ends.
 `C-u q' to override when quitting.")
  '(ediff-merge-filename-prefix "")
  '(ediff-skip-merge-regions-that-differ-from-default nil)
- '(ediff-split-window-function
-   (quote split-window-horizontally)
-   nil nil "
+ '(ediff-split-window-function 'split-window-horizontally nil nil "
 Show diffs side-by-side")
- '(ediff-window-setup-function
-   (quote ediff-setup-windows-plain)
-   nil nil "
+ '(ediff-window-setup-function 'ediff-setup-windows-plain nil nil "
 Run Ediff all in one frame.  The default when there's a window manager is for
 emacs to pop up a separate frame for the `*Ediff Control Panel*' buffer"))

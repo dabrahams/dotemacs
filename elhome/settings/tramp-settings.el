@@ -12,17 +12,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(tramp-backup-directory-alist
-   (quote
-    (("." . "~/.emacs.d/backups")))
+   '(("." . "~/.emacs.d/backups"))
    nil
    (tramp))
  '(tramp-default-host "localhost" nil
                       (tramp))
  '(tramp-default-proxies-alist
-   (quote
-    (("\\`localhost\\'" nil nil)
+   '(("\\`localhost\\'" nil nil)
      ("\\`206.217.198.21\\'" nil nil)
-     ("\\`.+\\'" "\\`root\\'" "/ssh:%h:")))
+     ("\\`.+\\'" "\\`root\\'" "/ssh:%h:"))
    nil
    (tramp)
    "
@@ -33,5 +31,4 @@ on the customization of tramp-default-host to \"localhost\" for simple
 matching), and otherwise, if sudo'ing somewhere, ssh there first and
 then sudo on the remote host itself.")
  '(tramp-remote-path
-   (quote
-    (tramp-own-remote-path tramp-default-remote-path "/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin" "/local/bin" "/local/freeware/bin" "/local/gnu/bin" "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin" "/opt/bin" "/opt/sbin" "/opt/local/bin"))))
+   '(tramp-own-remote-path tramp-default-remote-path "/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin" "/local/bin" "/local/freeware/bin" "/local/gnu/bin" "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin" "/opt/bin" "/opt/sbin" "/opt/local/bin")))
