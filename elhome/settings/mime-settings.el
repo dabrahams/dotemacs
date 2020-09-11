@@ -8,13 +8,10 @@ This should really be the default.  Most MUAs can't decode the split messages!")
  '(mime-play-delete-file-immediately nil)
  '(mime-save-directory "/tmp")
  '(mm-attachment-override-types
-   (quote
-    ("text/x-vcard" "application/pkcs7-mime" "application/x-pkcs7-mime" "application/pkcs7-signature" "application/x-pkcs7-signature" "image/*"))
+   '("text/x-vcard" "application/pkcs7-mime" "application/x-pkcs7-mime" "application/pkcs7-signature" "application/x-pkcs7-signature" "image/*")
    nil nil "
 Added image/* to display attached images inline")
  '(mm-discouraged-alternatives
-   (quote
-    ("image/.*" "text/html" "text/richtext")))
- '(mm-inline-large-images
-   (quote resize))
+   '("image/.*" "text/html" "text/richtext"))
+ '(mm-inline-large-images 'resize)
  '(mm-inline-text-html-with-images t))
