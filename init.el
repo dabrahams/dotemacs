@@ -176,6 +176,9 @@ installation."
 (use-package magit
   :bind ("C-x g" . magit-status))
 
+(use-package forge
+  :after magit)
+
 ;; Set up default font on earlier emacsen
 ;; FIXME - this should be moved into some elhome initialization file
 (when (string-match "^22\..*" emacs-version)
