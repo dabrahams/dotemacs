@@ -155,7 +155,7 @@ installation."
   (defun string-match-p (regexp string &optional start)
     (save-match-data (string-match regexp string start))))
 
-(setq custom-theme-directory (expand-file-name "~/.emacs.d/elhome/settings"))
+(setq custom-theme-directory (expand-file-name (concat user-emacs-directory "elhome/settings")))
 (elhome-init)
 
 ;; Disable me-minor-mode from showing up in the mode line; we're using

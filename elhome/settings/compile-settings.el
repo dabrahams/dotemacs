@@ -1,13 +1,13 @@
-;; Support initial tabs in Python backtraces, as produced by Buildbot.
 (require 'cl-macs)
 (require 'compile)
-(let* ((clause (assoc 'caml compilation-error-regexp-alist-alist))
-       (pat (cadr clause)))
-  (when (and clause (string= (substring pat 0 2) "^ "))
-    (setcdr clause
-            (cons
-             (concat "^\\s-" (substring pat 2))
-             (cddr clause)))))
+;; Support initial tabs in Python backtraces, as produced by Buildbot.
+;; (let* ((clause (assoc 'caml compilation-error-regexp-alist-alist))
+;;        (pat (cadr clause)))
+;;   (when (and clause (string= (substring pat 0 2) "^ "))
+;;     (setcdr clause
+;;             (cons
+;;              (concat "^\\s-" (substring pat 2))
+;;              (cddr clause)))))
 
 (add-hook 'compilation-mode-hook
           (lambda () (make-local-variable 'hl-line-sticky-flag)
@@ -50,76 +50,83 @@
 ;;
 ;; Parse xcpretty output; from https://github.com/threeve/emacs.d
 ;;
-(add-to-list 'compilation-error-regexp-alist 'xcpretty-error)
-(add-to-list 'compilation-error-regexp-alist 'xcpretty-warning)
-(add-to-list 'compilation-error-regexp-alist-alist
-             '(xcpretty-error
-               "^\\(?:\\(?:\u274c\\|\\[x\\]\\)\\)\\s-+\\([^:]+?\\):\\([0-9]+\\):\\([0-9]+\\): .*"
-               2 3 4 nil 2))
-(add-to-list 'compilation-error-regexp-alist-alist
-             '(xcpretty-warning
-               "^\\(?:\\(\u26a0\ufe0f\\|\\[!\\]\\)\\)\\s-+\\([^:]+?\\):\\([0-9]+\\):\\([0-9]+\\): .*"
-               2 3 4 1 2))
+;; (add-to-list 'compilation-error-regexp-alist 'xcpretty-error)
+;; (add-to-list 'compilation-error-regexp-alist 'xcpretty-warning)
+;; (add-to-list 'compilation-error-regexp-alist-alist
+;;              '(xcpretty-error
+;;                "^\\(?:\\(?:\u274c\\|\\[x\\]\\)\\)\\s-+\\([^:]+?\\):\\([0-9]+\\):\\([0-9]+\\): .*"
+;;                2 3 4 nil 2))
+;; (add-to-list 'compilation-error-regexp-alist-alist
+;;              '(xcpretty-warning
+;;                "^\\(?:\\(\u26a0\ufe0f\\|\\[!\\]\\)\\)\\s-+\\([^:]+?\\):\\([0-9]+\\):\\([0-9]+\\): .*"
+;;                2 3 4 1 2))
 
-(push 'cmake compilation-error-regexp-alist)
-(push '(cmake "^\\(?:CMake \\(?:Error\\|Warnin\\(g\\)\\) at \\|  \\)\\(.+?\\):\\([0-9]+\\) ([A-Za-z_][A-Za-z0-9_]*)"
-              (cmake-project-filename) 3 nil (1))
-      compilation-error-regexp-alist-alist)
+;; (push 'cmake compilation-error-regexp-alist)
+;; (push '(cmake "^\\(?:CMake \\(?:Error\\|Warnin\\(g\\)\\) at \\|  \\)\\(.+?\\):\\([0-9]+\\) ([A-Za-z_][A-Za-z0-9_]*)"
+;;               (cmake-project-filename) 3 nil (1))
+;;       compilation-error-regexp-alist-alist)
 
-(push 'mac-assert compilation-error-regexp-alist)
-(push `(mac-assert "^Assertion failed: \\(.+?\\), function .+?, file \\(.+?\\), line \\([0-9]+\\)\\.$"
-              2 3 ,(not :column) ,(not :just-a-warning) 1)
-      compilation-error-regexp-alist-alist)
+;; (push 'mac-assert compilation-error-regexp-alist)
+;; (push `(mac-assert "^Assertion failed: \\(.+?\\), function .+?, file \\(.+?\\), line \\([0-9]+\\)\\.$"
+;;               2 3 ,(not :column) ,(not :just-a-warning) 1)
+;;       compilation-error-regexp-alist-alist)
 
 
-(push 'mygnu compilation-error-regexp-alist)
-(push '(mygnu
-     ;; The first line matches the program name for
+;; (push 'mygnu compilation-error-regexp-alist)
+;; (push '(mygnu
+;;      ;; The first line matches the program name for
 
-     ;;     PROGRAM:SOURCE-FILE-NAME:LINENO: MESSAGE
+;;      ;;     PROGRAM:SOURCE-FILE-NAME:LINENO: MESSAGE
 
-     ;; format, which is used for non-interactive programs other than
-     ;; compilers (e.g. the "jade:" entry in compilation.txt).
+;;      ;; format, which is used for non-interactive programs other than
+;;      ;; compilers (e.g. the "jade:" entry in compilation.txt).
 
-     ;; This first line makes things ambiguous with output such as
-     ;; "foo:344:50:blabla" since the "foo" part can match this first
-     ;; line (in which case the file name as "344").  To avoid this,
-     ;; the second line disallows filenames exclusively composed of
-     ;; digits.
+;;      ;; This first line makes things ambiguous with output such as
+;;      ;; "foo:344:50:blabla" since the "foo" part can match this first
+;;      ;; line (in which case the file name as "344").  To avoid this,
+;;      ;; the second line disallows filenames exclusively composed of
+;;      ;; digits.
 
-     ;; Similarly, we get lots of false positives with messages including
-     ;; times of the form "HH:MM:SS" where MM is taken as a line number, so
-     ;; the last line tries to rule out message where the info after the
-     ;; line number starts with "SS".  --Stef
+;;      ;; Similarly, we get lots of false positives with messages including
+;;      ;; times of the form "HH:MM:SS" where MM is taken as a line number, so
+;;      ;; the last line tries to rule out message where the info after the
+;;      ;; line number starts with "SS".  --Stef
 
-     ;; The core of the regexp is the one with *?.  It says that a file name
-     ;; can be composed of any non-newline char, but it also rules out some
-     ;; valid but unlikely cases, such as a trailing space or a space
-     ;; followed by a -, or a colon followed by a space.
+;;      ;; The core of the regexp is the one with *?.  It says that a file name
+;;      ;; can be composed of any non-newline char, but it also rules out some
+;;      ;; valid but unlikely cases, such as a trailing space or a space
+;;      ;; followed by a -, or a colon followed by a space.
 
-     ;; The "in \\|from " exception was added to handle messages from Ruby.
-     "^\\(?:[[:alpha:]][-[:alnum:].]+: ?\\|[ \t]+\\(?:in \\|from \\)\\|\\(?:.+?\\[\\[[^@]*@\\)\\)?\
-\\([0-9]*[^0-9\n]\\(?:[^\n :]\\| [^/\n]\\|:[^ \n]\\)*?\\): ?\
-\\([0-9]+\\)\\(?:[.:]\\([0-9]+\\)\\)?\
-\\(?:-\\([0-9]+\\)?\\(?:\\.\\([0-9]+\\)\\)?\\)?:\
-\\(?: *\\(\\(?:Future\\|Runtime\\)?[Ww]arning\\|W:\\)\\|\
- *\\([Ii]nfo\\(?:\\>\\|rmationa?l?\\)\\|I:\\|instantiated from\\|[Nn]ote\\)\\|\
- *[Ee]rror\\|\[0-9]?\\(?:[^0-9\n]\\|$\\)\\|[0-9][0-9][0-9]\\)"
-     1 (2 . 4) (3 . 5) (6 . 7))
-      compilation-error-regexp-alist-alist)
+;;      ;; The "in \\|from " exception was added to handle messages from Ruby.
+;;      "^\\(?:[[:alpha:]][-[:alnum:].]+: ?\\|[ \t]+\\(?:in \\|from \\)\\|\\(?:.+?\\[\\[[^@]*@\\)\\)?\
+;; \\([0-9]*[^0-9\n]\\(?:[^\n :]\\| [^/\n]\\|:[^ \n]\\)*?\\): ?\
+;; \\([0-9]+\\)\\(?:[.:]\\([0-9]+\\)\\)?\
+;; \\(?:-\\([0-9]+\\)?\\(?:\\.\\([0-9]+\\)\\)?\\)?:\
+;; \\(?: *\\(\\(?:Future\\|Runtime\\)?[Ww]arning\\|W:\\)\\|\
+;;  *\\([Ii]nfo\\(?:\\>\\|rmationa?l?\\)\\|I:\\|instantiated from\\|[Nn]ote\\)\\|\
+;;  *[Ee]rror\\|\[0-9]?\\(?:[^0-9\n]\\|$\\)\\|[0-9][0-9][0-9]\\)"
+;;      1 (2 . 4) (3 . 5) (6 . 7))
+;;       compilation-error-regexp-alist-alist)
 
 ;; When my compile-command crashes, emacs infuriatingly tries to take me to an
 ;; error at "/bin/bash: line: 1", revealing gibberish.  This matches that
 ;; pattern but then produces an empty filename.
-(push 'crash compilation-error-regexp-alist)
-(push `(crash "^/bin/bash\\(\\): line .*" 1) 
-   compilation-error-regexp-alist-alist)
+;; (push 'crash compilation-error-regexp-alist)
+;; (push `(crash "^/bin/bash\\(\\): line .*" 1) 
+;;    compilation-error-regexp-alist-alist)
 
 ;; Destructively update compilation-error-regexp-alist-alist to make
 ;; all "Included from" lines in GCC error messages be merely INFO
 ;; instead of WARNINGs so compilation-next-error doesn't stop there.
 (setcar (cddr (cl-cdddr (assoc 'gcc-include compilation-error-regexp-alist-alist))) 0)
+(setcar (cddr (cl-cdddr (assoc 'clang-include compilation-error-regexp-alist-alist))) 0)
 
+;; Downgrade bazel errors, because bazel prints an error every time compilation
+;; fails and it's not what I want to jump to.
+(use-package bazel-mode
+  :defer
+  :config
+  (setcar (cddr (cl-cdddr (assoc 'bazel-mode-error compilation-error-regexp-alist-alist))) 1))
 
 ;;
 ;; Process ANSI escape sequences in compilation-mode, per

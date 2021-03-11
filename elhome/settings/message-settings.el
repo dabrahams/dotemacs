@@ -78,33 +78,26 @@ used as the value of `message-send-rename-function'."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(message-citation-line-function
-   (quote message-insert-spam-resistant-citation-line))
+ '(message-citation-line-function 'message-insert-spam-resistant-citation-line)
  '(message-cite-prefix-regexp "\\([ 	]*[_.[:word:]]+>+\\|[ 	]*[]>|]\\)+" nil nil "
 Removed \"}\" from the allowable characters because I often type that when writing replies.")
  '(message-dont-reply-to-names
-   (quote
-    ("\\`dave\\(\\+.*\\)?@\\(boostpro\\|boost-consulting\\).com\\'" "\\`dabrahams\\(\\+.*\\)?@apple.com\\'" "\\<no-?reply\\>" "\\`undisclosed-recipients:")))
+   '("\\`dave\\(\\+.*\\)?@\\(boostpro\\|boost-consulting\\).com\\'" "\\`dabrahams\\(\\+.*\\)?@apple.com\\'" "\\<no-?reply\\>" "\\`undisclosed-recipients:"))
  '(message-forward-ignored-headers
-   (quote
-    ("^Content-Transfer-Encoding:" "^X-Gnus" "^X-" "^Received:" "^User-Agent:" "^Face:" "^References:")))
+   '("^Content-Transfer-Encoding:" "^X-Gnus" "^X-" "^Received:" "^User-Agent:" "^Face:" "^References:"))
  '(message-forward-show-mml t)
  '(message-log-max 1000)
  '(message-mode-hook
-   (quote
-    (use-hard-newlines)))
- '(message-send-mail-function
-   (quote message-send-mail-with-sendmail))
- '(message-send-rename-function
-   (quote dwa/message-send-rename))
+   '(use-hard-newlines))
+ '(message-send-mail-function 'message-send-mail-with-sendmail)
+ '(message-send-rename-function 'dwa/message-send-rename)
  '(message-subject-re-regexp
    "^[ 	]*\\(\\([Rr][Ee]\\|[Aa][Ww]\\)\\(\\[[0-9]*\\]\\)*:[ 	]*\\)*[ 	]*" nil nil "
 Handle Germans' Aw: version of Re:")
  '(message-subject-trailing-was-query t nil nil "
 always strip the trailing old subject in (was: ...) subjects")
  '(message-syntax-checks
-   (quote
-    ((sender . disabled)
-     (long-lines . disabled)))
+   '((sender . disabled)
+     (long-lines . disabled))
    nil nil "
 Don't complain about long lines, please"))
