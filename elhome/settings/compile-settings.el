@@ -127,6 +127,8 @@
   :defer
   :config
   (setcar (cddr (cl-cdddr (assoc 'bazel-mode-error compilation-error-regexp-alist-alist))) 1))
+;; Eagerly pull this in before a compile so we can fix up the initial error.
+(require 'bazel-mode (not :filename) :noerror)
 
 ;;
 ;; Process ANSI escape sequences in compilation-mode, per
