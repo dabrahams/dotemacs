@@ -74,21 +74,6 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(display-time-mode nil)
  '(doc-view-continuous t)
  '(doc-view-resolution 300)
- '(ediff-custom-diff-options "-u" nil nil "
-Show me unified diffs by default")
- '(ediff-diff-options "-d")
- '(ediff-highlight-all-diffs nil nil nil "
-only highlight the selected diff (keeps down gray cruft onscreen)")
- '(ediff-keep-variants nil nil nil "
-Any unchanged buffers in the ediff are removed when the session ends. 
-`C-u q' to override when quitting.")
- '(ediff-merge-filename-prefix "")
- '(ediff-skip-merge-regions-that-differ-from-default nil)
- '(ediff-split-window-function 'split-window-horizontally nil nil "
-Show diffs side-by-side")
- '(ediff-window-setup-function 'ediff-setup-windows-plain nil nil "
-Run Ediff all in one frame.  The default when there's a window manager is for
-emacs to pop up a separate frame for the `*Ediff Control Panel*' buffer")
  '(el-get-byte-compile nil)
  '(el-get-sources
    '((:name gtags :type http :url "http://cvs.savannah.gnu.org/viewvc/*checkout*/global/global/gtags.el" :description "gtags facility for Emacs" :website "http://www.gnu.org/software/global/" :commands gtags-mode :diminish gtags-mode :after
@@ -208,6 +193,9 @@ from macports.")
    '("/Users/dave/brew/sbin/dovecot --exec-mail imap" "ssh %s imapd" "rsh %s imapd" "ssh %g ssh %s imapd" "rsh %g rsh %s imapd"))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(initial-frame-alist
+   '((fullscreen . maximized)
+     (vertical-scroll-bars)))
  '(initsplit-customizations-alist
    '(("\\`\\(gnus\\(-home\\)?\\|message\\)-directory\\'" "preloaded-settings.el" nil t)
      ("\\`erc-nickserv-passwords\\'" "../startup/10-passwd.el" nil nil)
@@ -251,45 +239,10 @@ from macports.")
    '(magit-insert-status-headers magit-insert-merge-log magit-insert-rebase-sequence magit-insert-am-sequence magit-insert-sequencer-sequence magit-insert-bisect-output magit-insert-bisect-rest magit-insert-bisect-log magit-insert-untracked-files magit-insert-unstaged-changes magit-insert-staged-changes magit-insert-stashes magit-insert-unpulled-from-upstream magit-insert-unpulled-from-pushremote magit-insert-unpushed-to-upstream magit-insert-recent-commits magit-insert-unpushed-to-pushremote))
  '(mailcap-download-directory "~/Downloads")
  '(mairix-file-path "~/Library/Data/Indexes")
- '(message-citation-line-function 'message-insert-spam-resistant-citation-line)
- '(message-cite-prefix-regexp "\\([ 	]*[_.[:word:]]+>+\\|[ 	]*[]>|]\\)+" nil nil "
-Removed \"}\" from the allowable characters because I often type that when writing replies.")
- '(message-dont-reply-to-names
-   '("\\`dave\\(\\+.*\\)?@\\(boostpro\\|boost-consulting\\).com\\'" "\\`dabrahams\\(\\+.*\\)?@apple.com\\'" "\\<no-?reply\\>" "\\`undisclosed-recipients:"))
- '(message-forward-ignored-headers
-   '("^Content-Transfer-Encoding:" "^X-Gnus" "^X-" "^Received:" "^User-Agent:" "^Face:" "^References:"))
- '(message-forward-show-mml t)
- '(message-log-max 1000)
- '(message-mode-hook
-   '(use-hard-newlines))
- '(message-send-mail-function 'message-send-mail-with-sendmail)
- '(message-send-rename-function 'dwa/message-send-rename)
- '(message-subject-re-regexp
-   "^[ 	]*\\(\\([Rr][Ee]\\|[Aa][Ww]\\)\\(\\[[0-9]*\\]\\)*:[ 	]*\\)*[ 	]*" nil nil "
-Handle Germans' Aw: version of Re:")
- '(message-subject-trailing-was-query t nil nil "
-always strip the trailing old subject in (was: ...) subjects")
- '(message-syntax-checks
-   '((sender . disabled)
-     (long-lines . disabled))
-   nil nil "
-Don't complain about long lines, please")
  '(mf-display-padding-height 46 nil nil "The default value of 45 leaves the titlebar tucked up under the menu bar on OSX Lion
 See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=10449")
  '(mf-max-width 2560)
- '(mime-edit-split-message nil nil nil "
-This should really be the default.  Most MUAs can't decode the split messages!")
- '(mime-play-delete-file-immediately nil)
- '(mime-save-directory "/tmp")
  '(minibuffer-depth-indicate-mode t)
- '(mm-attachment-override-types
-   '("text/x-vcard" "application/pkcs7-mime" "application/x-pkcs7-mime" "application/pkcs7-signature" "application/x-pkcs7-signature" "image/*")
-   nil nil "
-Added image/* to display attached images inline")
- '(mm-discouraged-alternatives
-   '("image/.*" "text/html" "text/richtext"))
- '(mm-inline-large-images 'resize)
- '(mm-inline-text-html-with-images t)
  '(muse-project-alist
    '(("WikiPlanner"
       ("~/plans" :default "index" :major-mode planner-mode :visit-link planner-visit-link))))
