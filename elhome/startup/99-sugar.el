@@ -43,6 +43,10 @@
       (if (file-readable-p "~/.emacs.d/workgroups")
 	  (wg-load "~/.emacs.d/workgroups")))))
 
+(use-package ws-butler
+  :defer
+  :init (ws-butler-global-mode))
+
 ; (add-to-list 'load-path "~/src/s/swift/utils")
 
 (defun insert-pair(open close)
