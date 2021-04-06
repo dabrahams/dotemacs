@@ -121,7 +121,7 @@
 (setcar (cddr (cl-cdddr (assoc 'gcc-include compilation-error-regexp-alist-alist))) 0)
 (setcar (cddr (cl-cdddr (assoc 'clang-include compilation-error-regexp-alist-alist))) 0)
 
-;; Downgrade bazel errors, because bazel prints an error every time compilation
+;; Downgrade bazel ERROR, because bazel prints an error every time compilation
 ;; fails and it's not what I want to jump to.
 (use-package bazel-mode
   :defer
