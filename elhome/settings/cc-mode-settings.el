@@ -515,3 +515,19 @@ starts."
 ;; c-mode for these files.
 (setq auto-mode-alist
       (cons '("\\.h$" . c++-mode) auto-mode-alist))
+
+(c-add-style
+ "stlab" '("bsd"
+         (c-basic-offset . 2)
+         (c-backslash-max-column . 200)
+         (c-offsets-alist
+       ;;fixup template indentation
+       (template-args-cont
+        . (my-lineup-more-template-args
+           my-lineup-template-close
+           my-lineup-first-template-args
+           +))
+
+       (inher-intro . 2)
+       (arglist-close . 0)
+       )))

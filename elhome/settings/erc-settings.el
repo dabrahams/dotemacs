@@ -148,55 +148,45 @@ If the buffer is currently not visible, makes it sticky."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(erc-anonymous-login t)
- '(erc-auto-query
-   (quote window-noselect))
+ '(erc-auto-query 'window-noselect)
  '(erc-autoaway-message "I'm away (after %i seconds of idle-time)")
  '(erc-autoaway-mode t)
  '(erc-autojoin-channels-alist
-   (quote
-    (("localhost")
-     ("freenode.net"))))
+   '(("localhost")
+     ("freenode.net")))
  '(erc-autojoin-mode t)
  '(erc-default-sound "~/erc.wav")
- '(erc-generate-log-file-name-function
-   (quote erc-generate-log-file-name-short))
+ '(erc-generate-log-file-name-function 'erc-generate-log-file-name-short)
  '(erc-growl-noise-regexp
    "\\(Logging in:\\|Signing off\\|You're now away\\|Welcome Back\\)")
  '(erc-header-line-format nil)
  '(erc-hide-list
-   (quote
-    ("JOIN" "NICK" "PART" "QUIT" "MODE")))
+   '("JOIN" "NICK" "PART" "QUIT" "MODE"))
  '(erc-interpret-mirc-color t)
  '(erc-keywords
-   (quote
-    ("dave" "abrahams" "JohnWiegley" "boost")))
+   '("dave" "abrahams" "JohnWiegley" "boost"))
  '(erc-log-channels-directory "~/Library/Data/ERC")
  '(erc-log-write-after-send t)
  '(erc-modules
-   (quote
-    (autoaway autojoin completion dcc fill identd irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly replace ring scrolltobottom services smiley stamp spelling)))
+   '(autoaway autojoin completion dcc fill identd irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly replace ring scrolltobottom services smiley stamp spelling))
  '(erc-nick "dabrahams")
  '(erc-notify-mode t)
  '(erc-port 6667)
  '(erc-prompt-for-nickserv-password nil)
  '(erc-replace-alist
-   (quote
-    (("</?FONT>" . ""))))
+   '(("</?FONT>" . "")))
  '(erc-server "irc.freenode.net")
  '(erc-services-mode t)
  '(erc-sound-mode t)
  '(erc-track-enable-keybindings t)
  '(erc-track-exclude-types
-   (quote
-    ("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE" "333" "353")))
+   '("JOIN" "KICK" "NICK" "PART" "QUIT" "MODE" "333" "353"))
  '(erc-track-faces-priority-list
-   (quote
-    (erc-error-face
+   '(erc-error-face
      (erc-nick-default-face erc-current-nick-face)
      erc-current-nick-face erc-keyword-face
      (erc-nick-default-face erc-pal-face)
-     erc-pal-face erc-nick-msg-face erc-direct-msg-face)))
+     erc-pal-face erc-nick-msg-face erc-direct-msg-face))
  '(erc-track-minor-mode t)
  '(erc-track-mode t)
- '(erc-user-full-name
-   (quote user-full-name)))
+ '(erc-user-full-name 'user-full-name))

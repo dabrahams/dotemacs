@@ -70,13 +70,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ediff-custom-diff-options "-u" nil nil "
+ '(ediff-custom-diff-options "-u -b" nil nil "
 Show me unified diffs by default")
  '(ediff-diff-options "-d")
  '(ediff-highlight-all-diffs nil nil nil "
 only highlight the selected diff (keeps down gray cruft onscreen)")
  '(ediff-keep-variants nil nil nil "
-Any unchanged buffers in the ediff are removed when the session ends. 
+Any unchanged buffers in the ediff are removed when the session ends.
 `C-u q' to override when quitting.")
  '(ediff-merge-filename-prefix "")
  '(ediff-skip-merge-regions-that-differ-from-default nil)

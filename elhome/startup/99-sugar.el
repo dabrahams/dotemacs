@@ -86,6 +86,8 @@
   :init (add-to-list 'auto-mode-alist '("\\.rust" . rust-mode))
   :bind (:map rust-mode-map ("C-{" . smart-brace-pair)))
 
+(add-to-list 'auto-mode-alist '("\\.[jt]s$" . js-mode))
+
 ;; Flymake
 
 ;; (defun dwa/flymake-setup ()
@@ -399,6 +401,11 @@ file name matches PATTERN."
               (unbind-key "<C-return>" (symbol-value mapName))))
   )
 
+(use-package magit-imerge
+  :config (progn
+            (define-key magit-mode-map (kbd "C-c C-i") 'magit-gitignore)
+            (define-key magit-mode-map "i" 'magit-imerge)))
+
 ;(use-package magit-gh-pulls
 ;  :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
 
@@ -479,11 +486,44 @@ file name matches PATTERN."
   ; (add-function :before flymake-kill-process interrupting-flymake-kill-process)
 )
 
-(use-package markdown-mode
-  :mode (("\\.\\(text\\|md\\|mkdn?\\|mmd\\|markdown\\)\\'" . markdown-mode)))
+(use-package poly-markdown
+  :mode (("\\.\\(text\\|md\\|mkdn?\\|mmd\\|markdown\\)\\'" . poly-markdown-mode)))
+(defun dwa/markdown-mode-setup ()
+  (set-window-margins (selected-window) 10 10)
+  (visual-line-mode)
+)
+(add-hook 'markdown-mode-hook 'dwa/markdown-mode-setup)
 
 ;;;
 
 (use-package flx-ido
   :config (flx-ido-mode 1))
+
+;;;
+
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
+
+;; Keystrokes to alter font size in the whole frame, and not just one buffer:
+;; https://stackoverflow.com/a/60641769/125349
+(defun acg/zoom-frame (&optional amt frame)
+  "Increaze FRAME font size by amount AMT. Defaults to selected
+frame if FRAME is nil, and to 1 if AMT is nil."
+  (interactive "p")
+  (let* ((frame (or frame (selected-frame)))
+         (font (face-attribute 'default :font frame))
+         (size (font-get font :size))
+         (amt (or amt 1))
+         (new-size (+ size amt)))
+    (set-frame-font (font-spec :size new-size) t `(,frame))
+    (message "Frame's font new size: %d" new-size)))
+
+(defun acg/zoom-frame-out (&optional amt frame)
+  "Call `acg/zoom-frame' with negative argument."
+  (interactive "p")
+  (acg/zoom-frame (- (or amt 1)) frame))
+
+(global-set-key (kbd "M-+") 'acg/zoom-frame)
+(global-set-key (kbd "M-_") 'acg/zoom-frame-out)
 
