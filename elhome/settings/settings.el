@@ -36,14 +36,7 @@ Blinking cursor just annoys me")
  '(byte-compile-verbose nil)
  '(c-backspace-function 'backward-delete-char)
  '(c-default-style
-
-
-
-
-
-
-
-'((c-mode . "stlab")
+   '((c-mode . "stlab")
      (c++-mode . "stlab")
      (java-mode . "java")
      (awk-mode . "awk")
@@ -379,7 +372,11 @@ added -l so it would take things out of my .bash_profile, like (on boostpro.com)
  '(fci-rule-color "#d9d9d9")
  '(ffap-machine-p-known 'accept)
  '(ffap-machine-p-local 'reject)
- '(ffap-machine-p-unknown 'ping)
+ '(ffap-machine-p-unknown 'reject nil nil "There is an apparent bug in ffap where it hardcodes
+the error messages recognized.  A message of the form:
+.../discard nodename nor servname provided, or not known
+causes ffap to give up, causing an error rather than falling
+back to doing `find-file'")
  '(ffap-require-prefix t)
  '(fill-column 100)
  '(findr-skip-directory-regexp

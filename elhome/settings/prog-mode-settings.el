@@ -3,6 +3,9 @@
   (ignore-errors
     (display-fill-column-indicator-mode)
     (whitespace-mode -1))
+  (when (eq major-mode 'swift-mode)
+    ;;  See https://github.com/swift-emacs/swift-mode/issues/180
+    (which-function-mode -1))
     ;; Turn on flymake in this buffer, but only *after* local
     ;; variables have been set up.
     ;; (run-with-idle-timer 
