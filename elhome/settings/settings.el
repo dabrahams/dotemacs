@@ -238,6 +238,7 @@ Blinking cursor just annoys me")
        (substatement-open . 0)
        (statement-cont . +))))
    t)
+ '(calendar-mark-holidays-flag t)
  '(canlock-password "963afd5a40a33c7f59217100af5a7c1648af74a1")
  '(color-theme-history-max-length t)
  '(color-theme-is-cumulative nil)
@@ -279,6 +280,9 @@ If you don't do this, all the nice navigation stuff is disabled by default.  Who
  '(display-time-mode nil)
  '(doc-view-continuous t)
  '(doc-view-resolution 300)
+ '(ecb-source-path
+   '(("/Users/dave/src/val/Sources" "valsrc")
+     ("/Users/dave/src/val/Sources" "valsrc")))
  '(ediff-custom-diff-options "-u -b" nil nil "
 Show me unified diffs by default")
  '(ediff-diff-options "-d")
@@ -664,6 +668,7 @@ from macports.")
    '(("ldap.apple.com" base "ou=people,o=apple computer" auth simple)))
  '(lsp-clients-clangd-args
    '("--compile-commands-dir=/Users/dabrahams/src/s/build/Ninja-ReleaseAssert/swift-macosx-x86_64"))
+ '(mac-right-command-modifier 'super)
  '(magit-backup-mode nil)
  '(magit-completing-read-function 'magit-builtin-completing-read)
  '(magit-create-branch-behaviour 'at-point)
@@ -770,12 +775,13 @@ command.")
  '(ns-pop-up-frames nil)
  '(ns-right-alternate-modifier 'hyper)
  '(ns-right-command-modifier 'super)
+ '(org-catch-invisible-edits 'show-and-error)
  '(package-archives
    '(("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "http://melpa.org/packages/")))
  '(package-native-compile t)
  '(package-selected-packages
-   '(ws-butler abridge-diff poly-markdown lua-mode jekyll-modes org-protocol-jekyll indium "use-package" cov coverlay lemon-mode memoize flycheck-ocaml learn-ocaml iedit merlin tuareg utop sml-mode prettier counsel-projectile flycheck-projectile nameframe-perspective nameframe-projectile org-projectile perspective projectile projectile-variable treemacs-projectile bison-mode bug-hunter visual-fill-column magit-gh-pulls yaml-mode forge ghub treepy closql emacsql-sqlite emacsql quelpa cask git commander dash ansi package-build shut-up epl f s whitespace-cleanup-mode bazel-mode realgud-lldb easy-jekyll magit-imerge swift-mode magit zerodark-theme marmalade-client flx-ido nzenburn-theme zenburn anti-zenburn-theme labburn-theme zenburn-theme flymake-cursor alert find-file-in-git-repo xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote))
+   '(github-review gh-notify direx ws-butler abridge-diff poly-markdown lua-mode jekyll-modes org-protocol-jekyll indium "use-package" cov coverlay lemon-mode memoize flycheck-ocaml learn-ocaml iedit merlin tuareg utop sml-mode prettier counsel-projectile flycheck-projectile nameframe-perspective nameframe-projectile org-projectile perspective projectile projectile-variable treemacs-projectile bison-mode bug-hunter visual-fill-column magit-gh-pulls yaml-mode forge ghub treepy closql emacsql-sqlite emacsql quelpa cask git commander dash ansi package-build shut-up epl f s whitespace-cleanup-mode bazel-mode realgud-lldb easy-jekyll magit-imerge swift-mode magit zerodark-theme marmalade-client flx-ido nzenburn-theme zenburn anti-zenburn-theme labburn-theme zenburn-theme flymake-cursor alert find-file-in-git-repo xmlunicode rust-mode yagist use-package twilight-bright-theme twilight-anti-bright-theme pastels-on-dark-theme message-x maxframe ham-mode grep+ gist findr elhome cus-edit+ column-enforce-mode cmake-mode boxquote))
  '(pdf-view-midnight-colors
    '("#DCDCCC" . "#383838"))
  '(perfect-margin-mode t)
@@ -1097,6 +1103,7 @@ then sudo on the remote host itself.")
  '(vc-follow-symlinks t)
  '(vc-git-diff-switches
    '("--find-renames=80"))
+ '(vc-git-print-log-follow t)
  '(version-control t)
  '(warning-suppress-types
    '((\(undo\ discard-info\)))
@@ -1140,6 +1147,12 @@ where I don't expect it to be keeping undo history anyway")
  '(dwa/glasses
    ((t
      (:underline "red" :weight bold))))
+ '(dwa/org-habit
+   ((((background dark))
+     (:foreground "#3f3f3f" :family "DejaVu Sans Mono"))
+    (t
+     (:family "DejaVu Sans Mono")))
+   t)
  '(font-lock-constant-face
    ((((class grayscale)
       (background light))
