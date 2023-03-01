@@ -1100,8 +1100,12 @@ then sudo on the remote host itself.")
  '(vc-git-diff-switches
    '("--find-renames=80"))
  '(version-control t)
+ '(warning-suppress-log-types
+   '((use-package)
+     (\(undo\ discard-info\))))
  '(warning-suppress-types
-   '((\(undo\ discard-info\)))
+   '((use-package)
+     (\(undo\ discard-info\)))
    nil nil "
 Without this, emacs pops up annoying warnings in, e.g., *shell* buffers
 where I don't expect it to be keeping undo history anyway")
