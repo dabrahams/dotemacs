@@ -7,7 +7,7 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "site-lisp/non-GPL3") :append)
 
-(add-to-list 'Info-default-directory-list "/Applications/Emacs.app/Contents/Resources/info")
+(add-to-list 'Info-default-directory-list (concat invocation-directory "../Resources/info"))
 
 ;;
 ;; MELPA Package Management Setup
@@ -2357,8 +2357,8 @@ Thus, if DIRECTORY contains both foo.el and foo.elc, \"foo\" will appear once in
   :bind ("C-x g" . magit-status))
 
 ;; Github integration
-(use-package forge
-  :after magit)
+;(use-package forge
+;  :after magit)
 
 ;; github-review
 (use-package github-review

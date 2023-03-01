@@ -267,6 +267,7 @@ Blinking cursor just annoys me")
  '(delete-by-moving-to-trash t)
  '(delete-old-versions t)
  '(delete-selection-mode t)
+ '(denote-directory "~/Documents/denote")
  '(describe-char-unidata-list t)
  '(diff-default-read-only t nil nil "
 If you don't do this, all the nice navigation stuff is disabled by default.  Who wants to edit diffs by hand, anyway?")
@@ -789,6 +790,7 @@ command.")
  '(pp^L-^L-string
    "····································✄····································
 ")
+ '(projectile-indexing-method 'hybrid)
  '(proof-electric-terminator-enable t)
  '(proof-shell-fiddle-frames nil nil nil "John says, \"I was able to get the default \"three windows mode\"
 for Proof General working reliably by customizing this\"")
@@ -1136,6 +1138,9 @@ where I don't expect it to be keeping undo history anyway")
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default
+    ((t
+      (:inherit nil :extend nil :stipple nil :background "mac:textBackgroundColor" :foreground "mac:textColor" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 181 :width normal :foundry "nil" :family "Monego Nerd Font Fix"))))
  '(bold-italic
    ((t
      (:inherit
