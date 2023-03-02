@@ -90,6 +90,7 @@ so I always post directly to the mailing list.")
            (nntp-address "localhost")
            (nntp-port-number 9119))))
  '(gnus-refer-thread-use-nnir t)
+ '(gnus-refer-thread-use-search t)
  '(gnus-safe-html-newsgroups ".")
  '(gnus-save-duplicate-list t)
  '(gnus-save-killed-list nil)
@@ -98,6 +99,8 @@ so I always post directly to the mailing list.")
  '(gnus-score-expiry-days 30)
  '(gnus-score-find-score-files-function
    '(gnus-score-find-hierarchical))
+ '(gnus-search-ignored-newsgroups
+   "nnimap\\+LocalIMAP:committee\\|nnimap\\+LocalIMAP:\\[Gmail\\]/Spam")
  '(gnus-secondary-select-methods nil)
  '(gnus-select-group-hook
    '(gnus-group-set-timestamp))
